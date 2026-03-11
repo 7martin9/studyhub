@@ -39,3 +39,28 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 });
+
+document.addEventListener('DOMContentLoaded', function() {
+    // 1. Najdeme si okno a tlačítko v kódu
+    const okno = document.getElementById('welcome-modal');
+    const tlacitko = document.getElementById('close-modal-btn');
+
+    // 2. Kontrola: Pokud uživatel už tlačítko jednou zmáčkl, okno se vůbec neukáže
+    if (sessionStorage.getItem('uzivatelVidelUpozorneni')) {
+        if (okno) {
+            okno.style.display = 'none';
+        }
+    }
+
+    // 3. Co se má stát, když se na tlačítko klikne
+    if (tlacitko) {
+        tlacitko.addEventListener('click', function() {
+            // Skryje okno
+            if (okno) {
+                okno.style.display = 'none';
+            }
+            // Zapamatuje si, že uživatel kliknul
+            sessionStorage.setItem('uzivatelVidelUpozorneni', 'true');
+        });
+    }
+});

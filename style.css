@@ -104,6 +104,7 @@ body { font-family: 'Montserrat', sans-serif; background: #fff; color: #333; ove
 .b-red { background: rgba(230, 57, 70, 0.7); }
 .b-orange { background: rgba(244, 162, 97, 0.7); }
 .b-purple { background: rgba(109, 89, 122, 0.7); }
+.b-green { background: rgba(39, 174, 96, 0.7); }
 .bubble-card:hover .bubble-img { transform: scale(1.1); }
 .bubble-card:hover .bubble-overlay { background: rgba(15, 23, 42, 0.85); }
 

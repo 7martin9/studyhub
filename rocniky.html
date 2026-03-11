@@ -1,0 +1,556 @@
+<<<<<<< HEAD
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Učební materiály | OSŠP Kolín</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* STYL PRO AKORDEON */
+        .accordion-item {
+            background: white;
+            border-radius: 20px;
+            margin-bottom: 1rem;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            border: 1px solid #eee;
+        }
+
+        /* Hlavička předmětu (na tu se kliká) */
+        .accordion-header {
+            width: 100%;
+            padding: 1.5rem 2rem;
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+            border: none;
+            outline: none;
+            transition: background 0.3s ease;
+        }
+
+        .accordion-header:hover {
+            background: #fffafa;
+        }
+
+        .header-content {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--fire-dark);
+        }
+
+        .header-content i {
+            color: var(--fire-red);
+            font-size: 1.5rem;
+            width: 30px;
+            text-align: center;
+        }
+
+        /* Šipka vpravo */
+        .chevron {
+            transition: transform 0.3s ease;
+            color: #ccc;
+        }
+
+        /* Obsah předmětu (skrytý) */
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease-out;
+            background: #fdfdfd;
+        }
+
+        .inner-padding {
+            padding: 0 2rem 2rem 2rem;
+        }
+
+        /* Podtémata a PDF */
+        .topic-group {
+            margin-top: 1.5rem;
+            padding-top: 1rem;
+            border-top: 1px solid #eee;
+        }
+
+        .topic-name {
+            display: block;
+            font-weight: 800;
+            color: var(--fire-orange);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+        }
+
+        .pdf-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 12px;
+        }
+
+        .pdf-card {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: white;
+            padding: 12px 15px;
+            border-radius: 12px;
+            text-decoration: none;
+            color: #444;
+            font-size: 0.9rem;
+            border: 1px solid #eef0f2;
+            transition: all 0.2s;
+        }
+
+        .pdf-card:hover {
+            border-color: var(--fire-red);
+            color: var(--fire-red);
+            transform: translateX(5px);
+        }
+
+        /* Aktivní stav (když je otevřeno) */
+        .accordion-item.active .accordion-content {
+            max-height: 1000px; /* Dostatečná výška pro obsah */
+        }
+
+        .accordion-item.active .chevron {
+            transform: rotate(180px);
+        }
+
+        .accordion-item.active {
+            border-color: var(--fire-red);
+        }
+    </style>
+</head>
+<body>
+
+
+
+    <nav class="navbar">
+        <a href="index.html" class="logo">
+            <img src="img/ossp_logo.png" alt="Logo OSŠP" style="height: 40px; width: auto;"> 
+            <span>Studijní portál</span>
+        </a>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="index.html">Domů</a></li>
+            <li><a href="materialy.html" class="active">Materiály</a></li>            
+            <li><a href="maturita.html">Maturita</a></li>
+            <li><a href="praxe.html">Praxe</a></li>
+            <li><a href="sporty.html">Sporty</a></li>
+            <li><a href="zkouska.html">Závěrečná zkouška</a></li>
+        </ul>
+        <div class="hamburger" id="hamburger">
+            <i class="fa-solid fa-bars"></i>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <h1>Učební materiály</h1>
+        <p>Všechny odborné podklady pro studium na jednom místě.</p>
+    </header>
+
+    <main class="container" style="margin-top: 2rem; margin-bottom: 5rem;">
+
+        <div class="accordion-item">
+            <button class="accordion-header">
+                <div class="header-content">
+                    <i class="fa-solid fa-flask-vial"></i>
+                    <span>Chemická služba</span>
+                </div>
+                <i class="fa-solid fa-chevron-down chevron"></i>
+            </button>
+            <div class="accordion-content">
+                <div class="inner-padding">
+                    
+                    <div class="topic-group">
+                        <span class="topic-name">Dýchací prostředky</span>
+                        <div class="pdf-grid">
+                            <a href="pdf/chem/maska.pdf" class="pdf-card">
+                                <i class="fa-solid fa-file-pdf"></i> Konstrukce masky
+                            </a>
+                            <a href="pdf/chem/vzduch.pdf" class="pdf-card">
+                                <i class="fa-solid fa-file-pdf"></i> Izolační přístroje
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="topic-group">
+                        <span class="topic-name">Detekční přístroje</span>
+                        <div class="pdf-grid">
+                            <a href="pdf/chem/detekce.pdf" class="pdf-card">
+                                <i class="fa-solid fa-file-pdf"></i> Měření plynů
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="accordion-item">
+            <button class="accordion-header">
+                <div class="header-content">
+                    <i class="fa-solid fa-gear"></i>
+                    <span>Technický výcvik</span>
+                </div>
+                <i class="fa-solid fa-chevron-down chevron"></i>
+            </button>
+            <div class="accordion-content">
+                <div class="inner-padding">
+                    <div class="topic-group">
+                        <span class="topic-name">Hasební látky a armatury</span>
+                        <div class="pdf-grid">
+                            <a href="pdf/tech/hadice.pdf" class="pdf-card">
+                                <i class="fa-solid fa-file-pdf"></i> Rozdělení hadic
+                            </a>
+                            <a href="pdf/tech/proudy.pdf" class="pdf-card">
+                                <i class="fa-solid fa-file-pdf"></i> Druhy proudnic
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="accordion-item">
+            <button class="accordion-header">
+                <div class="header-content">
+                    <i class="fa-solid fa-house-fire"></i>
+                    <span>Mimořádné události</span>
+                </div>
+                <i class="fa-solid fa-chevron-down chevron"></i>
+            </button>
+            <div class="accordion-content">
+                <div class="inner-padding">
+                    <div class="topic-group">
+                        <span class="topic-name">Typové plány</span>
+                        <div class="pdf-grid">
+                            <a href="pdf/mu/povodne.pdf" class="pdf-card">
+                                <i class="fa-solid fa-file-pdf"></i> Povodně
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Studentský projekt pro OSŠP Kolín - Hasičský obor.</p>
+    </footer>
+
+    <script>
+        // FUNKCE PRO ROZBALOVÁNÍ (ACCORDION)
+        document.querySelectorAll('.accordion-header').forEach(button => {
+            button.addEventListener('click', () => {
+                const accordionItem = button.parentElement;
+                
+                // Zavře ostatní otevřené položky (volitelné - pokud chceš mít otevřený jen jeden předmět)
+                /*
+                document.querySelectorAll('.accordion-item').forEach(item => {
+                    if (item !== accordionItem) {
+                        item.classList.remove('active');
+                    }
+                });
+                */
+
+                accordionItem.classList.toggle('active');
+            });
+        });
+
+        // Hamburger menu
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('navLinks');
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            const icon = hamburger.querySelector('i');
+            icon.classList.toggle('fa-bars');
+            icon.classList.toggle('fa-xmark');
+        });
+    </script>
+</body>
+=======
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Učební materiály | OSŠP Kolín</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* STYL PRO AKORDEON */
+        .accordion-item {
+            background: white;
+            border-radius: 20px;
+            margin-bottom: 1rem;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            border: 1px solid #eee;
+        }
+
+        /* Hlavička předmětu (na tu se kliká) */
+        .accordion-header {
+            width: 100%;
+            padding: 1.5rem 2rem;
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+            border: none;
+            outline: none;
+            transition: background 0.3s ease;
+        }
+
+        .accordion-header:hover {
+            background: #fffafa;
+        }
+
+        .header-content {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--fire-dark);
+        }
+
+        .header-content i {
+            color: var(--fire-red);
+            font-size: 1.5rem;
+            width: 30px;
+            text-align: center;
+        }
+
+        /* Šipka vpravo */
+        .chevron {
+            transition: transform 0.3s ease;
+            color: #ccc;
+        }
+
+        /* Obsah předmětu (skrytý) */
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease-out;
+            background: #fdfdfd;
+        }
+
+        .inner-padding {
+            padding: 0 2rem 2rem 2rem;
+        }
+
+        /* Podtémata a PDF */
+        .topic-group {
+            margin-top: 1.5rem;
+            padding-top: 1rem;
+            border-top: 1px solid #eee;
+        }
+
+        .topic-name {
+            display: block;
+            font-weight: 800;
+            color: var(--fire-orange);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+        }
+
+        .pdf-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 12px;
+        }
+
+        .pdf-card {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: white;
+            padding: 12px 15px;
+            border-radius: 12px;
+            text-decoration: none;
+            color: #444;
+            font-size: 0.9rem;
+            border: 1px solid #eef0f2;
+            transition: all 0.2s;
+        }
+
+        .pdf-card:hover {
+            border-color: var(--fire-red);
+            color: var(--fire-red);
+            transform: translateX(5px);
+        }
+
+        /* Aktivní stav (když je otevřeno) */
+        .accordion-item.active .accordion-content {
+            max-height: 1000px; /* Dostatečná výška pro obsah */
+        }
+
+        .accordion-item.active .chevron {
+            transform: rotate(180px);
+        }
+
+        .accordion-item.active {
+            border-color: var(--fire-red);
+        }
+    </style>
+</head>
+<body>
+
+
+
+    <nav class="navbar">
+        <a href="index.html" class="logo">
+            <img src="img/ossp_logo.png" alt="Logo OSŠP" style="height: 40px; width: auto;"> 
+            <span>Studijní portál</span>
+        </a>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="index.html">Domů</a></li>
+            <li><a href="materialy.html" class="active">Materiály</a></li>            
+            <li><a href="maturita.html">Maturita</a></li>
+            <li><a href="praxe.html">Praxe</a></li>
+            <li><a href="sporty.html">Sporty</a></li>
+            <li><a href="zkouska.html">Závěrečná zkouška</a></li>
+        </ul>
+        <div class="hamburger" id="hamburger">
+            <i class="fa-solid fa-bars"></i>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <h1>Učební materiály</h1>
+        <p>Všechny odborné podklady pro studium na jednom místě.</p>
+    </header>
+
+    <main class="container" style="margin-top: 2rem; margin-bottom: 5rem;">
+
+        <div class="accordion-item">
+            <button class="accordion-header">
+                <div class="header-content">
+                    <i class="fa-solid fa-flask-vial"></i>
+                    <span>Chemická služba</span>
+                </div>
+                <i class="fa-solid fa-chevron-down chevron"></i>
+            </button>
+            <div class="accordion-content">
+                <div class="inner-padding">
+                    
+                    <div class="topic-group">
+                        <span class="topic-name">Dýchací prostředky</span>
+                        <div class="pdf-grid">
+                            <a href="pdf/chem/maska.pdf" class="pdf-card">
+                                <i class="fa-solid fa-file-pdf"></i> Konstrukce masky
+                            </a>
+                            <a href="pdf/chem/vzduch.pdf" class="pdf-card">
+                                <i class="fa-solid fa-file-pdf"></i> Izolační přístroje
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="topic-group">
+                        <span class="topic-name">Detekční přístroje</span>
+                        <div class="pdf-grid">
+                            <a href="pdf/chem/detekce.pdf" class="pdf-card">
+                                <i class="fa-solid fa-file-pdf"></i> Měření plynů
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="accordion-item">
+            <button class="accordion-header">
+                <div class="header-content">
+                    <i class="fa-solid fa-gear"></i>
+                    <span>Technický výcvik</span>
+                </div>
+                <i class="fa-solid fa-chevron-down chevron"></i>
+            </button>
+            <div class="accordion-content">
+                <div class="inner-padding">
+                    <div class="topic-group">
+                        <span class="topic-name">Hasební látky a armatury</span>
+                        <div class="pdf-grid">
+                            <a href="pdf/tech/hadice.pdf" class="pdf-card">
+                                <i class="fa-solid fa-file-pdf"></i> Rozdělení hadic
+                            </a>
+                            <a href="pdf/tech/proudy.pdf" class="pdf-card">
+                                <i class="fa-solid fa-file-pdf"></i> Druhy proudnic
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="accordion-item">
+            <button class="accordion-header">
+                <div class="header-content">
+                    <i class="fa-solid fa-house-fire"></i>
+                    <span>Mimořádné události</span>
+                </div>
+                <i class="fa-solid fa-chevron-down chevron"></i>
+            </button>
+            <div class="accordion-content">
+                <div class="inner-padding">
+                    <div class="topic-group">
+                        <span class="topic-name">Typové plány</span>
+                        <div class="pdf-grid">
+                            <a href="pdf/mu/povodne.pdf" class="pdf-card">
+                                <i class="fa-solid fa-file-pdf"></i> Povodně
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Studentský projekt pro OSŠP Kolín - Hasičský obor.</p>
+    </footer>
+
+    <script>
+        // FUNKCE PRO ROZBALOVÁNÍ (ACCORDION)
+        document.querySelectorAll('.accordion-header').forEach(button => {
+            button.addEventListener('click', () => {
+                const accordionItem = button.parentElement;
+                
+                // Zavře ostatní otevřené položky (volitelné - pokud chceš mít otevřený jen jeden předmět)
+                /*
+                document.querySelectorAll('.accordion-item').forEach(item => {
+                    if (item !== accordionItem) {
+                        item.classList.remove('active');
+                    }
+                });
+                */
+
+                accordionItem.classList.toggle('active');
+            });
+        });
+
+        // Hamburger menu
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('navLinks');
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            const icon = hamburger.querySelector('i');
+            icon.classList.toggle('fa-bars');
+            icon.classList.toggle('fa-xmark');
+        });
+    </script>
+</body>
+>>>>>>> e9cfd048db9ade6964c9dc4ff92b84bb0a14198d
+</html>

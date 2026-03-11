@@ -1,0 +1,306 @@
+<<<<<<< HEAD
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sportovní příprava | OSŠP Kolín</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .sport-card {
+            background: white;
+            border-radius: 25px;
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            border-top: 6px solid var(--fire-red);
+        }
+        .info-box {
+            background: var(--bg-creme);
+            padding: 1.5rem;
+            border-radius: 20px;
+            margin-top: 1.5rem;
+            border-left: 5px solid var(--fire-orange);
+        }
+        .medal-box {
+            background: #e7f3ff;
+            color: #0c5460;
+            padding: 1.5rem;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-top: 2rem;
+            border: 1px solid #bee5eb;
+        }
+        .gender-badge {
+            display: inline-block;
+            padding: 5px 15px;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 700;
+            margin-right: 10px;
+            text-transform: uppercase;
+        }
+        .badge-male { background: #e3f2fd; color: #1976d2; }
+        .badge-female { background: #fce4ec; color: #c2185b; }
+    </style>
+</head>
+<body>
+
+
+
+    <nav class="navbar">
+        <a href="index.html" class="logo">
+            <img src="img/ossp_logo.png" alt="Logo OSŠP" style="height: 40px; width: auto;"> 
+            <span>Studijní portál</span>
+        </a>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="index.html">Domů</a></li>
+            <li><a href="rocniky.html">Materiály</a></li>            
+            <li><a href="maturita.html">Maturita</a></li>
+            <li><a href="praxe.html">Praxe</a></li>
+            <li><a href="sporty.html" class="active">Sporty</a></li>
+            <li><a href="zkouska.html">Závěrečná zkouška</a></li>
+        </ul>
+        <div class="hamburger" id="hamburger">
+            <i class="fa-solid fa-bars"></i>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <h1>Sportovní příprava</h1>
+        <p>Fyzička, týmová spolupráce a adrenalin. Staň se součástí reprezentace školy.</p>
+    </header>
+
+    <main class="container">
+
+<section class="sport-card" style="margin-top: 2rem;">
+            <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 1rem;">
+                <i class="fa-solid fa-dumbbell" style="font-size: 2rem; color: var(--fire-red);"></i>
+                <h2 style="color: var(--fire-dark); margin: 0;">TFA – Nejtvrdší hasič přežije</h2>
+            </div>
+            <p>
+                <strong>TFA (Toughest Firefighter Alive)</strong> je extrémní sportovní disciplína, která simuluje reálné zásahové podmínky hasiče. Je to prověrka fyzické síly, vytrvalosti a silné vůle v plné výstroji.
+            </p>
+
+            <div class="info-box">
+                <h4 style="margin-bottom: 10px;">Co vás v TFA může čekat?</h4>
+                <p style="font-size: 0.9rem; margin-bottom: 10px; color: #666;">
+                    <em>*Disciplíny se mohou na jednotlivých soutěžích lehce lišit podle propozic pořadatele.</em>
+                </p>
+                <ul style="margin-left: 1.5rem;">
+                    <li>Rozvinování a motání hadic (podle kategorie B nebo C).</li>
+                    <li>Hammer box (údery těžkým kladivem v konstrukci).</li>
+                    <li>Překonávání bariéry a transport figuríny (záchrana osoby).</li>
+                    <li>Výběh do schodů (často v zásahovém kabátě a s dýchacím přístrojem).</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="sport-card" style="border-top-color: var(--fire-orange);">
+            <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 1rem;">
+                <i class="fa-solid fa-fire-extinguisher" style="font-size: 2rem; color: var(--fire-orange);"></i>
+                <h2 style="color: var(--fire-dark); margin: 0;">Požární sport</h2>
+            </div>
+            <p>
+                Požární sport spojuje atletiku s hasičskými dovednostmi. Na naší škole se zaměřujeme především na jeho královskou disciplínu: <strong>Požární útok</strong>. Je to týmová souhra sedmi členů, kteří musí v co nejkratším čase propojit zdroj vody, čerpadlo, hadicové vedení a trefit proudem vody terč.
+            </p>
+
+            <div style="margin: 1.5rem 0;">
+                <span class="gender-badge badge-male">Mužské družstvo</span>
+                <span class="gender-badge badge-female">Ženské družstvo</span>
+            </div>
+
+            <div class="info-box" style="border-left-color: #1976d2;">
+                <h4 style="margin-bottom: 10px;"><i class="fa-solid fa-clock"></i> Organizace tréninků</h4>
+                <p>Příprava je rozdělena na dvě části:</p>
+                <ul style="margin-left: 1.5rem; margin-top: 10px;">
+                    <li><strong>Požární útok:</strong> Trénuje se kolektivně <strong>během školní výuky</strong> v rámci odborného výcviku nebo tělesné výchovy.</li>
+                    <li><strong>Ostatní disciplíny:</strong> Individuální příprava (běh na 100 m s překážkami, věž) probíhá <strong>po vlastní ose</strong> ve volném čase po škole.</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="medal-box">
+            <i class="fa-solid fa-award" style="font-size: 3rem; color: #ffd700;"></i>
+            <div>
+                <h3 style="margin: 0;">Proč se zapojit?</h3>
+                <p style="margin: 5px 0 0 0;">
+                    Účast v reprezentaci školy je <strong>nepovinná</strong>, ale u studentů velmi oblíbená. Za aktivní reprezentaci školy na závodech a vzornou přípravu vás čeká <strong>pochvala ředitele školy</strong> a uznání v rámci hodnocení studenta.
+                </p>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Studentský projekt pro OSŠP Kolín - Hasičský obor.</p>
+    </footer>
+
+    <script>
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('navLinks');
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            const icon = hamburger.querySelector('i');
+            icon.classList.toggle('fa-bars');
+            icon.classList.toggle('fa-xmark');
+        });
+    </script>
+</body>
+=======
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sportovní příprava | OSŠP Kolín</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .sport-card {
+            background: white;
+            border-radius: 25px;
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            border-top: 6px solid var(--fire-red);
+        }
+        .info-box {
+            background: var(--bg-creme);
+            padding: 1.5rem;
+            border-radius: 20px;
+            margin-top: 1.5rem;
+            border-left: 5px solid var(--fire-orange);
+        }
+        .medal-box {
+            background: #e7f3ff;
+            color: #0c5460;
+            padding: 1.5rem;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-top: 2rem;
+            border: 1px solid #bee5eb;
+        }
+        .gender-badge {
+            display: inline-block;
+            padding: 5px 15px;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 700;
+            margin-right: 10px;
+            text-transform: uppercase;
+        }
+        .badge-male { background: #e3f2fd; color: #1976d2; }
+        .badge-female { background: #fce4ec; color: #c2185b; }
+    </style>
+</head>
+<body>
+
+
+
+    <nav class="navbar">
+        <a href="index.html" class="logo">
+            <img src="img/ossp_logo.png" alt="Logo OSŠP" style="height: 40px; width: auto;"> 
+            <span>Studijní portál</span>
+        </a>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="index.html">Domů</a></li>
+            <li><a href="rocniky.html">Materiály</a></li>            
+            <li><a href="maturita.html">Maturita</a></li>
+            <li><a href="praxe.html">Praxe</a></li>
+            <li><a href="sporty.html" class="active">Sporty</a></li>
+            <li><a href="zkouska.html">Závěrečná zkouška</a></li>
+        </ul>
+        <div class="hamburger" id="hamburger">
+            <i class="fa-solid fa-bars"></i>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <h1>Sportovní příprava</h1>
+        <p>Fyzička, týmová spolupráce a adrenalin. Staň se součástí reprezentace školy.</p>
+    </header>
+
+    <main class="container">
+
+<section class="sport-card" style="margin-top: 2rem;">
+            <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 1rem;">
+                <i class="fa-solid fa-dumbbell" style="font-size: 2rem; color: var(--fire-red);"></i>
+                <h2 style="color: var(--fire-dark); margin: 0;">TFA – Nejtvrdší hasič přežije</h2>
+            </div>
+            <p>
+                <strong>TFA (Toughest Firefighter Alive)</strong> je extrémní sportovní disciplína, která simuluje reálné zásahové podmínky hasiče. Je to prověrka fyzické síly, vytrvalosti a silné vůle v plné výstroji.
+            </p>
+
+            <div class="info-box">
+                <h4 style="margin-bottom: 10px;">Co vás v TFA může čekat?</h4>
+                <p style="font-size: 0.9rem; margin-bottom: 10px; color: #666;">
+                    <em>*Disciplíny se mohou na jednotlivých soutěžích lehce lišit podle propozic pořadatele.</em>
+                </p>
+                <ul style="margin-left: 1.5rem;">
+                    <li>Rozvinování a motání hadic (podle kategorie B nebo C).</li>
+                    <li>Hammer box (údery těžkým kladivem v konstrukci).</li>
+                    <li>Překonávání bariéry a transport figuríny (záchrana osoby).</li>
+                    <li>Výběh do schodů (často v zásahovém kabátě a s dýchacím přístrojem).</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="sport-card" style="border-top-color: var(--fire-orange);">
+            <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 1rem;">
+                <i class="fa-solid fa-fire-extinguisher" style="font-size: 2rem; color: var(--fire-orange);"></i>
+                <h2 style="color: var(--fire-dark); margin: 0;">Požární sport</h2>
+            </div>
+            <p>
+                Požární sport spojuje atletiku s hasičskými dovednostmi. Na naší škole se zaměřujeme především na jeho královskou disciplínu: <strong>Požární útok</strong>. Je to týmová souhra sedmi členů, kteří musí v co nejkratším čase propojit zdroj vody, čerpadlo, hadicové vedení a trefit proudem vody terč.
+            </p>
+
+            <div style="margin: 1.5rem 0;">
+                <span class="gender-badge badge-male">Mužské družstvo</span>
+                <span class="gender-badge badge-female">Ženské družstvo</span>
+            </div>
+
+            <div class="info-box" style="border-left-color: #1976d2;">
+                <h4 style="margin-bottom: 10px;"><i class="fa-solid fa-clock"></i> Organizace tréninků</h4>
+                <p>Příprava je rozdělena na dvě části:</p>
+                <ul style="margin-left: 1.5rem; margin-top: 10px;">
+                    <li><strong>Požární útok:</strong> Trénuje se kolektivně <strong>během školní výuky</strong> v rámci odborného výcviku nebo tělesné výchovy.</li>
+                    <li><strong>Ostatní disciplíny:</strong> Individuální příprava (běh na 100 m s překážkami, věž) probíhá <strong>po vlastní ose</strong> ve volném čase po škole.</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="medal-box">
+            <i class="fa-solid fa-award" style="font-size: 3rem; color: #ffd700;"></i>
+            <div>
+                <h3 style="margin: 0;">Proč se zapojit?</h3>
+                <p style="margin: 5px 0 0 0;">
+                    Účast v reprezentaci školy je <strong>nepovinná</strong>, ale u studentů velmi oblíbená. Za aktivní reprezentaci školy na závodech a vzornou přípravu vás čeká <strong>pochvala ředitele školy</strong> a uznání v rámci hodnocení studenta.
+                </p>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Studentský projekt pro OSŠP Kolín - Hasičský obor.</p>
+    </footer>
+
+    <script>
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('navLinks');
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            const icon = hamburger.querySelector('i');
+            icon.classList.toggle('fa-bars');
+            icon.classList.toggle('fa-xmark');
+        });
+    </script>
+</body>
+>>>>>>> e9cfd048db9ade6964c9dc4ff92b84bb0a14198d
+</html>

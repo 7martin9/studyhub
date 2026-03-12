@@ -801,3 +801,47 @@ details[open] .arrow { transform: rotate(180deg); color: var(--primary); opacity
 }
 
 /* Ostatní styly pro .modal-content atd. už máš, ty nechej */
+
+/* ...existing code... */
+
+/* ...existing code... */
+@media (max-width: 768px) {
+  .timeline-container .timeline {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .timeline-container .timeline .time-step {
+    flex: 1 1 0;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;   /* drží kolečko přesně nad textem */
+    text-align: center;
+  }
+
+  .timeline-container .timeline .month {
+    width: clamp(42px, 14vw, 56px);
+    height: clamp(42px, 14vw, 56px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 10px;   /* centrování kolečka */
+    line-height: 1;
+    white-space: nowrap;
+    padding: 0 4px;
+    font-size: clamp(0.58rem, 2.2vw, 0.8rem);
+  }
+
+  .timeline-container .timeline .time-step p {
+    font-size: 0.82rem;
+    line-height: 1.25;
+    max-width: 11ch;       /* aby byl text pod kolečkem a neutíkal */
+    margin: 0 auto;
+  }
+}
+/* ...existing code... */

@@ -203,11 +203,30 @@
             </label>
             <ul class="nav-links">
                 <li><a href="/">Domů</a></li>
-                <li><a href="/materialy">Studijní materiály</a></li>
-                <li><a href="/maturita">Maturita</a></li>
-                <li><a href="/praxe">Praxe</a></li>
-                <li><a href="/zkouska">Zkouška</a></li>
-                <li><a href="/sporty">Sporty</a></li>
+                <li class="nav-dropdown">
+                    <button aria-haspopup="true">
+                        Studium
+                        <span class="nav-dropdown-arrow">▼</span>
+                    </button>
+                    <ul class="nav-dropdown-menu">
+                        <li><a href="/materialy">Studijní materiály</a></li>
+                        <li><a href="/maturita">Maturita</a></li>
+                        <li><a href="/zkouska">Závěrečná zkouška</a></li>
+                    </ul>
+                </li>
+                <li class="nav-dropdown">
+                    <button aria-haspopup="true">
+                        Praktická příprava
+                        <span class="nav-dropdown-arrow">▼</span>
+                    </button>
+                    <ul class="nav-dropdown-menu">
+                        <li><a href="/praxe">Odborná praxe</a></li>
+                        <li><a href="/sporty">Sporty</a></li>
+                        <li><a href="/nastroje">Interaktivní nástroje</a></li>
+                        <li><a href="/tahaky">Taháky do kapsy</a></li>
+                    </ul>
+                </li>
+                <li><a href="/faq">FAQ</a></li>
             </ul>
         </nav>
     </div>
@@ -276,6 +295,7 @@
             </div>
             <div class="footer-bottom">
                 <p>&copy; 2026 StudyHub</p>
+                <p><a class="footer-link" href="/kontakt">Kontakt</a></p>
                 <p class="footer-credit">Vytvořil MV</p>
             </div>
         </div>

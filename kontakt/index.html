@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script>if(localStorage.getItem('theme')==='dark'){document.documentElement.setAttribute('data-theme','dark');}</script>
-    <title>Odborná praxe | StudyHub</title>
+    <title>Kontakt | StudyHub</title>
     <link rel="icon" type="image/png" href="/img/ossp_logo.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800;900&display=swap" rel="stylesheet">
@@ -14,8 +14,8 @@
 
     <div class="nav-container">
         <nav class="navbar-floating">
-            <a href="../index.html" class="logo-group">
-                <img src="../img/ossp_logo.png" alt="Logo" class="logo-img">
+            <a href="/" class="logo-group">
+                <img src="/img/ossp_logo.png" alt="Logo" class="logo-img">
                 <span class="logo-text">STUDY<span>HUB</span></span>
             </a>
             <button id="theme-toggle" class="theme-toggle" aria-label="Přepnout tmavý/světlý režim">
@@ -23,7 +23,9 @@
                 <i class="fa-solid fa-sun icon-sun"></i>
             </button>
             <input type="checkbox" id="nav-check">
-            <label for="nav-check" class="nav-btn"><i class="fas fa-bars"></i></label>
+            <label for="nav-check" class="nav-btn">
+                <i class="fas fa-bars"></i>
+            </label>
             <ul class="nav-links">
                 <li><a href="/">Domů</a></li>
                 <li class="nav-dropdown">
@@ -56,75 +58,21 @@
 
     <header class="section-hero">
         <div class="container hero-content">
-            <h1 style="margin-top: 40px;">Organizace <span class="accent-glow">praxe</span></h1>
-            <p style="color: rgba(255,255,255,0.8);">Zásady zpracování a pokyny pro obor Požární ochrana.</p>
+            <h1 style="margin-top: 40px;">Kontakt a <span class="accent-glow">zpětná vazba</span></h1>
+            <p style="color: rgba(255,255,255,0.8);">Pošlete nám vaše výhrady, nápady i reporty přes formulář níže.</p>
         </div>
     </header>
 
-    <section class="praxe-content">
+    <section class="contact-section">
         <div class="container">
-            
-            <div class="praxe-card">
-                <div class="card-tag red">Fáze 1: Před nástupem</div>
-                <h2>Smlouva a první kontakt</h2>
-                <div class="praxe-steps">
-                    <div class="p-step">
-                        <strong>Smlouva:</strong> Vyplníte hlavičku (včetně podpisu rodiče) ve dvou kopiích. Po podpisu ředitelkou si ji vyzvednete a vyrazíte do firmy. Firma vyplní oddíly 1.2, 5.2 a 6 (razítko/podpis). Jedna kopie se vrací do školy.
-                    </div>
-                    <div class="p-step">
-                        <strong>2-3 dny předem:</strong> Zavolejte do firmy, připomeňte se a zjistěte přesnou adresu, čas nástupu a jméno vedoucího. Tyto informace (místo a pracovní doba) musíte nahlásit třídnímu učiteli.
-                    </div>
-                    <div class="p-step">
-                        <strong>Příprava:</strong> Zjistěte si info o firmě (internet, tisk). Nejpozději v den nástupu předejte firmě <em>Náplň praxe</em> dodanou školou.
-                    </div>
+            <div class="contact-card">
+                <h2>Formulář pro zpětnou vazbu</h2>
+                <div class="underline"></div>
+                <p>Po odeslání se zpráva zobrazí v odpovědích Google formuláře.</p>
+                <div class="contact-form-wrap">
+                    <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSd0RpBjkY2IN6mVxbQrgzKJvgyEufLLFZUL8BINH7f-mZQ8ig/viewform?embedded=true" width="640" height="800" frameborder="0" marginheight="0" marginwidth="0" title="Kontaktni formular StudyHub">Loading…</iframe>
                 </div>
             </div>
-
-            <div class="praxe-card">
-                <div class="card-tag blue">Fáze 2: V průběhu praxe</div>
-                <h2>Deník praxe a povinnosti</h2>
-                <p>Žák si vede denní záznamy, které musí být kdykoliv k nahlédnutí pro kontrolu ze školy.</p>
-                
-                <div class="info-box-light">
-                    <h4>Struktura záznamu o firmě/stanici:</h4>
-                    <ul>
-                        <li>Předmět a právní forma podnikání.</li>
-                        <li>Struktura zaměstnanců a charakteristika hlavní činnosti.</li>
-                        <li>Vybavení firmy/stanice.</li>
-                    </ul>
-                </div>
-
-                <div class="info-box-light">
-                    <h4>Každodenní náplň (6 hod denně):</h4>
-                    <ul>
-                        <li>Datum, místo a podrobný popis pracoviště.</li>
-                        <li>Záznam vykonané práce + hodnocení (co nového jste se naučili, co jste už znali).</li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="praxe-grid-info">
-                <div class="small-card">
-                    <h3>Náplň praxe (výběr)</h3>
-                    <ul class="check-list">
-                        <li>Právní ukotvení PO</li>
-                        <li>Organizační struktura HZS ČR</li>
-                        <li>Preventivně výchovná činnost</li>
-                        <li>Operační a organizační řízení JPO</li>
-                        <li>Spojové prostředky u HZS</li>
-                    </ul>
-                </div>
-                <div class="small-card dark">
-                    <h3>Ukončení praxe</h3>
-                    <p>Nejpozději <strong>3 dny po absolvování</strong> odevzdáte třídnímu učiteli:</p>
-                    <ul class="check-list-white">
-                        <li>Deník praxe (zkontrolovaný)</li>
-                        <li>List praxe (potvrzený firmou)</li>
-                    </ul>
-                    <div class="warning-text">Bez odevzdání nebude odborná praxe uznána a ročník nebude uzavřen!</div>
-                </div>
-            </div>
-
         </div>
     </section>
 

@@ -63,6 +63,16 @@
         </div>
     </header>
 
+    <div class="modal-overlay" id="materials-modal" role="dialog" aria-modal="true" aria-labelledby="materials-modal-title">
+        <div class="modal-content">
+            <div class="modal-icon"><i class="fa-solid fa-circle-info"></i></div>
+            <h2 id="materials-modal-title">Studijní materiály jsou momentálně v přípravě</h2>
+            <p>Aktuálně zde zatím nejsou dostupné finální materiály. Stránku postupně doplňujeme.</p>
+            <p>Pokud máte vlastní podklady, které by mohly být užitečné, napište nám přes <a href="/kontakt">formulář v sekci Kontakt</a>.</p>
+            <button type="button" class="btn-confirm" id="close-materials-modal">Rozumím</button>
+        </div>
+    </div>
+
     <section class="materials-list-section">
         <div class="container">
 
@@ -163,5 +173,25 @@
     </footer>
 
 <script src="../script.js"></script>
+<script>
+    (function () {
+        const modal = document.getElementById('materials-modal');
+        const closeBtn = document.getElementById('close-materials-modal');
+        if (!modal || !closeBtn) return;
+
+        function closeModal() {
+            modal.classList.add('modal-hidden');
+        }
+
+        closeBtn.addEventListener('click', closeModal);
+        modal.addEventListener('click', function (e) {
+            if (e.target === modal) closeModal();
+        });
+
+        document.addEventListener('keydown', function (e) {
+            if (e.key === 'Escape') closeModal();
+        });
+    })();
+</script>
 </body>
 </html>

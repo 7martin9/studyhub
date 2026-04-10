@@ -4,13 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script>if(localStorage.getItem('theme')==='dark'){document.documentElement.setAttribute('data-theme','dark');}</script>
-    <title>Studijní materiály | StudyHub</title>
-    <link rel="icon" type="image/png" href="/img/ossp_logo.png">
+    <title>Maturitní materiály | StudyHub</title>
+    <link rel="icon" type="image/png" href="../img/ossp_logo.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../style.css">
 </head>
-<body>
+<body class="materials-page">
 
     <div class="nav-container">
         <nav class="navbar-floating">
@@ -18,40 +18,40 @@
                 <img src="../img/ossp_logo.png" alt="Logo" class="logo-img">
                 <span class="logo-text">STUDY<span>HUB</span></span>
             </a>
-            <button id="theme-toggle" class="theme-toggle" aria-label="Přepnout tmavý/světlý režim">
-                <i class="fa-solid fa-moon icon-moon"></i>
-                <i class="fa-solid fa-sun icon-sun"></i>
-            </button>
-            <input type="checkbox" id="nav-check">
-            <label for="nav-check" class="nav-btn">
-                <i class="fas fa-bars"></i>
-            </label>
-            <ul class="nav-links">
-                <li><a href="/">Domů</a></li>
-                <li class="nav-dropdown">
-                    <button aria-haspopup="true">
-                        Studium
-                        <span class="nav-dropdown-arrow">▼</span>
-                    </button>
-                    <ul class="nav-dropdown-menu">
-                        <li><a href="/materialy">Studijní materiály</a></li>
-                        <li><a href="/maturita">Maturita</a></li>
-                        <li><a href="/zkouska">Závěrečná zkouška</a></li>
-                    </ul>
-                </li>
-                <li class="nav-dropdown">
-                    <button aria-haspopup="true">
-                        Praktická příprava
-                        <span class="nav-dropdown-arrow">▼</span>
-                    </button>
-                    <ul class="nav-dropdown-menu">
-                        <li><a href="/praxe">Odborná praxe</a></li>
-                        <li><a href="/sporty">Sporty</a></li>
-                        <li><a href="/nastroje">Interaktivní nástroje</a></li>
-                        <li><a href="/tahaky">Taháky do kapsy</a></li>
-                    </ul>
-                </li>
-                <li><a href="/faq">FAQ</a></li>
+                <button id="theme-toggle" class="theme-toggle" aria-label="Přepnout tmavý/světlý režim">
+                    <i class="fa-solid fa-moon icon-moon"></i>
+                    <i class="fa-solid fa-sun icon-sun"></i>
+                </button>
+                <input type="checkbox" id="nav-check">
+                <label for="nav-check" class="nav-btn">
+                    <i class="fas fa-bars"></i>
+                </label>
+                <ul class="nav-links">
+                    <li><a href="/">Domů</a></li>
+                    <li class="nav-dropdown">
+                        <button aria-haspopup="true">
+                            Studium
+                            <span class="nav-dropdown-arrow">▼</span>
+                        </button>
+                        <ul class="nav-dropdown-menu">
+                            <li><a href="/materialy">Studijní materiály</a></li>
+                            <li><a href="/maturita">Maturita</a></li>
+                            <li><a href="/zkouska">Závěrečná zkouška</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-dropdown">
+                        <button aria-haspopup="true">
+                            Praktická příprava
+                            <span class="nav-dropdown-arrow">▼</span>
+                        </button>
+                        <ul class="nav-dropdown-menu">
+                            <li><a href="/praxe">Odborná praxe</a></li>
+                            <li><a href="/sporty">Sporty</a></li>
+                            <li><a href="/nastroje">Interaktivní nástroje</a></li>
+                            <li><a href="/tahaky">Taháky do kapsy</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="/faq">FAQ</a></li>
             </ul>
         </nav>
     </div>
@@ -59,83 +59,530 @@
     <header class="section-hero">
         <div class="container hero-content">
             <h1 style="margin-top: 40px;">Studijní <span class="accent-glow">materiály</span></h1>
-            <p style="color: rgba(255,255,255,0.8);">Strukturovaný přehled odborných znalostí.</p>
+            <p style="color: rgba(255,255,255,0.8);">Kompletní zpracování otázek pro obor Požární ochrana.</p>
         </div>
     </header>
 
-    <div class="modal-overlay" id="materials-modal" role="dialog" aria-modal="true" aria-labelledby="materials-modal-title">
-        <div class="modal-content">
-            <div class="modal-icon"><i class="fa-solid fa-circle-info"></i></div>
-            <h2 id="materials-modal-title">Studijní materiály jsou momentálně v přípravě</h2>
-            <p>Aktuálně zde zatím nejsou dostupné finální materiály. Stránku postupně doplňujeme.</p>
-            <p>Pokud máte vlastní podklady, které by mohly být užitečné, napište nám přes <a href="/kontakt">formulář v sekci Kontakt</a>.</p>
-            <button type="button" class="btn-confirm" id="close-materials-modal">Rozumím</button>
-        </div>
-    </div>
-
-    <section class="materials-list-section">
+    <section class="materials-list-section" style="padding: 50px 0;">
         <div class="container">
 
-            <div class="search-wrapper">
-                <div class="search-box">
-                    <i class="fa-solid fa-magnifying-glass search-icon"></i>
-                    <input type="text" id="material-search" placeholder="Hledej téma nebo klíčové slovo…" autocomplete="off">
-                    <button id="search-clear" class="search-clear" aria-label="Vymazat hledání">
-                        <i class="fa-solid fa-xmark"></i>
-                    </button>
-                </div>
-                <p id="search-no-results" class="search-no-results" style="display:none;">Nic nenalezeno. 😕</p>
-            </div>
-            
+<section class="search-section" style="margin-bottom: 28px;">
+    <div class="container">
+        <div class="search-box">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input type="text" id="questionSearch" placeholder="Hledat otázku (např. 'Hasiva', 'IZS', 'KOPIS')..." onkeyup="filterQuestions()">
+        </div>
+    </div>
+</section>
+
             <div class="subject-category">
                 <details>
                     <summary>
                         <div class="summary-content">
-                            <i class="fa-solid fa-mask-ventilator"></i>
-                            <span>Chemická služba</span>
+                            <i class="fa-solid fa-fire-extinguisher"></i>
+                            <div>
+                                <h2>BLOK ODBORNÝCH PŘEDMĚTŮ PO I</h2>
+                                <p style="font-size: 0.8rem; color: var(--text-muted); margin: 0;">Technické prostředky, Technika HZS, Organizace a řízení – mimořádné události, Praxe</p>
+                            </div>
                         </div>
                         <i class="fa-solid fa-chevron-down arrow"></i>
                     </summary>
-                    <div class="sub-category">
-                        <h4>Dýchací přístroje</h4>
-                        <ul class="file-list">
-                            <li>
-                                <a href="pdf/drager-psa.pdf" target="_blank">
-                                    <i class="fa-regular fa-file-pdf"></i>
-                                    <span>Konstrukce a údržba - Dräger PSS 4000</span>
-                                    <i class="fa-solid fa-download download-icon"></i>
-                                </a>
+                    <div class="question-group">
+                        
+                        <div class="question-number-badge">OTÁZKA 1</div>
+                        <ul class="sub-question-list">
+                            <li class="sub-question-item">
+                                <div class="info"><span class="q-text">a) Právní předpisy v oblasti požární ochrany</span><span class="q-author">Zpracoval: <span>Doplnit</span></span></div>
+                                <a href="#" class="btn-download-main"><i class="fa-solid fa-file-pdf"></i> ZPRACROVÁNÍ A</a>
                             </li>
-                            <li>
-                                <a href="pdf/kontrola-tlaku.pdf" target="_blank">
-                                    <i class="fa-regular fa-file-pdf"></i>
-                                    <span>Metodika kontroly tlaku</span>
-                                    <i class="fa-solid fa-download download-icon"></i>
-                                </a>
+                            <li class="sub-question-item">
+                                <div class="info"><span class="q-text">b) KOPIS</span><span class="q-author">Zpracoval: <span>Doplnit</span></span></div>
+                                <a href="#" class="btn-download-main"><i class="fa-solid fa-file-pdf"></i> ZPRACROVÁNÍ B</a>
+                            </li>
+                        </ul>
+
+                        <div class="question-number-badge">OTÁZKA 2</div>
+                        <ul class="sub-question-list">
+                            <li class="sub-question-item">
+                                <div class="info"><span class="q-text">a) Organizační struktura HZS ČR</span><span class="q-author">Zpracoval: <span>Doplnit</span></span></div>
+                                <a href="#" class="btn-download-main"><i class="fa-solid fa-file-pdf"></i> ZPRACROVÁNÍ A</a>
+                            </li>
+                            <li class="sub-question-item">
+                                <div class="info"><span class="q-text">b) Informační systémy používané u HZS ČR</span><span class="q-author">Zpracoval: <span>Doplnit</span></span></div>
+                                <a href="#" class="btn-download-main"><i class="fa-solid fa-file-pdf"></i> ZPRACROVÁNÍ B</a>
+                            </li>
+                        </ul>
+
+                        <div class="question-number-badge">OTÁZKA 3</div>
+                        <ul class="sub-question-list">
+                            <li class="sub-question-item">
+                                <div class="info"><span class="q-text">a) Kategorie JPO</span><span class="q-author">Zpracoval: <span>Doplnit</span></span></div>
+                                <a href="#" class="btn-download-main"><i class="fa-solid fa-file-pdf"></i> ZPRACROVÁNÍ A</a>
+                            </li>
+                            <li class="sub-question-item">
+                                <div class="info"><span class="q-text">b) Hasiva</span><span class="q-author">Zpracoval: <span>Doplnit</span></span></div>
+                                <a href="#" class="btn-download-main"><i class="fa-solid fa-file-pdf"></i> ZPRACROVÁNÍ B</a>
+                            </li>
+                        </ul>
+
+                        <div class="question-number-badge">OTÁZKA 4</div>
+                        <ul class="sub-question-list">
+                            <li class="sub-question-item">
+                                <div class="info"><span class="q-text">a) Práva a povinnosti příslušníků HZS ČR a na místě zásahu</span><span class="q-author">Zpracoval: <span>Doplnit</span></span></div>
+                                <a href="#" class="btn-download-main"><i class="fa-solid fa-file-pdf"></i> ZPRACROVÁNÍ A</a>
+                            </li>
+                            <li class="sub-question-item">
+                                <div class="info"><span class="q-text">b) Přívodní, dopravní, útočné vedení. TTD</span><span class="q-author">Zpracoval: <span>Doplnit</span></span></div>
+                                <a href="#" class="btn-download-main"><i class="fa-solid fa-file-pdf"></i> ZPRACROVÁNÍ B</a>
+                            </li>
+                        </ul>
+
+                        <div class="question-number-badge">OTÁZKA 5</div>
+                        <ul class="sub-question-list">
+                            <li class="sub-question-item">
+                                <div class="info"><span class="q-text">a) Organizační a operační řízení</span><span class="q-author">Zpracoval: <span>Doplnit</span></span></div>
+                                <a href="#" class="btn-download-main"><i class="fa-solid fa-file-pdf"></i> ZPRACROVÁNÍ A</a>
+                            </li>
+                            <li class="sub-question-item">
+                                <div class="info"><span class="q-text">b) Charakteristika RaL, zásah na RaL</span><span class="q-author">Zpracoval: <span>Doplnit</span></span></div>
+                                <a href="#" class="btn-download-main"><i class="fa-solid fa-file-pdf"></i> ZPRACROVÁNÍ B</a>
+                            </li>
+                        </ul>
+
+                        <div class="question-number-badge">OTÁZKA 6</div>
+                        <ul class="sub-question-list">
+                            <li class="sub-question-item">
+                                <div class="info"><span class="q-text">a) Řád strojní služby</span><span class="q-author">Zpracoval: <span>Doplnit</span></span></div>
+                                <a href="#" class="btn-download-main"><i class="fa-solid fa-file-pdf"></i> ZPRACROVÁNÍ A</a>
+                            </li>
+                            <li class="sub-question-item">
+                                <div class="info"><span class="q-text">b) Charakteristika NCHL, zásah na NCHL</span><span class="q-author">Zpracoval: <span>Doplnit</span></span></div>
+                                <a href="#" class="btn-download-main"><i class="fa-solid fa-file-pdf"></i> ZPRACROVÁNÍ B</a>
+                            </li>
+                        </ul>
+
+                        <div class="question-number-badge">OTÁZKA 7</div>
+                        <ul class="sub-question-list">
+                            <li class="sub-question-item">
+                                <div class="info"><span class="q-text">a) Řád chemické služby</span><span class="q-author">Zpracoval: <span>Doplnit</span></span></div>
+                                <a href="#" class="btn-download-main"><i class="fa-solid fa-file-pdf"></i> ZPRACROVÁNÍ A</a>
+                            </li>
+                            <li class="sub-question-item">
+                                <div class="info"><span class="q-text">b) Ochranné oděvy TTD</span><span class="q-author">Zpracoval: <span>Doplnit</span></span></div>
+                                <a href="#" class="btn-download-main"><i class="fa-solid fa-file-pdf"></i> ZPRACROVÁNÍ B</a>
+                            </li>
+                        </ul>
+
+                        <div class="question-number-badge">OTÁZKA 8</div>
+                        <ul class="sub-question-list">
+                            <li class="sub-question-item">
+                                <div class="info"><span class="q-text">a) Řád technické služby</span><span class="q-author">Zpracoval: <span>Doplnit</span></span></div>
+                                <a href="#" class="btn-download-main"><i class="fa-solid fa-file-pdf"></i> ZPRACROVÁNÍ A</a>
+                            </li>
+                            <li class="sub-question-item">
+                                <div class="info"><span class="q-text">b) Bojové rozvinutí družstva 1+5</span><span class="q-author">Zpracoval: <span>Doplnit</span></span></div>
+                                <a href="#" class="btn-download-main"><i class="fa-solid fa-file-pdf"></i> ZPRACROVÁNÍ B</a>
+                            </li>
+                        </ul>
+
+                        <div class="question-number-badge">OTÁZKA 9</div>
+                        <ul class="sub-question-list">
+                            <li class="sub-question-item">
+                                <div class="info"><span class="q-text">a) Řád spojové služby</span><span class="q-author">Zpracoval: <span>Doplnit</span></span></div>
+                                <a href="#" class="btn-download-main"><i class="fa-solid fa-file-pdf"></i> ZPRACROVÁNÍ A</a>
+                            </li>
+                            <li class="sub-question-item">
+                                <div class="info"><span class="q-text">b) Postavení hasičů a zasedací pořádek 1+5</span><span class="q-author">Zpracoval: <span>Doplnit</span></span></div>
+                                <a href="#" class="btn-download-main"><i class="fa-solid fa-file-pdf"></i> ZPRACROVÁNÍ B</a>
+                            </li>
+                        </ul>
+
+                        <div class="question-number-badge">OTÁZKA 10</div>
+                        <ul class="sub-question-list">
+                            <li class="sub-question-item">
+                                <div class="info"><span class="q-text">a) Komunikační prostředky HZS ČR</span><span class="q-author">Zpracoval: <span>Doplnit</span></span></div>
+                                <a href="#" class="btn-download-main"><i class="fa-solid fa-file-pdf"></i> ZPRACROVÁNÍ A</a>
+                            </li>
+                            <li class="sub-question-item">
+                                <div class="info"><span class="q-text">b) Vyprošťování u dopravních nehod</span><span class="q-author">Zpracoval: <span>Doplnit</span></span></div>
+                                <a href="#" class="btn-download-main"><i class="fa-solid fa-file-pdf"></i> ZPRACROVÁNÍ B</a>
+                            </li>
+                        </ul>
+
+                        <div class="question-number-badge">OTÁZKA 11</div>
+                        <ul class="sub-question-list">
+                            <li class="sub-question-item">
+                                <div class="info"><span class="q-text">a) Druhy MPT a její značení</span><span class="q-author">Zpracoval: <span>Doplnit</span></span></div>
+                                <a href="#" class="btn-download-main"><i class="fa-solid fa-file-pdf"></i> ZPRACROVÁNÍ A</a>
+                            </li>
+                            <li class="sub-question-item">
+                                <div class="info"><span class="q-text">b) Významné chemické havárie a legislativa</span><span class="q-author">Zpracoval: <span>Doplnit</span></span></div>
+                                <a href="#" class="btn-download-main"><i class="fa-solid fa-file-pdf"></i> ZPRACROVÁNÍ B</a>
+                            </li>
+                        </ul>
+
+                        <div class="question-number-badge">OTÁZKA 12</div>
+                        <ul class="sub-question-list">
+                            <li class="sub-question-item">
+                                <div class="info"><span class="q-text">a) IDP a další dýchací technika</span><span class="q-author">Zpracoval: <span>Doplnit</span></span></div>
+                                <a href="#" class="btn-download-main"><i class="fa-solid fa-file-pdf"></i> ZPRACROVÁNÍ A</a>
+                            </li>
+                            <li class="sub-question-item">
+                                <div class="info"><span class="q-text">b) Speciální skupiny HZS ČR</span><span class="q-author">Zpracoval: <span>Doplnit</span></span></div>
+                                <a href="#" class="btn-download-main"><i class="fa-solid fa-file-pdf"></i> ZPRACROVÁNÍ B</a>
+                            </li>
+                        </ul>
+
+                        <div class="question-number-badge">OTÁZKA 13</div>
+                        <ul class="sub-question-list">
+                            <li class="sub-question-item">
+                                <div class="info"><span class="q-text">a) Velení na místě zásahu a štáb VZ</span><span class="q-author">Zpracoval: <span>Doplnit</span></span></div>
+                                <a href="#" class="btn-download-main"><i class="fa-solid fa-file-pdf"></i> ZPRACROVÁNÍ A</a>
+                            </li>
+                            <li class="sub-question-item">
+                                <div class="info"><span class="q-text">b) Nelineární projevy hoření</span><span class="q-author">Zpracoval: <span>Doplnit</span></span></div>
+                                <a href="#" class="btn-download-main"><i class="fa-solid fa-file-pdf"></i> ZPRACROVÁNÍ B</a>
+                            </li>
+                        </ul>
+
+                        <div class="question-number-badge">OTÁZKA 14</div>
+                        <ul class="sub-question-list">
+                            <li class="sub-question-item">
+                                <div class="info"><span class="q-text">a) Požár - BP, parametry a proces hoření</span><span class="q-author">Zpracoval: <span>Doplnit</span></span></div>
+                                <a href="#" class="btn-download-main"><i class="fa-solid fa-file-pdf"></i> ZPRACROVÁNÍ A</a>
+                            </li>
+                            <li class="sub-question-item">
+                                <div class="info"><span class="q-text">b) NZP, metoda START, algoritmus XABCDE, KPR</span><span class="q-author">Zpracoval: <span>Doplnit</span></span></div>
+                                <a href="#" class="btn-download-main"><i class="fa-solid fa-file-pdf"></i> ZPRACROVÁNÍ B</a>
+                            </li>
+                        </ul>
+
+                        <div class="question-number-badge">OTÁZKA 15</div>
+                        <ul class="sub-question-list">
+                            <li class="sub-question-item">
+                                <div class="info"><span class="q-text">a) Rozdělení mimořádných událostí</span><span class="q-author">Zpracoval: <span>Doplnit</span></span></div>
+                                <a href="#" class="btn-download-main"><i class="fa-solid fa-file-pdf"></i> ZPRACROVÁNÍ A</a>
+                            </li>
+                            <li class="sub-question-item">
+                                <div class="info"><span class="q-text">b) ADR, Kemler kód, UN kód, Diamant</span><span class="q-author">Zpracoval: <span>Doplnit</span></span></div>
+                                <a href="#" class="btn-download-main"><i class="fa-solid fa-file-pdf"></i> ZPRACROVÁNÍ B</a>
+                            </li>
+                        </ul>
+
+                        <div class="question-number-badge">OTÁZKA 16</div>
+                        <ul class="sub-question-list">
+                            <li class="sub-question-item">
+                                <div class="info"><span class="q-text">a) Krizové stavy</span><span class="q-author">Zpracoval: <span>Doplnit</span></span></div>
+                                <a href="#" class="btn-download-main"><i class="fa-solid fa-file-pdf"></i> ZPRACROVÁNÍ A</a>
+                            </li>
+                            <li class="sub-question-item">
+                                <div class="info"><span class="q-text">b) Záchranné a evakuační prostředky</span><span class="q-author">Zpracoval: <span>Doplnit</span></span></div>
+                                <a href="#" class="btn-download-main"><i class="fa-solid fa-file-pdf"></i> ZPRACROVÁNÍ B</a>
+                            </li>
+                        </ul>
+
+                        <div class="question-number-badge">OTÁZKA 17</div>
+                        <ul class="sub-question-list">
+                            <li class="sub-question-item">
+                                <div class="info"><span class="q-text">a) Dokumentace IZS</span><span class="q-author">Zpracoval: <span>Doplnit</span></span></div>
+                                <a href="#" class="btn-download-main"><i class="fa-solid fa-file-pdf"></i> ZPRACROVÁNÍ A</a>
+                            </li>
+                            <li class="sub-question-item">
+                                <div class="info"><span class="q-text">b) Povodně</span><span class="q-author">Zpracoval: <span>Doplnit</span></span></div>
+                                <a href="#" class="btn-download-main"><i class="fa-solid fa-file-pdf"></i> ZPRACROVÁNÍ B</a>
+                            </li>
+                        </ul>
+
+                        <div class="question-number-badge">OTÁZKA 18</div>
+                        <ul class="sub-question-list">
+                            <li class="sub-question-item">
+                                <div class="info"><span class="q-text">a) Standardní technické činnosti (STČ)</span><span class="q-author">Zpracoval: <span>Doplnit</span></span></div>
+                                <a href="#" class="btn-download-main"><i class="fa-solid fa-file-pdf"></i> ZPRACROVÁNÍ A</a>
+                            </li>
+                            <li class="sub-question-item">
+                                <div class="info"><span class="q-text">b) Integrovaný záchranný systém (IZS)</span><span class="q-author">Zpracoval: <span>Doplnit</span></span></div>
+                                <a href="#" class="btn-download-main"><i class="fa-solid fa-file-pdf"></i> ZPRACROVÁNÍ B</a>
+                            </li>
+                        </ul>
+
+                        <div class="question-number-badge">OTÁZKA 19</div>
+                        <ul class="sub-question-list">
+                            <li class="sub-question-item">
+                                <div class="info"><span class="q-text">a) Dokumentace zdolávání požáru</span><span class="q-author">Zpracoval: <span>Doplnit</span></span></div>
+                                <a href="#" class="btn-download-main"><i class="fa-solid fa-file-pdf"></i> ZPRACROVÁNÍ A</a>
+                            </li>
+                            <li class="sub-question-item">
+                                <div class="info"><span class="q-text">b) Plošné pokrytí jednotkami PO</span><span class="q-author">Zpracoval: <span>Doplnit</span></span></div>
+                                <a href="#" class="btn-download-main"><i class="fa-solid fa-file-pdf"></i> ZPRACROVÁNÍ B</a>
+                            </li>
+                        </ul>
+
+                        <div class="question-number-badge">OTÁZKA 20</div>
+                        <ul class="sub-question-list">
+                            <li class="sub-question-item">
+                                <div class="info"><span class="q-text">a) Bojový řád jednotek PO</span><span class="q-author">Zpracoval: <span>Doplnit</span></span></div>
+                                <a href="#" class="btn-download-main"><i class="fa-solid fa-file-pdf"></i> ZPRACROVÁNÍ A</a>
+                            </li>
+                            <li class="sub-question-item">
+                                <div class="info"><span class="q-text">b) Záchranný útvar HZS ČR</span><span class="q-author">Zpracoval: <span>Doplnit</span></span></div>
+                                <a href="#" class="btn-download-main"><i class="fa-solid fa-file-pdf"></i> ZPRACROVÁNÍ B</a>
                             </li>
                         </ul>
                     </div>
                 </details>
             </div>
 
-            <div class="subject-category">
+            <div class="subject-category" style="margin-top: 30px;">
                 <details>
                     <summary>
                         <div class="summary-content">
-                            <i class="fa-solid fa-walkie-talkie"></i>
-                            <span>Spojová služba</span>
+                            <i class="fa-solid fa-shield-halved"></i>
+                            <div>
+                                <h2>BLOK ODBORNÝCH PŘEDMĚTŮ PO II</h2>
+                                <p style="font-size: 0.8rem; color: var(--text-muted); margin: 0;">Krizové řízení, Prevence požární ochrany, Zjišťování příčin požárů, Ochrana obyvatelstva</p>
+                            </div>
                         </div>
                         <i class="fa-solid fa-chevron-down arrow"></i>
                     </summary>
-                    <div class="sub-category">
-                        <h4>Radiostanice</h4>
-                        <ul class="file-list">
-                            <li>
-                                <a href="#">
-                                    <i class="fa-regular fa-file-pdf"></i>
-                                    <span>Obsluha terminálu Matra</span>
-                                    <i class="fa-solid fa-download download-icon"></i>
-                                </a>
+                    <div class="question-group">
+                        
+                        <div class="question-number-badge">OTÁZKA 1</div>
+                        <ul class="sub-question-list">
+                            <li class="sub-question-item">
+                                <div class="info"><span class="q-text">a) Požár a hoření - definice, vlastnosti a jevy</span><span class="q-author">Zpracoval: <span>Doplnit</span></span></div>
+                                <a href="#" class="btn-download-main"><i class="fa-solid fa-file-pdf"></i> ZPRACROVÁNÍ A</a>
+                            </li>
+                            <li class="sub-question-item">
+                                <div class="info"><span class="q-text">b) Evakuace</span><span class="q-author">Zpracoval: <span>Doplnit</span></span></div>
+                                <a href="#" class="btn-download-main"><i class="fa-solid fa-file-pdf"></i> ZPRACROVÁNÍ B</a>
+                            </li>
+                        </ul>
+
+                        <div class="question-number-badge">OTÁZKA 2</div>
+                        <ul class="sub-question-list">
+                            <li class="sub-question-item">
+                                <div class="info"><span class="q-text">a) Teorie hašení - hasiva a principy</span><span class="q-author">Zpracoval: <span>Doplnit</span></span></div>
+                                <a href="#" class="btn-download-main"><i class="fa-solid fa-file-pdf"></i> ZPRACROVÁNÍ A</a>
+                            </li>
+                            <li class="sub-question-item">
+                                <div class="info"><span class="q-text">b) IZS - úkoly FO, PO, obcí a HZS</span><span class="q-author">Zpracoval: <span>Doplnit</span></span></div>
+                                <a href="#" class="btn-download-main"><i class="fa-solid fa-file-pdf"></i> ZPRACROVÁNÍ B</a>
+                            </li>
+                        </ul>
+
+                        <div class="question-number-badge">OTÁZKA 3</div>
+                        <ul class="sub-question-list">
+                            <li class="sub-question-item">
+                                <div class="info"><span class="q-text">a) Základy zjišťování příčin požárů (ZPP)</span><span class="q-author">Zpracoval: <span>Doplnit</span></span></div>
+                                <a href="#" class="btn-download-main"><i class="fa-solid fa-file-pdf"></i> ZPRACROVÁNÍ A</a>
+                            </li>
+                            <li class="sub-question-item">
+                                <div class="info"><span class="q-text">b) Analýza rizik</span><span class="q-author">Zpracoval: <span>Doplnit</span></span></div>
+                                <a href="#" class="btn-download-main"><i class="fa-solid fa-file-pdf"></i> ZPRACROVÁNÍ B</a>
+                            </li>
+                        </ul>
+
+                        <div class="question-number-badge">OTÁZKA 4</div>
+                        <ul class="sub-question-list">
+                            <li class="sub-question-item">
+                                <div class="info"><span class="q-text">a) Postup při zjišťování příčin požárů</span><span class="q-author">Zpracoval: <span>Doplnit</span></span></div>
+                                <a href="#" class="btn-download-main"><i class="fa-solid fa-file-pdf"></i> ZPRACROVÁNÍ A</a>
+                            </li>
+                            <li class="sub-question-item">
+                                <div class="info"><span class="q-text">b) Prvky kritické infrastruktury</span><span class="q-author">Zpracoval: <span>Doplnit</span></span></div>
+                                <a href="#" class="btn-download-main"><i class="fa-solid fa-file-pdf"></i> ZPRACROVÁNÍ B</a>
+                            </li>
+                        </ul>
+
+                        <div class="question-number-badge">OTÁZKA 5</div>
+                        <ul class="sub-question-list">
+                            <li class="sub-question-item">
+                                <div class="info"><span class="q-text">a) Příčiny vzniku požáru a statistické sledování</span><span class="q-author">Zpracoval: <span>Doplnit</span></span></div>
+                                <a href="#" class="btn-download-main"><i class="fa-solid fa-file-pdf"></i> ZPRACROVÁNÍ A</a>
+                            </li>
+                            <li class="sub-question-item">
+                                <div class="info"><span class="q-text">b) IZS - povinnosti a složky IZS</span><span class="q-author">Zpracoval: <span>Doplnit</span></span></div>
+                                <a href="#" class="btn-download-main"><i class="fa-solid fa-file-pdf"></i> ZPRACROVÁNÍ B</a>
+                            </li>
+                        </ul>
+
+                        <div class="question-number-badge">OTÁZKA 6</div>
+                        <ul class="sub-question-list">
+                            <li class="sub-question-item">
+                                <div class="info"><span class="q-text">a) Požární bezpečnost staveb (PBS)</span><span class="q-author">Zpracoval: <span>Doplnit</span></span></div>
+                                <a href="#" class="btn-download-main"><i class="fa-solid fa-file-pdf"></i> ZPRACROVÁNÍ A</a>
+                            </li>
+                            <li class="sub-question-item">
+                                <div class="info"><span class="q-text">b) Prostředky individuální ochrany</span><span class="q-author">Zpracoval: <span>Doplnit</span></span></div>
+                                <a href="#" class="btn-download-main"><i class="fa-solid fa-file-pdf"></i> ZPRACROVÁNÍ B</a>
+                            </li>
+                        </ul>
+
+                        <div class="question-number-badge">OTÁZKA 7</div>
+                        <ul class="sub-question-list">
+                            <li class="sub-question-item">
+                                <div class="info"><span class="q-text">a) Požární zatížení a riziko - stupně bezpečnosti</span><span class="q-author">Zpracoval: <span>Doplnit</span></span></div>
+                                <a href="#" class="btn-download-main"><i class="fa-solid fa-file-pdf"></i> ZPRACROVÁNÍ A</a>
+                            </li>
+                            <li class="sub-question-item">
+                                <div class="info"><span class="q-text">b) Ukrývání</span><span class="q-author">Zpracoval: <span>Doplnit</span></span></div>
+                                <a href="#" class="btn-download-main"><i class="fa-solid fa-file-pdf"></i> ZPRACROVÁNÍ B</a>
+                            </li>
+                        </ul>
+
+                        <div class="question-number-badge">OTÁZKA 8</div>
+                        <ul class="sub-question-list">
+                            <li class="sub-question-item">
+                                <div class="info"><span class="q-text">a) Požární úseky</span><span class="q-author">Zpracoval: <span>Doplnit</span></span></div>
+                                <a href="#" class="btn-download-main"><i class="fa-solid fa-file-pdf"></i> ZPRACROVÁNÍ A</a>
+                            </li>
+                            <li class="sub-question-item">
+                                <div class="info"><span class="q-text">b) Utajované skutečnosti</span><span class="q-author">Zpracoval: <span>Doplnit</span></span></div>
+                                <a href="#" class="btn-download-main"><i class="fa-solid fa-file-pdf"></i> ZPRACROVÁNÍ B</a>
+                            </li>
+                        </ul>
+
+                        <div class="question-number-badge">OTÁZKA 9</div>
+                        <ul class="sub-question-list">
+                            <li class="sub-question-item">
+                                <div class="info"><span class="q-text">a) Odstupové vzdálenosti a sálavé teplo</span><span class="q-author">Zpracoval: <span>Doplnit</span></span></div>
+                                <a href="#" class="btn-download-main"><i class="fa-solid fa-file-pdf"></i> ZPRACROVÁNÍ A</a>
+                            </li>
+                            <li class="sub-question-item">
+                                <div class="info"><span class="q-text">b) Varování</span><span class="q-author">Zpracoval: <span>Doplnit</span></span></div>
+                                <a href="#" class="btn-download-main"><i class="fa-solid fa-file-pdf"></i> ZPRACROVÁNÍ B</a>
+                            </li>
+                        </ul>
+
+                        <div class="question-number-badge">OTÁZKA 10</div>
+                        <ul class="sub-question-list">
+                            <li class="sub-question-item">
+                                <div class="info"><span class="q-text">a) Únikové cesty - typy a požadavky</span><span class="q-author">Zpracoval: <span>Doplnit</span></span></div>
+                                <a href="#" class="btn-download-main"><i class="fa-solid fa-file-pdf"></i> ZPRACROVÁNÍ A</a>
+                            </li>
+                            <li class="sub-question-item">
+                                <div class="info"><span class="q-text">b) Stavby a zařízení CO</span><span class="q-author">Zpracoval: <span>Doplnit</span></span></div>
+                                <a href="#" class="btn-download-main"><i class="fa-solid fa-file-pdf"></i> ZPRACROVÁNÍ B</a>
+                            </li>
+                        </ul>
+
+                        <div class="question-number-badge">OTÁZKA 11</div>
+                        <ul class="sub-question-list">
+                            <li class="sub-question-item">
+                                <div class="info"><span class="q-text">a) Stavební konstrukce a požární odolnost</span><span class="q-author">Zpracoval: <span>Doplnit</span></span></div>
+                                <a href="#" class="btn-download-main"><i class="fa-solid fa-file-pdf"></i> ZPRACROVÁNÍ A</a>
+                            </li>
+                            <li class="sub-question-item">
+                                <div class="info"><span class="q-text">b) Bezpečnostní rady a štáby</span><span class="q-author">Zpracoval: <span>Doplnit</span></span></div>
+                                <a href="#" class="btn-download-main"><i class="fa-solid fa-file-pdf"></i> ZPRACROVÁNÍ B</a>
+                            </li>
+                        </ul>
+
+                        <div class="question-number-badge">OTÁZKA 12</div>
+                        <ul class="sub-question-list">
+                            <li class="sub-question-item">
+                                <div class="info"><span class="q-text">a) Vnější zdroje požární vody</span><span class="q-author">Zpracoval: <span>Doplnit</span></span></div>
+                                <a href="#" class="btn-download-main"><i class="fa-solid fa-file-pdf"></i> ZPRACROVÁNÍ A</a>
+                            </li>
+                            <li class="sub-question-item">
+                                <div class="info"><span class="q-text">b) Krizové řízení - úkoly FO, PO a obcí</span><span class="q-author">Zpracoval: <span>Doplnit</span></span></div>
+                                <a href="#" class="btn-download-main"><i class="fa-solid fa-file-pdf"></i> ZPRACROVÁNÍ B</a>
+                            </li>
+                        </ul>
+
+                        <div class="question-number-badge">OTÁZKA 13</div>
+                        <ul class="sub-question-list">
+                            <li class="sub-question-item">
+                                <div class="info"><span class="q-text">a) Vnitřní zdroje požární vody</span><span class="q-author">Zpracoval: <span>Doplnit</span></span></div>
+                                <a href="#" class="btn-download-main"><i class="fa-solid fa-file-pdf"></i> ZPRACROVÁNÍ A</a>
+                            </li>
+                            <li class="sub-question-item">
+                                <div class="info"><span class="q-text">b) Terorismus</span><span class="q-author">Zpracoval: <span>Doplnit</span></span></div>
+                                <a href="#" class="btn-download-main"><i class="fa-solid fa-file-pdf"></i> ZPRACROVÁNÍ B</a>
+                            </li>
+                        </ul>
+
+                        <div class="question-number-badge">OTÁZKA 14</div>
+                        <ul class="sub-question-list">
+                            <li class="sub-question-item">
+                                <div class="info"><span class="q-text">a) Věcné prostředky PO a PHP</span><span class="q-author">Zpracoval: <span>Doplnit</span></span></div>
+                                <a href="#" class="btn-download-main"><i class="fa-solid fa-file-pdf"></i> ZPRACROVÁNÍ A</a>
+                            </li>
+                            <li class="sub-question-item">
+                                <div class="info"><span class="q-text">b) Havarijní plán</span><span class="q-author">Zpracoval: <span>Doplnit</span></span></div>
+                                <a href="#" class="btn-download-main"><i class="fa-solid fa-file-pdf"></i> ZPRACROVÁNÍ B</a>
+                            </li>
+                        </ul>
+
+                        <div class="question-number-badge">OTÁZKA 15</div>
+                        <ul class="sub-question-list">
+                            <li class="sub-question-item">
+                                <div class="info"><span class="q-text">a) Požárně bezpečnostní zařízení (PBZ)</span><span class="q-author">Zpracoval: <span>Doplnit</span></span></div>
+                                <a href="#" class="btn-download-main"><i class="fa-solid fa-file-pdf"></i> ZPRACROVÁNÍ A</a>
+                            </li>
+                            <li class="sub-question-item">
+                                <div class="info"><span class="q-text">b) Nouzový stav a omezení</span><span class="q-author">Zpracoval: <span>Doplnit</span></span></div>
+                                <a href="#" class="btn-download-main"><i class="fa-solid fa-file-pdf"></i> ZPRACROVÁNÍ B</a>
+                            </li>
+                        </ul>
+
+                        <div class="question-number-badge">OTÁZKA 16</div>
+                        <ul class="sub-question-list">
+                            <li class="sub-question-item">
+                                <div class="info"><span class="q-text">a) Dokumentace PO a odbornosti</span><span class="q-author">Zpracoval: <span>Doplnit</span></span></div>
+                                <a href="#" class="btn-download-main"><i class="fa-solid fa-file-pdf"></i> ZPRACROVÁNÍ A</a>
+                            </li>
+                            <li class="sub-question-item">
+                                <div class="info"><span class="q-text">b) Zákon o prevenci závažných havárií 224/2015</span><span class="q-author">Zpracoval: <span>Doplnit</span></span></div>
+                                <a href="#" class="btn-download-main"><i class="fa-solid fa-file-pdf"></i> ZPRACROVÁNÍ B</a>
+                            </li>
+                        </ul>
+
+                        <div class="question-number-badge">OTÁZKA 17</div>
+                        <ul class="sub-question-list">
+                            <li class="sub-question-item">
+                                <div class="info"><span class="q-text">a) Požární nebezpečí a posuzování činností</span><span class="q-author">Zpracoval: <span>Doplnit</span></span></div>
+                                <a href="#" class="btn-download-main"><i class="fa-solid fa-file-pdf"></i> ZPRACROVÁNÍ A</a>
+                            </li>
+                            <li class="sub-question-item">
+                                <div class="info"><span class="q-text">b) Zařazení subjektů do skupiny A, B</span><span class="q-author">Zpracoval: <span>Doplnit</span></span></div>
+                                <a href="#" class="btn-download-main"><i class="fa-solid fa-file-pdf"></i> ZPRACROVÁNÍ B</a>
+                            </li>
+                        </ul>
+
+                        <div class="question-number-badge">OTÁZKA 18</div>
+                        <ul class="sub-question-list">
+                            <li class="sub-question-item">
+                                <div class="info"><span class="q-text">a) Komíny a kouřovody</span><span class="q-author">Zpracoval: <span>Doplnit</span></span></div>
+                                <a href="#" class="btn-download-main"><i class="fa-solid fa-file-pdf"></i> ZPRACROVÁNÍ A</a>
+                            </li>
+                            <li class="sub-question-item">
+                                <div class="info"><span class="q-text">b) Vnitřní a vnější havarijní plán</span><span class="q-author">Zpracoval: <span>Doplnit</span></span></div>
+                                <a href="#" class="btn-download-main"><i class="fa-solid fa-file-pdf"></i> ZPRACROVÁNÍ B</a>
+                            </li>
+                        </ul>
+
+                        <div class="question-number-badge">OTÁZKA 19</div>
+                        <ul class="sub-question-list">
+                            <li class="sub-question-item">
+                                <div class="info"><span class="q-text">a) Zařízení v souvislosti s komíny a spotřebiče</span><span class="q-author">Zpracoval: <span>Doplnit</span></span></div>
+                                <a href="#" class="btn-download-main"><i class="fa-solid fa-file-pdf"></i> ZPRACROVÁNÍ A</a>
+                            </li>
+                            <li class="sub-question-item">
+                                <div class="info"><span class="q-text">b) Zóny havarijního plánování</span><span class="q-author">Zpracoval: <span>Doplnit</span></span></div>
+                                <a href="#" class="btn-download-main"><i class="fa-solid fa-file-pdf"></i> ZPRACROVÁNÍ B</a>
+                            </li>
+                        </ul>
+
+                        <div class="question-number-badge">OTÁZKA 20</div>
+                        <ul class="sub-question-list">
+                            <li class="sub-question-item">
+                                <div class="info"><span class="q-text">a) PB u fyzických osob a detekce</span><span class="q-author">Zpracoval: <span>Doplnit</span></span></div>
+                                <a href="#" class="btn-download-main"><i class="fa-solid fa-file-pdf"></i> ZPRACROVÁNÍ A</a>
+                            </li>
+                            <li class="sub-question-item">
+                                <div class="info"><span class="q-text">b) Bezpečnostní zpráva a program</span><span class="q-author">Zpracoval: <span>Doplnit</span></span></div>
+                                <a href="#" class="btn-download-main"><i class="fa-solid fa-file-pdf"></i> ZPRACROVÁNÍ B</a>
                             </li>
                         </ul>
                     </div>
@@ -167,31 +614,11 @@
             <div class="footer-bottom">
                 <p>&copy; 2026 StudyHub</p>
                 <p><a class="footer-link" href="/kontakt">Kontakt</a></p>
-                <p class="footer-credit">Vytvořil MV</p>
+                <p class="footer-credit">Vytvořili MV a AB</p>
             </div>
         </div>
     </footer>
 
-<script src="../script.js"></script>
-<script>
-    (function () {
-        const modal = document.getElementById('materials-modal');
-        const closeBtn = document.getElementById('close-materials-modal');
-        if (!modal || !closeBtn) return;
-
-        function closeModal() {
-            modal.classList.add('modal-hidden');
-        }
-
-        closeBtn.addEventListener('click', closeModal);
-        modal.addEventListener('click', function (e) {
-            if (e.target === modal) closeModal();
-        });
-
-        document.addEventListener('keydown', function (e) {
-            if (e.key === 'Escape') closeModal();
-        });
-    })();
-</script>
+    <script src="../script.js"></script>
 </body>
 </html>

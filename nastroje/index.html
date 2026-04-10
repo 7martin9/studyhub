@@ -165,7 +165,7 @@
                     </button>
                     <ul class="nav-dropdown-menu">
                         <li><a href="/materialy">Studijní materiály</a></li>
-                        <li><a href="/maturita">Maturita</a></li>
+                        <li><a href="/procvicovani">Procvičování</a></li>
                         <li><a href="/zkouska">Závěrečná zkouška</a></li>
                     </ul>
                 </li>
@@ -316,8 +316,14 @@
 
             function formatNum(num) {
                 if (!Number.isFinite(num)) return '-';
-                if (Math.abs(num) >= 1000 || Math.abs(num) < 0.01) return num.toExponential(4);
-                return num.toFixed(4).replace(/0+$/, '').replace(/\.$/, '');
+                const abs = Math.abs(num);
+                if (abs === 0) return '0';
+
+                // Exponencialni zapis nechame jen pro opravdu extremni hodnoty.
+                if (abs >= 1e9 || abs < 1e-6) return num.toExponential(4);
+
+                const decimals = abs < 1 ? 8 : 4;
+                return num.toFixed(decimals).replace(/0+$/, '').replace(/\.$/, '');
             }
 
             function convertUnits() {

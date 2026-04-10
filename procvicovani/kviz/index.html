@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script>if(localStorage.getItem('theme')==='dark'){document.documentElement.setAttribute('data-theme','dark');}</script>
+    <title>Kviz po tematech | StudyHub</title>
+    <link rel="icon" type="image/png" href="/img/ossp_logo.png">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../style.css">
+
+    <style>
+        .practice-section {
+            background: var(--bg-gray);
+            padding: 44px 0 100px;
+        }
+
+        .practice-card {
+            background: #fff;
+            border-radius: 24px;
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 14px 36px rgba(15, 23, 42, 0.07);
+            padding: 24px;
+            max-width: 920px;
+            margin: 0 auto;
+        }
+
+        .practice-card h2 {
+            font-size: 1.25rem;
+            color: var(--dark);
+            margin-bottom: 8px;
+            font-weight: 900;
+        }
+
+        .practice-card p {
+            color: #64748b;
+            line-height: 1.55;
+            margin-bottom: 14px;
+        }
+
+        .practice-controls {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin: 12px 0;
+        }
+
+        .practice-btn {
+            background: #0f172a;
+            color: #fff;
+            border: 1px solid #0f172a;
+            border-radius: 12px;
+            padding: 10px 14px;
+            font-weight: 800;
+            font-size: 0.86rem;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .practice-btn:hover { transform: translateY(-1px); }
+        .practice-btn.alt { background: #fff; color: #0f172a; border-color: #cbd5e1; }
+
+        .practice-panel {
+            border: 1px solid #e2e8f0;
+            border-radius: 14px;
+            background: #f8fafc;
+            padding: 14px;
+        }
+
+        .prompt {
+            color: #0f172a;
+            font-weight: 800;
+            margin-bottom: 8px;
+        }
+
+        .quiz-options {
+            display: grid;
+            gap: 8px;
+            margin-top: 10px;
+        }
+
+        .quiz-option {
+            border: 1px solid #cbd5e1;
+            background: #fff;
+            border-radius: 12px;
+            padding: 10px 12px;
+            cursor: pointer;
+            text-align: left;
+            font-weight: 700;
+            color: #1e293b;
+        }
+
+        .quiz-option.correct { border-color: #16a34a; background: #ecfdf3; }
+        .quiz-option.wrong { border-color: #dc2626; background: #fef2f2; }
+
+        .quick-stats {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-top: 14px;
+        }
+
+        .quick-stats span {
+            background: #fff;
+            border: 1px solid #e2e8f0;
+            border-radius: 10px;
+            padding: 8px 10px;
+            font-weight: 700;
+            color: #334155;
+            font-size: 0.88rem;
+        }
+
+        .back-link {
+            display: inline-flex;
+            margin-bottom: 14px;
+            text-decoration: none;
+            color: #be123c;
+            font-weight: 800;
+        }
+
+        [data-theme="dark"] .practice-section { background: #0f172a; }
+        [data-theme="dark"] .practice-card,
+        [data-theme="dark"] .practice-panel,
+        [data-theme="dark"] .quick-stats span,
+        [data-theme="dark"] .quiz-option { background: #1e293b; border-color: #334155; color: #e2e8f0; }
+        [data-theme="dark"] .practice-card p { color: #94a3b8; }
+        [data-theme="dark"] .prompt { color: #e2e8f0; }
+        [data-theme="dark"] .quiz-option.correct { background: #122c1b; border-color: #16a34a; }
+        [data-theme="dark"] .quiz-option.wrong { background: #3a1616; border-color: #dc2626; }
+    </style>
+</head>
+<body>
+    <div class="nav-container">
+        <nav class="navbar-floating">
+            <a href="../../index.html" class="logo-group">
+                <img src="../../img/ossp_logo.png" alt="Logo" class="logo-img">
+                <span class="logo-text">STUDY<span>HUB</span></span>
+            </a>
+
+            <button id="theme-toggle" class="theme-toggle" aria-label="Prepnout tmavy/svetly rezim">
+                <i class="fa-solid fa-moon icon-moon"></i>
+                <i class="fa-solid fa-sun icon-sun"></i>
+            </button>
+            <input type="checkbox" id="nav-check">
+            <label for="nav-check" class="nav-btn">
+                <i class="fas fa-bars"></i>
+            </label>
+
+            <ul class="nav-links">
+                <li><a href="/">Domu</a></li>
+                <li class="nav-dropdown">
+                    <button aria-haspopup="true">
+                        Studium
+                        <span class="nav-dropdown-arrow">▼</span>
+                    </button>
+                    <ul class="nav-dropdown-menu">
+                        <li><a href="/materialy">Studijni materialy</a></li>
+                        <li><a href="/procvicovani">Procvicovani</a></li>
+                        <li><a href="/zkouska">Zaverecna zkouska</a></li>
+                    </ul>
+                </li>
+                <li class="nav-dropdown">
+                    <button aria-haspopup="true">
+                        Prakticka priprava
+                        <span class="nav-dropdown-arrow">▼</span>
+                    </button>
+                    <ul class="nav-dropdown-menu">
+                        <li><a href="/praxe">Odborna praxe</a></li>
+                        <li><a href="/sporty">Sporty</a></li>
+                        <li><a href="/nastroje">Interaktivni nastroje</a></li>
+                        <li><a href="/tahaky">Tahaky do kapsy</a></li>
+                    </ul>
+                </li>
+                <li><a href="/faq">FAQ</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <header class="section-hero">
+        <div class="container hero-content">
+            <h1 style="margin-top: 40px;">Kviz po <span class="accent-glow">tematech</span></h1>
+            <p style="color: rgba(255,255,255,0.8);">Demonstracni rezim s obecnou zkusebni otazkou a odpovedmi.</p>
+        </div>
+    </header>
+
+    <main class="practice-section">
+        <div class="container">
+            <section class="practice-card" aria-labelledby="quiz-title">
+                <a class="back-link" href="/procvicovani"><i class="fa-solid fa-arrow-left"></i>&nbsp;Zpet na rozcestnik</a>
+                <h2 id="quiz-title"><i class="fa-solid fa-list-check"></i> Treninkovy kviz</h2>
+                <p>Tato verze je demonstracni. Zobrazuje obecne texty bez skutecneho vyhodnoceni.</p>
+
+                <div class="practice-controls">
+                    <select id="quiz-topic" class="practice-btn alt" style="cursor:pointer;">
+                        <option value="all">Zkouska</option>
+                        <option value="a">Zkusebni sada A</option>
+                        <option value="b">Zkusebni sada B</option>
+                        <option value="c">Zkusebni sada C</option>
+                    </select>
+                    <button class="practice-btn" id="quiz-next">Zobrazit zkusebni otazku</button>
+                </div>
+
+                <div class="practice-panel">
+                    <div class="prompt" id="quiz-question">Kliknete na tlacitko Zobrazit zkusebni otazku.</div>
+                    <div class="quiz-options" id="quiz-options"></div>
+                    <p id="quiz-feedback" style="margin-top:10px; font-weight:700;"></p>
+                </div>
+
+                <div class="quick-stats">
+                    <span>Rezim: <strong>Demonstracni</strong></span>
+                    <span>Otazka: <strong>Zkusebni</strong></span>
+                    <span>Odpoved: <strong>Zkusebni</strong></span>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer class="pro-footer">
+        <div class="container footer-content">
+            <div class="footer-top">
+                <div class="footer-brand">
+                    <div class="footer-logo">STUDY<span>HUB</span></div>
+                    <p class="footer-disclaimer">Neoficialni studentsky projekt. StudyHub neni oficialne spojen s OSSP Kolin ani ji nezastupuje.</p>
+                </div>
+                <div class="footer-social-block">
+                    <p class="footer-social-label">Oficialni socialni site skoly</p>
+                    <div class="footer-socials">
+                        <a href="https://www.instagram.com/ossp.kolin/" target="_blank" rel="noopener noreferrer" aria-label="Instagram OSSP Kolin">
+                            <i class="fa-brands fa-instagram"></i>
+                        </a>
+                        <a href="https://www.facebook.com/OSSPcz/" target="_blank" rel="noopener noreferrer" aria-label="Facebook OSSP Kolin">
+                            <i class="fa-brands fa-facebook-f"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 StudyHub</p>
+                <p><a class="footer-link" href="/kontakt">Kontakt</a></p>
+                <p class="footer-credit">Vytvorili MV a AB</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        (function () {
+            const quizPool = [
+                {
+                    topic: 'all',
+                    q: 'Zkusebni otazka',
+                    options: [
+                        'Zkusebni odpoved A',
+                        'Zkusebni odpoved B',
+                        'Zkusebni odpoved C',
+                        'Zkusebni odpoved D'
+                    ]
+                },
+                {
+                    topic: 'a',
+                    q: 'Zkusebni otazka (sada A)',
+                    options: [
+                        'Zkusebni odpoved A1',
+                        'Zkusebni odpoved A2',
+                        'Zkusebni odpoved A3',
+                        'Zkusebni odpoved A4'
+                    ]
+                },
+                {
+                    topic: 'b',
+                    q: 'Zkusebni otazka (sada B)',
+                    options: [
+                        'Zkusebni odpoved B1',
+                        'Zkusebni odpoved B2',
+                        'Zkusebni odpoved B3',
+                        'Zkusebni odpoved B4'
+                    ]
+                },
+                {
+                    topic: 'c',
+                    q: 'Zkusebni otazka (sada C)',
+                    options: [
+                        'Zkusebni odpoved C1',
+                        'Zkusebni odpoved C2',
+                        'Zkusebni odpoved C3',
+                        'Zkusebni odpoved C4'
+                    ]
+                }
+            ];
+            const quizTopicEl = document.getElementById('quiz-topic');
+            const quizQuestionEl = document.getElementById('quiz-question');
+            const quizOptionsEl = document.getElementById('quiz-options');
+            const quizFeedbackEl = document.getElementById('quiz-feedback');
+
+            let currentQuiz = null;
+
+            function nextQuizQuestion() {
+                const topic = quizTopicEl.value;
+                const pool = topic === 'all'
+                    ? quizPool
+                    : quizPool.filter(function (q) { return q.topic === topic; });
+
+                if (!pool.length) {
+                    quizQuestionEl.textContent = 'Pro tuto zkusebni sadu zatim neni pripraveny obsah.';
+                    quizOptionsEl.innerHTML = '';
+                    quizFeedbackEl.textContent = '';
+                    currentQuiz = null;
+                    return;
+                }
+
+                currentQuiz = pool[Math.floor(Math.random() * pool.length)];
+                quizQuestionEl.textContent = currentQuiz.q;
+                quizFeedbackEl.textContent = 'Demonstracni rezim: odpovedi se zatim nevyhodnocuji.';
+                quizFeedbackEl.style.color = '#475569';
+
+                quizOptionsEl.innerHTML = currentQuiz.options.map(function (opt, idx) {
+                    return '<button type="button" class="quiz-option" data-opt="' + idx + '">' + opt + '</button>';
+                }).join('');
+            }
+
+            quizOptionsEl.addEventListener('click', function (e) {
+                const btn = e.target.closest('.quiz-option');
+                if (!btn || !currentQuiz) return;
+
+                const all = quizOptionsEl.querySelectorAll('.quiz-option');
+                all.forEach(function (item) {
+                    item.classList.remove('correct');
+                    item.classList.remove('wrong');
+                });
+                btn.classList.add('correct');
+                quizFeedbackEl.textContent = 'Zvolena zkusebni odpoved: vyhodnoceni doplnime po dodani podkladu.';
+                quizFeedbackEl.style.color = '#475569';
+            });
+
+            quizTopicEl.addEventListener('change', nextQuizQuestion);
+            document.getElementById('quiz-next').addEventListener('click', nextQuizQuestion);
+
+            nextQuizQuestion();
+        })();
+    </script>
+
+    <script src="../../script.js"></script>
+</body>
+</html>

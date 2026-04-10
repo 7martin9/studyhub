@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script>if(localStorage.getItem('theme')==='dark'){document.documentElement.setAttribute('data-theme','dark');}</script>
+    <title>Procvicovani | StudyHub</title>
+    <link rel="icon" type="image/png" href="/img/ossp_logo.png">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../style.css">
+
+    <style>
+        .practice-hub {
+            background: var(--bg-gray);
+            padding: 44px 0 100px;
+        }
+
+        .hub-grid {
+            display: grid;
+            gap: 20px;
+        }
+
+        .hub-card {
+            background: #fff;
+            border-radius: 24px;
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 14px 36px rgba(15, 23, 42, 0.07);
+            padding: 24px;
+        }
+
+        .hub-card h2 {
+            color: var(--dark);
+            font-size: 1.25rem;
+            font-weight: 900;
+            margin-bottom: 8px;
+        }
+
+        .hub-card p {
+            color: #64748b;
+            margin-bottom: 14px;
+            line-height: 1.55;
+        }
+
+        .stats-line {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 10px;
+            margin: 16px 0;
+        }
+
+        .stat-chip {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 10px;
+            text-align: center;
+        }
+
+        .stat-chip strong {
+            display: block;
+            color: var(--dark);
+            font-size: 1.05rem;
+        }
+
+        .stat-chip span {
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: #64748b;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+        }
+
+        .hub-links {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 14px;
+        }
+
+        .hub-link {
+            display: block;
+            border: 1px solid #e2e8f0;
+            border-radius: 16px;
+            background: #f8fafc;
+            padding: 18px;
+            text-decoration: none;
+            transition: 0.2s;
+        }
+
+        .hub-link:hover {
+            transform: translateY(-2px);
+            border-color: #94a3b8;
+        }
+
+        .hub-link h3 {
+            margin: 0 0 8px;
+            font-size: 1.05rem;
+            font-weight: 900;
+            color: var(--dark);
+        }
+
+        .hub-link p {
+            margin: 0;
+            color: #475569;
+            font-weight: 600;
+        }
+
+        .hub-link .go {
+            display: inline-block;
+            margin-top: 10px;
+            color: #be123c;
+            font-weight: 800;
+            font-size: 0.9rem;
+        }
+
+        [data-theme="dark"] .practice-hub { background: #0f172a; }
+        [data-theme="dark"] .hub-card,
+        [data-theme="dark"] .hub-link,
+        [data-theme="dark"] .stat-chip { background: #1e293b; border-color: #334155; }
+        [data-theme="dark"] .hub-card p,
+        [data-theme="dark"] .hub-link p,
+        [data-theme="dark"] .stat-chip span { color: #94a3b8; }
+        [data-theme="dark"] .hub-card h2,
+        [data-theme="dark"] .hub-link h3,
+        [data-theme="dark"] .stat-chip strong { color: #e2e8f0; }
+
+        @media (max-width: 900px) {
+            .stats-line { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+            .hub-links { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="nav-container">
+        <nav class="navbar-floating">
+            <a href="../index.html" class="logo-group">
+                <img src="../img/ossp_logo.png" alt="Logo" class="logo-img">
+                <span class="logo-text">STUDY<span>HUB</span></span>
+            </a>
+
+            <button id="theme-toggle" class="theme-toggle" aria-label="Prepnout tmavy/svetly rezim">
+                <i class="fa-solid fa-moon icon-moon"></i>
+                <i class="fa-solid fa-sun icon-sun"></i>
+            </button>
+            <input type="checkbox" id="nav-check">
+            <label for="nav-check" class="nav-btn">
+                <i class="fas fa-bars"></i>
+            </label>
+
+            <ul class="nav-links">
+                <li><a href="/">Domu</a></li>
+                <li class="nav-dropdown">
+                    <button aria-haspopup="true">
+                        Studium
+                        <span class="nav-dropdown-arrow">▼</span>
+                    </button>
+                    <ul class="nav-dropdown-menu">
+                        <li><a href="/materialy">Studijni materialy</a></li>
+                        <li><a href="/procvicovani">Procvicovani</a></li>
+                        <li><a href="/zkouska">Zaverecna zkouska</a></li>
+                    </ul>
+                </li>
+                <li class="nav-dropdown">
+                    <button aria-haspopup="true">
+                        Prakticka priprava
+                        <span class="nav-dropdown-arrow">▼</span>
+                    </button>
+                    <ul class="nav-dropdown-menu">
+                        <li><a href="/praxe">Odborna praxe</a></li>
+                        <li><a href="/sporty">Sporty</a></li>
+                        <li><a href="/nastroje">Interaktivni nastroje</a></li>
+                        <li><a href="/tahaky">Tahaky do kapsy</a></li>
+                    </ul>
+                </li>
+                <li><a href="/faq">FAQ</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <header class="section-hero">
+        <div class="container hero-content">
+            <h1 style="margin-top: 40px;">Interaktivni <span class="accent-glow">procvicovani</span></h1>
+            <p style="color: rgba(255,255,255,0.8);">Prehled vysledku a rychly rozcestnik na jednotlive druhy procvicovani.</p>
+        </div>
+    </header>
+
+    <main class="practice-hub">
+        <div class="container hub-grid">
+            <section class="hub-card" aria-labelledby="hub-stats-title">
+                <h2 id="hub-stats-title"><i class="fa-solid fa-chart-simple"></i> Prehled vykonu</h2>
+                <p>Data se ukladaji pouze do vaseho zarizeni (localStorage).</p>
+                <div class="stats-line">
+                    <div class="stat-chip"><strong id="st-total">0</strong><span>Celkem kvizu</span></div>
+                    <div class="stat-chip"><strong id="st-correct">0</strong><span>Spravne</span></div>
+                    <div class="stat-chip"><strong id="st-wrong">0</strong><span>Chybne</span></div>
+                    <div class="stat-chip"><strong id="st-mock">0</strong><span>Zkousek nanecisto</span></div>
+                </div>
+            </section>
+
+            <section class="hub-card" aria-labelledby="hub-links-title">
+                <h2 id="hub-links-title"><i class="fa-solid fa-compass"></i> Rozcestnik procvicovani</h2>
+                <p>Vyberte si typ procvicovani, ktery chcete prave trenovat.</p>
+                <div class="hub-links">
+                    <a class="hub-link" href="/procvicovani/zkouska_nanecisto">
+                        <h3><i class="fa-solid fa-stopwatch"></i> Zkouska nanecisto</h3>
+                        <p>Vylosovani ustni otazky, casovy limit a checklist po odpovedi.</p>
+                        <span class="go">Spustit trenink</span>
+                    </a>
+                    <a class="hub-link" href="/procvicovani/kviz">
+                        <h3><i class="fa-solid fa-list-check"></i> Kviz po tematech</h3>
+                        <p>Otazky se 4 moznostmi a okamzitou zpetnou vazbou.</p>
+                        <span class="go">Spustit trenink</span>
+                    </a>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer class="pro-footer">
+        <div class="container footer-content">
+            <div class="footer-top">
+                <div class="footer-brand">
+                    <div class="footer-logo">STUDY<span>HUB</span></div>
+                    <p class="footer-disclaimer">Neoficialni studentsky projekt. StudyHub neni oficialne spojen s OSSP Kolin ani ji nezastupuje.</p>
+                </div>
+                <div class="footer-social-block">
+                    <p class="footer-social-label">Oficialni socialni site skoly</p>
+                    <div class="footer-socials">
+                        <a href="https://www.instagram.com/ossp.kolin/" target="_blank" rel="noopener noreferrer" aria-label="Instagram OSSP Kolin">
+                            <i class="fa-brands fa-instagram"></i>
+                        </a>
+                        <a href="https://www.facebook.com/OSSPcz/" target="_blank" rel="noopener noreferrer" aria-label="Facebook OSSP Kolin">
+                            <i class="fa-brands fa-facebook-f"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 StudyHub</p>
+                <p><a class="footer-link" href="/kontakt">Kontakt</a></p>
+                <p class="footer-credit">Vytvorili MV a AB</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        (function () {
+            const STORAGE_KEY = 'studyhub.practice.v1';
+
+            function loadState() {
+                try {
+                    return JSON.parse(localStorage.getItem(STORAGE_KEY)) || {};
+                } catch (e) {
+                    return {};
+                }
+            }
+
+            const state = loadState();
+            document.getElementById('st-total').textContent = String(state.quizTotal || 0);
+            document.getElementById('st-correct').textContent = String(state.quizCorrect || 0);
+            document.getElementById('st-wrong').textContent = String(state.quizWrong || 0);
+            document.getElementById('st-mock').textContent = String(state.mockTotal || 0);
+        })();
+    </script>
+
+    <script src="../script.js"></script>
+</body>
+</html>

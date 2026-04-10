@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script>if(localStorage.getItem('theme')==='dark'){document.documentElement.setAttribute('data-theme','dark');}</script>
+    <title>Zkouska nanecisto | StudyHub</title>
+    <link rel="icon" type="image/png" href="/img/ossp_logo.png">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../style.css">
+
+    <style>
+        .practice-section {
+            background: var(--bg-gray);
+            padding: 44px 0 100px;
+        }
+
+        .practice-card {
+            background: #fff;
+            border-radius: 24px;
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 14px 36px rgba(15, 23, 42, 0.07);
+            padding: 24px;
+            max-width: 920px;
+            margin: 0 auto;
+        }
+
+        .practice-card h2 {
+            font-size: 1.25rem;
+            color: var(--dark);
+            margin-bottom: 8px;
+            font-weight: 900;
+        }
+
+        .practice-card p {
+            color: #64748b;
+            line-height: 1.55;
+            margin-bottom: 14px;
+        }
+
+        .practice-controls {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin: 12px 0;
+        }
+
+        .practice-btn {
+            background: #0f172a;
+            color: #fff;
+            border: 1px solid #0f172a;
+            border-radius: 12px;
+            padding: 10px 14px;
+            font-weight: 800;
+            font-size: 0.86rem;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .practice-btn:hover { transform: translateY(-1px); }
+        .practice-btn.alt { background: #fff; color: #0f172a; border-color: #cbd5e1; }
+        .practice-btn.warn { background: #b91c1c; border-color: #b91c1c; }
+
+        .practice-panel {
+            border: 1px solid #e2e8f0;
+            border-radius: 14px;
+            background: #f8fafc;
+            padding: 14px;
+        }
+
+        .timer {
+            font-size: 1.35rem;
+            color: var(--dark);
+            font-weight: 900;
+            margin-bottom: 8px;
+        }
+
+        .prompt {
+            color: #0f172a;
+            font-weight: 800;
+            margin-bottom: 8px;
+        }
+
+        .checklist {
+            display: grid;
+            gap: 8px;
+            margin-top: 10px;
+        }
+
+        .checklist label {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+            font-weight: 600;
+            color: #334155;
+        }
+
+        .history-list {
+            margin-top: 12px;
+            display: grid;
+            gap: 8px;
+        }
+
+        .history-item {
+            border: 1px solid #e2e8f0;
+            border-radius: 10px;
+            padding: 10px;
+            background: #fff;
+            font-size: 0.9rem;
+            color: #334155;
+        }
+
+        .back-link {
+            display: inline-flex;
+            margin-bottom: 14px;
+            text-decoration: none;
+            color: #be123c;
+            font-weight: 800;
+        }
+
+        [data-theme="dark"] .practice-section { background: #0f172a; }
+        [data-theme="dark"] .practice-card,
+        [data-theme="dark"] .history-item { background: #1e293b; border-color: #334155; color: #e2e8f0; }
+        [data-theme="dark"] .practice-card p,
+        [data-theme="dark"] .checklist label { color: #94a3b8; }
+        [data-theme="dark"] .practice-panel { background: #0f172a; border-color: #334155; }
+        [data-theme="dark"] .timer,
+        [data-theme="dark"] .prompt { color: #e2e8f0; }
+    </style>
+</head>
+<body>
+    <div class="nav-container">
+        <nav class="navbar-floating">
+            <a href="../../index.html" class="logo-group">
+                <img src="../../img/ossp_logo.png" alt="Logo" class="logo-img">
+                <span class="logo-text">STUDY<span>HUB</span></span>
+            </a>
+
+            <button id="theme-toggle" class="theme-toggle" aria-label="Prepnout tmavy/svetly rezim">
+                <i class="fa-solid fa-moon icon-moon"></i>
+                <i class="fa-solid fa-sun icon-sun"></i>
+            </button>
+            <input type="checkbox" id="nav-check">
+            <label for="nav-check" class="nav-btn">
+                <i class="fas fa-bars"></i>
+            </label>
+
+            <ul class="nav-links">
+                <li><a href="/">Domu</a></li>
+                <li class="nav-dropdown">
+                    <button aria-haspopup="true">
+                        Studium
+                        <span class="nav-dropdown-arrow">▼</span>
+                    </button>
+                    <ul class="nav-dropdown-menu">
+                        <li><a href="/materialy">Studijni materialy</a></li>
+                        <li><a href="/procvicovani">Procvicovani</a></li>
+                        <li><a href="/zkouska">Zaverecna zkouska</a></li>
+                    </ul>
+                </li>
+                <li class="nav-dropdown">
+                    <button aria-haspopup="true">
+                        Prakticka priprava
+                        <span class="nav-dropdown-arrow">▼</span>
+                    </button>
+                    <ul class="nav-dropdown-menu">
+                        <li><a href="/praxe">Odborna praxe</a></li>
+                        <li><a href="/sporty">Sporty</a></li>
+                        <li><a href="/nastroje">Interaktivni nastroje</a></li>
+                        <li><a href="/tahaky">Tahaky do kapsy</a></li>
+                    </ul>
+                </li>
+                <li><a href="/faq">FAQ</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <header class="section-hero">
+        <div class="container hero-content">
+            <h1 style="margin-top: 40px;">Zkouska <span class="accent-glow">nanecisto</span></h1>
+            <p style="color: rgba(255,255,255,0.8);">Demonstracni rezim: obecna ustni otazka, casovy limit a checklist.</p>
+        </div>
+    </header>
+
+    <main class="practice-section">
+        <div class="container">
+            <section class="practice-card" aria-labelledby="mock-title">
+                <a class="back-link" href="/procvicovani"><i class="fa-solid fa-arrow-left"></i>&nbsp;Zpet na rozcestnik</a>
+                <h2 id="mock-title"><i class="fa-solid fa-stopwatch"></i> Trenink ustni zkousky</h2>
+                <p>Tato stranka je pripraveny navrh. Zatim pouziva jen obecne texty bez konkretnich podkladu.</p>
+
+                <div class="practice-controls">
+                    <button class="practice-btn" id="mock-generate">Zobrazit zkusebni otazku</button>
+                    <button class="practice-btn alt" id="mock-start">Spustit casomiru</button>
+                    <button class="practice-btn alt" id="mock-skip">Ukoncit casomeru</button>
+                    <button class="practice-btn warn" id="mock-save">Ulozit zkusebni zapis</button>
+                </div>
+
+                <div class="practice-panel">
+                    <div class="timer" id="mock-timer">08:00</div>
+                    <div class="prompt" id="mock-question">Nejdrive zobrazte zkusebni otazku.</div>
+                    <div class="checklist" id="mock-checklist"></div>
+                </div>
+
+                <div class="history-list" id="mock-history"></div>
+            </section>
+        </div>
+    </main>
+
+    <footer class="pro-footer">
+        <div class="container footer-content">
+            <div class="footer-top">
+                <div class="footer-brand">
+                    <div class="footer-logo">STUDY<span>HUB</span></div>
+                    <p class="footer-disclaimer">Neoficialni studentsky projekt. StudyHub neni oficialne spojen s OSSP Kolin ani ji nezastupuje.</p>
+                </div>
+                <div class="footer-social-block">
+                    <p class="footer-social-label">Oficialni socialni site skoly</p>
+                    <div class="footer-socials">
+                        <a href="https://www.instagram.com/ossp.kolin/" target="_blank" rel="noopener noreferrer" aria-label="Instagram OSSP Kolin">
+                            <i class="fa-brands fa-instagram"></i>
+                        </a>
+                        <a href="https://www.facebook.com/OSSPcz/" target="_blank" rel="noopener noreferrer" aria-label="Facebook OSSP Kolin">
+                            <i class="fa-brands fa-facebook-f"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 StudyHub</p>
+                <p><a class="footer-link" href="/kontakt">Kontakt</a></p>
+                <p class="footer-credit">Vytvorili MV a AB</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        (function () {
+            const CHECK_ITEMS = [
+                'Uvod odpovedi',
+                'Hlavni body odpovedi',
+                'Strucne shrnuti odpovedi',
+                'Jasna formulace',
+                'Klidny projev'
+            ];
+
+            const demoQuestions = [
+                'Zkusebni otazka 1',
+                'Zkusebni otazka 2',
+                'Zkusebni otazka 3',
+                'Zkusebni otazka 4'
+            ];
+            const mockHistory = [];
+            const mockTimerEl = document.getElementById('mock-timer');
+            const mockQuestionEl = document.getElementById('mock-question');
+            const mockChecklistEl = document.getElementById('mock-checklist');
+            const mockHistoryEl = document.getElementById('mock-history');
+
+            let mockRemaining = 8 * 60;
+            let mockInterval = null;
+            let currentMockQuestion = '';
+
+            function formatTime(sec) {
+                const m = Math.floor(sec / 60);
+                const s = sec % 60;
+                return String(m).padStart(2, '0') + ':' + String(s).padStart(2, '0');
+            }
+
+            function renderChecklist() {
+                mockChecklistEl.innerHTML = CHECK_ITEMS.map(function (item, idx) {
+                    return '<label><input type="checkbox" data-ck="' + idx + '"> ' + item + '</label>';
+                }).join('');
+            }
+
+            function renderMockHistory() {
+                const items = mockHistory.slice(0, 8);
+                if (!items.length) {
+                    mockHistoryEl.innerHTML = '<div class="history-item">Zatim bez zkusebniho zapisu.</div>';
+                    return;
+                }
+                mockHistoryEl.innerHTML = items.map(function (h) {
+                    return '<div class="history-item"><strong>' + h.question + '</strong><br>' + h.date + ' • Checklist: ' + h.done + '/5 • Cas: ' + h.time + '</div>';
+                }).join('');
+            }
+
+            document.getElementById('mock-generate').addEventListener('click', function () {
+                currentMockQuestion = demoQuestions[Math.floor(Math.random() * demoQuestions.length)];
+                mockQuestionEl.textContent = currentMockQuestion;
+                mockRemaining = 8 * 60;
+                mockTimerEl.textContent = formatTime(mockRemaining);
+                if (mockInterval) {
+                    clearInterval(mockInterval);
+                    mockInterval = null;
+                }
+                renderChecklist();
+            });
+
+            document.getElementById('mock-start').addEventListener('click', function () {
+                if (!currentMockQuestion) return;
+                if (mockInterval) return;
+
+                mockInterval = setInterval(function () {
+                    if (mockRemaining <= 0) {
+                        clearInterval(mockInterval);
+                        mockInterval = null;
+                        return;
+                    }
+                    mockRemaining -= 1;
+                    mockTimerEl.textContent = formatTime(mockRemaining);
+                }, 1000);
+            });
+
+            document.getElementById('mock-skip').addEventListener('click', function () {
+                if (mockInterval) {
+                    clearInterval(mockInterval);
+                    mockInterval = null;
+                }
+                mockRemaining = 0;
+                mockTimerEl.textContent = formatTime(mockRemaining);
+            });
+
+            document.getElementById('mock-save').addEventListener('click', function () {
+                if (!currentMockQuestion) return;
+                const done = mockChecklistEl.querySelectorAll('input[type="checkbox"]:checked').length;
+                const spent = 8 * 60 - mockRemaining;
+                const mins = Math.floor(spent / 60);
+                const secs = spent % 60;
+
+                mockHistory.unshift({
+                    question: currentMockQuestion,
+                    done: done,
+                    time: String(mins) + 'm ' + String(secs).padStart(2, '0') + 's',
+                    date: new Date().toLocaleString('cs-CZ')
+                });
+                if (mockHistory.length > 30) {
+                    mockHistory.length = 30;
+                }
+                renderMockHistory();
+            });
+
+            renderChecklist();
+            renderMockHistory();
+        })();
+    </script>
+
+    <script src="../../script.js"></script>
+</body>
+</html>

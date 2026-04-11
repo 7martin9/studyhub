@@ -3,6 +3,9 @@
     --dark: #0f172a;
     --text-light: #ffffff;
     --bg-gray: #f8fafc;
+    --ring: rgba(230, 57, 70, 0.28);
+    --elev-1: 0 16px 36px rgba(15, 23, 42, 0.10);
+    --elev-2: 0 26px 56px rgba(15, 23, 42, 0.16);
 }
 
 /* ZÁKLADNÍ NASTAVENÍ */
@@ -12,13 +15,101 @@ body {
     font-family: 'Montserrat', sans-serif;
     background: #fff;
     color: #333;
+    line-height: 1.6;
     overflow-x: hidden;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* Jemna atmosfera pozadi pro "profi" dojem */
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: -1;
+    background:
+        radial-gradient(1200px 600px at 10% -10%, rgba(230, 57, 70, 0.14), transparent 65%),
+        radial-gradient(900px 500px at 100% 0%, rgba(59, 130, 246, 0.11), transparent 60%),
+        radial-gradient(520px 260px at 52% 108%, rgba(230, 57, 70, 0.08), transparent 72%);
+}
+
+/* Globalni progress bar pri scrollovani */
+.scroll-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 4px;
+    width: 0%;
+    z-index: 2000;
+    background: linear-gradient(90deg, #e63946 0%, #ff6b6b 55%, #f59e0b 100%);
+    box-shadow: 0 0 14px rgba(230, 57, 70, 0.45);
+    transition: width 0.08s linear;
+}
+
+/* Floating tlacitko zpet nahoru */
+.back-to-top {
+    position: fixed;
+    right: 22px;
+    bottom: 24px;
+    width: 48px;
+    height: 48px;
+    border: none;
+    border-radius: 14px;
+    display: grid;
+    place-items: center;
+    font-size: 1rem;
+    color: #ffffff;
+    background: linear-gradient(160deg, #e63946 0%, #d62839 100%);
+    box-shadow: 0 12px 28px rgba(230, 57, 70, 0.35);
+    cursor: pointer;
+    z-index: 1300;
+    opacity: 0;
+    transform: translateY(12px) scale(0.95);
+    pointer-events: none;
+}
+
+.back-to-top.is-visible {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    pointer-events: auto;
+}
+
+.back-to-top:hover {
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: 0 16px 30px rgba(230, 57, 70, 0.42);
+}
+
+.back-to-top:active {
+    transform: translateY(0) scale(0.98);
+}
+
+.back-to-top i {
+    transform: translateY(-1px);
+}
+
+/* Lepsi dostupnost a jednotny focus styl */
+:focus-visible {
+    outline: 3px solid var(--ring);
+    outline-offset: 2px;
+    border-radius: 10px;
+}
+
+::selection {
+    background: rgba(230, 57, 70, 0.24);
+    color: #0f172a;
 }
 
 .container { max-width: 1200px; margin: 0 auto; padding: 0 25px; }
+
+p { line-height: 1.75; }
+
+h1, h2, h3, h4 {
+    letter-spacing: -0.03em;
+}
 
 /* NAVBAR */
 .nav-container { position: fixed; width: 100%; top: 20px; z-index: 1000; display: flex; justify-content: center; }
@@ -30,7 +121,7 @@ body {
     display: flex; 
     align-items: center; 
     gap: 35px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.15); 
+    box-shadow: var(--elev-1);
 }
 
 .logo-group { display: flex; align-items: center; gap: 12px; text-decoration: none; }
@@ -42,6 +133,26 @@ body {
 .nav-links li { display: flex; align-items: center; }
 .nav-links a, .nav-links li > a { text-decoration: none; color: var(--dark); font-weight: 700; font-size: 1rem; padding: 11px 20px; border-radius: 10px; transition: 0.3s; display: flex; align-items: center; height: 42px; }
 .nav-links a.active, .nav-links a:hover { background: var(--primary); color: white; }
+
+.nav-links a,
+.nav-dropdown > button,
+.btn-download-main,
+.back-btn,
+.practice-btn,
+.btn,
+button {
+    transition: transform 0.22s ease, box-shadow 0.22s ease, background-color 0.22s ease, color 0.22s ease, border-color 0.22s ease;
+}
+
+.nav-links a:hover,
+.nav-dropdown > button:hover,
+.btn-download-main:hover,
+.back-btn:hover,
+.practice-btn:hover,
+.btn:hover,
+button:hover {
+    transform: translateY(-1px);
+}
 
 /* Dropdown menu */
 .nav-dropdown {
@@ -210,6 +321,33 @@ body {
 .about-card { max-width: 800px; margin: 0 auto; background: white; padding: 50px; border-radius: 35px; box-shadow: 0 15px 40px rgba(0,0,0,0.05); }
 .underline { width: 50px; height: 5px; background: var(--primary); margin: 0 auto 25px; border-radius: 10px; }
 
+.about-card,
+.subject-category,
+.info-card,
+.praxe-card,
+.sport-detail-card,
+.small-card,
+.resource-group,
+.tool-card,
+.faq-item,
+.wip-content {
+    box-shadow: var(--elev-1);
+    border: 1px solid rgba(148, 163, 184, 0.18);
+}
+
+.about-card:hover,
+.subject-category:hover,
+.info-card:hover,
+.praxe-card:hover,
+.sport-detail-card:hover,
+.small-card:hover,
+.resource-group:hover,
+.tool-card:hover,
+.faq-item:hover,
+.wip-content:hover {
+    box-shadow: var(--elev-2);
+}
+
 /* KARTY (BUBLINY) */
 .bubbles-section { padding: 80px 0 100px; background: var(--bg-gray); }
 .bubbles-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 30px; padding: 0 20px; max-width: 1200px; margin: 0 auto; }
@@ -230,7 +368,27 @@ body {
 .bubble-card:hover .bubble-overlay { background: rgba(15, 23, 42, 0.85); }
 
 /* FOOTER */
-.pro-footer { background: var(--dark); color: #94a3b8; padding: 60px 0 30px; border-top-left-radius: 50px; border-top-right-radius: 50px; margin-top: auto; }
+.pro-footer {
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(180deg, #111827 0%, #0b1220 100%);
+    color: #94a3b8;
+    padding: 60px 0 30px;
+    border-top-left-radius: 50px;
+    border-top-right-radius: 50px;
+    margin-top: auto;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 -18px 50px rgba(2, 6, 23, 0.22);
+}
+.pro-footer::before {
+    content: "";
+    position: absolute;
+    inset: 0 0 auto 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, rgba(230, 57, 70, 0.75), rgba(59, 130, 246, 0.7), transparent);
+    opacity: 0.9;
+    pointer-events: none;
+}
 .footer-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 32px; padding-bottom: 30px; border-bottom: 1px solid #1e293b; margin-bottom: 20px; }
 .footer-brand { max-width: 640px; }
 .footer-logo { font-weight: 900; color: white; font-size: 1.4rem; }
@@ -319,10 +477,219 @@ body {
     }
 }
 
+@media (max-width: 768px) {
+    .container {
+        padding: 0 16px;
+    }
+
+    .nav-container {
+        top: 10px;
+    }
+
+    .navbar-floating {
+        width: calc(100% - 20px);
+        padding: 10px 14px;
+        gap: 12px;
+        border-radius: 16px;
+    }
+
+    .logo-text {
+        font-size: 0.98rem;
+    }
+
+    .section-hero {
+        padding: 108px 0 36px;
+    }
+
+    .section-hero h1 {
+        font-size: 1.9rem;
+        margin-bottom: 8px;
+    }
+
+    .section-hero p {
+        font-size: 0.96rem;
+        line-height: 1.55;
+        max-width: 32ch;
+        margin: 0 auto;
+        text-align: center;
+    }
+
+    .about-section,
+    .bubbles-section,
+    .praxe-section,
+    .praxe-content,
+    .contact-section,
+    .materials-list-section,
+    .exam-info-section,
+    .sports-section,
+    .tools-section,
+    .faq-section,
+    .work-in-progress,
+    .download-resources,
+    .practice-section {
+        padding-top: 56px;
+        padding-bottom: 72px;
+    }
+
+    .about-card,
+    .contact-card,
+    .wip-content,
+    .info-card,
+    .praxe-card,
+    .sport-detail-card,
+    .small-card,
+    .resource-group,
+    .tool-card,
+    .faq-item,
+    .subject-category,
+    .step-card {
+        border-radius: 22px;
+        padding: 24px 18px;
+    }
+
+    .info-grid,
+    .praxe-grid,
+    .training-info,
+    .bubbles-grid,
+    .materials-grid,
+    .tools-grid,
+    .faq-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+
+    .timeline-container {
+        margin: 42px 0 34px;
+    }
+
+    .timeline-container h2 {
+        font-size: 1.45rem;
+        margin-bottom: 24px;
+    }
+
+    .exam-note {
+        padding: 20px 16px;
+        border-radius: 16px;
+        line-height: 1.65;
+    }
+
+    .section-title {
+        margin-bottom: 32px;
+    }
+
+    .section-title h2 {
+        font-size: 1.6rem;
+    }
+
+    .exam-info-section .download-resources .resources-grid {
+        padding: 18px;
+        border-radius: 22px;
+        gap: 14px;
+    }
+
+    .resource-group {
+        padding: 18px 16px;
+    }
+
+    .footer-top,
+    .footer-bottom {
+        gap: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .nav-links > li > a,
+    .nav-dropdown > button {
+        min-height: 42px;
+        padding: 11px 12px;
+        font-size: 0.88rem;
+    }
+
+    .nav-dropdown-menu a {
+        font-size: 0.84rem;
+        padding: 9px 10px 9px 12px !important;
+    }
+
+    .section-hero {
+        padding: 100px 0 32px;
+    }
+
+    .section-hero h1 {
+        font-size: 1.7rem;
+    }
+
+    .section-hero p {
+        max-width: 28ch;
+        margin: 0 auto;
+        text-align: center;
+    }
+
+    .hero-content h1 {
+        font-size: 2.2rem;
+    }
+
+    .practice-controls,
+    .quick-stats,
+    .footer-socials {
+        width: 100%;
+    }
+
+    .practice-controls {
+        flex-direction: column;
+    }
+
+    .practice-btn,
+    .practice-btn.alt,
+    .btn,
+    .btn-download-main,
+    .back-btn {
+        width: 100%;
+        justify-content: center;
+        text-align: center;
+    }
+
+    .practice-card,
+    .practice-panel {
+        padding: 18px 14px;
+        border-radius: 18px;
+    }
+
+    .practice-card h2 {
+        font-size: 1.1rem;
+    }
+
+    .practice-card p,
+    .practice-panel,
+    .quick-stats span {
+        font-size: 0.92rem;
+    }
+
+    .quick-stats {
+        flex-direction: column;
+    }
+
+    .quiz-option {
+        padding: 12px;
+    }
+
+    .section-title h2 {
+        font-size: 1.45rem;
+    }
+
+    .footer-socials {
+        flex-wrap: wrap;
+    }
+}
+
 /* OSTATNÍ ANIMACE */
 @keyframes bounceArrow { 0%, 20%, 50%, 80%, 100% {transform: translateY(0);} 40% {transform: translateY(12px);} 60% {transform: translateY(6px);} }
 @keyframes pulseText { 0%, 100% { opacity: 0.7; transform: scale(1); } 50% { opacity: 1; transform: scale(1.05); } }
 @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes ambientFloat {
+    0% { transform: translate3d(0, 0, 0) scale(1); }
+    50% { transform: translate3d(0, -8px, 0) scale(1.015); }
+    100% { transform: translate3d(0, 6px, 0) scale(1.03); }
+}
 
 /* --- MOBILNÍ MENU --- */
 
@@ -559,21 +926,173 @@ body {
 }
 /* --- STYLY PRO PODSTRÁNKY (MATERIÁLY) --- */
 .section-hero {
+    position: relative;
+    overflow: hidden;
     padding: 150px 0 60px;
-    background: var(--dark);
+    background:
+        radial-gradient(900px 360px at 18% 0%, rgba(230, 57, 70, 0.34), transparent 60%),
+        radial-gradient(760px 320px at 82% 0%, rgba(59, 130, 246, 0.28), transparent 58%),
+        linear-gradient(180deg, #111827 0%, #0f172a 100%);
     text-align: center;
     color: white;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 18px 42px rgba(2, 6, 23, 0.24);
+}
+
+.section-hero::before {
+    content: "";
+    position: absolute;
+    inset: auto 0 0 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, rgba(230, 57, 70, 0.95), rgba(59, 130, 246, 0.9), transparent);
+}
+
+.section-hero::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background:
+        radial-gradient(420px 160px at 50% 18%, rgba(255, 255, 255, 0.06), transparent 72%),
+        radial-gradient(520px 220px at 50% 100%, rgba(230, 57, 70, 0.12), transparent 75%);
 }
 
 .section-hero h1 {
     font-size: 3rem;
     font-weight: 900;
     margin-bottom: 10px;
+    position: relative;
+    z-index: 1;
+    text-shadow: 0 0 22px rgba(230, 57, 70, 0.45), 0 0 28px rgba(59, 130, 246, 0.2);
 }
 
 .section-hero p {
     opacity: 0.7;
     font-size: 1.1rem;
+    position: relative;
+    z-index: 1;
+    max-width: 64ch;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.section-hero .hero-content {
+    text-align: center;
+}
+
+/* ==========================================
+   PROFI POVRCH SEKCI (SVETLY/TMAVY)
+   ========================================== */
+:is(
+    .practice-hub,
+    .practice-section,
+    .exam-info-section,
+    .download-resources,
+    .praxe-content,
+    .sports-section,
+    .work-in-progress,
+    .tools-section,
+    .faq-section,
+    .contact-section,
+    .materials-list-section
+) {
+    position: relative;
+    isolation: isolate;
+    overflow: clip;
+}
+
+:is(
+    .practice-hub,
+    .practice-section,
+    .exam-info-section,
+    .download-resources,
+    .praxe-content,
+    .sports-section,
+    .work-in-progress,
+    .tools-section,
+    .faq-section,
+    .contact-section,
+    .materials-list-section
+)::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background:
+    radial-gradient(900px 480px at -8% -5%, rgba(230, 57, 70, 0.13), transparent 72%),
+    radial-gradient(760px 420px at 108% 8%, rgba(59, 130, 246, 0.14), transparent 72%),
+    radial-gradient(960px 540px at 50% 120%, rgba(230, 57, 70, 0.08), transparent 74%),
+    linear-gradient(180deg, #f8fafc 0%, #eef2f7 100%);
+}
+
+:is(
+    .practice-hub,
+    .practice-section,
+    .exam-info-section,
+    .download-resources,
+    .praxe-content,
+    .sports-section,
+    .work-in-progress,
+    .tools-section,
+    .faq-section,
+    .contact-section,
+    .materials-list-section
+)::after {
+    content: none;
+}
+
+/* Jemne odliseni sousedicich sekci na dlouhych strankach */
+.exam-info-section::before,
+.sports-section::before,
+.tools-section::before,
+.faq-section::before {
+    background:
+        radial-gradient(900px 480px at -8% -5%, rgba(230, 57, 70, 0.09), transparent 72%),
+        radial-gradient(760px 420px at 108% 110%, rgba(15, 23, 42, 0.1), transparent 72%),
+        linear-gradient(180deg, #f8fafc 0%, #eef2f7 100%);
+}
+
+[data-theme="dark"] .exam-info-section::before,
+[data-theme="dark"] .sports-section::before,
+[data-theme="dark"] .tools-section::before,
+[data-theme="dark"] .faq-section::before {
+    background:
+        radial-gradient(900px 480px at -8% -5%, rgba(248, 113, 113, 0.18), transparent 72%),
+        radial-gradient(760px 420px at 108% 110%, rgba(59, 130, 246, 0.2), transparent 72%),
+        linear-gradient(180deg, #0f172a 0%, #111a2f 100%);
+}
+
+:is(
+    .practice-hub,
+    .practice-section,
+    .exam-info-section,
+    .download-resources,
+    .praxe-content,
+    .sports-section,
+    .work-in-progress,
+    .tools-section,
+    .faq-section,
+    .contact-section,
+    .materials-list-section
+) > * {
+    position: relative;
+    z-index: 1;
+}
+
+/* Prebije jednoduche jednobarevne pozadi z lokalnich stylu podstranek */
+.practice-hub,
+.practice-section,
+.exam-info-section,
+.download-resources,
+.praxe-content,
+.sports-section,
+.work-in-progress,
+.tools-section,
+.faq-section,
+.contact-section,
+.materials-list-section {
+    background: transparent !important;
 }
 
 /* --- STYLY PRO ZÁVĚREČNOU ZKOUŠKU --- */
@@ -654,8 +1173,46 @@ body {
 }
 /* --- STYLY PRO DOWNLOAD CENTRUM --- */
 .download-resources { padding: 80px 0; background: #fff; }
+.exam-info-section .download-resources {
+    position: relative;
+    isolation: isolate;
+    margin-top: 0;
+}
+
+.exam-info-section .download-resources::before {
+    content: none;
+}
+
+.exam-info-section > .container,
+.exam-info-section .download-resources {
+    position: relative;
+    z-index: 1;
+}
+
+/* Pod "Podklady ke stazeni" je samostatny zaobleny mrizkovany panel */
+.exam-info-section .download-resources .resources-grid {
+    position: relative;
+    padding: 28px;
+    border-radius: 30px;
+    border: 1px solid #d7e3ef;
+    background-image:
+        linear-gradient(rgba(15, 23, 42, 0.055) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(15, 23, 42, 0.055) 1px, transparent 1px),
+        linear-gradient(180deg, rgba(255, 255, 255, 0.85) 0%, rgba(246, 250, 255, 0.92) 100%);
+    background-size: 20px 20px, 20px 20px, 100% 100%;
+    box-shadow: 0 18px 44px rgba(15, 23, 42, 0.12);
+}
+
+.exam-info-section .download-resources .section-title .underline {
+    width: 120px;
+}
 .section-title { text-align: center; margin-bottom: 50px; }
-.section-title h2 { font-weight: 900; font-size: 2.2rem; color: var(--dark); }
+.section-title h2 {
+    font-weight: 900;
+    font-size: 2.2rem;
+    color: var(--dark);
+    letter-spacing: -0.04em;
+}
 
 .resources-grid { 
     display: grid; 
@@ -965,6 +1522,32 @@ body {
 
 /* Dark mode – základní */
 [data-theme="dark"] body { background: #0f172a; color: #e2e8f0; }
+[data-theme="dark"] body::before {
+    background:
+        radial-gradient(1200px 600px at 10% -10%, rgba(255, 90, 104, 0.18), transparent 68%),
+        radial-gradient(900px 500px at 100% 0%, rgba(96, 165, 250, 0.16), transparent 66%),
+        radial-gradient(520px 260px at 52% 108%, rgba(255, 90, 104, 0.1), transparent 72%);
+}
+    [data-theme="dark"] body::after {
+        opacity: 0.26;
+        background:
+        radial-gradient(700px 420px at -8% 35%, rgba(248, 113, 113, 0.3), transparent 72%),
+        radial-gradient(700px 420px at 108% 72%, rgba(96, 165, 250, 0.25), transparent 72%),
+        radial-gradient(560px 300px at 50% 115%, rgba(248, 113, 113, 0.11), transparent 72%);
+    }
+[data-theme="dark"] .scroll-progress {
+    background: linear-gradient(90deg, #ff5a68 0%, #ff7d7d 55%, #fbbf24 100%);
+    box-shadow: 0 0 16px rgba(255, 90, 104, 0.55);
+}
+[data-theme="dark"] .back-to-top {
+    color: #fff;
+    background: linear-gradient(160deg, #ff5a68 0%, #ef4444 100%);
+    box-shadow: 0 12px 28px rgba(255, 90, 104, 0.4);
+}
+[data-theme="dark"] ::selection {
+    background: rgba(230, 57, 70, 0.35);
+    color: #ffffff;
+}
 
 /* Navbar */
 [data-theme="dark"] .navbar-floating {
@@ -999,6 +1582,25 @@ body {
 [data-theme="dark"] .bubbles-section { background: #0f172a; }
 
 /* Zápatí je vždy tmavé – bez změny */
+[data-theme="dark"] .pro-footer {
+    background: linear-gradient(180deg, rgba(17, 24, 39, 0.98) 0%, rgba(9, 15, 29, 0.99) 100%);
+    border-top-color: rgba(255, 255, 255, 0.12);
+    box-shadow: 0 -24px 60px rgba(0, 0, 0, 0.55), 0 -1px 0 rgba(255, 255, 255, 0.04) inset;
+}
+[data-theme="dark"] .pro-footer::before {
+    background: linear-gradient(90deg, transparent, rgba(255, 90, 104, 0.95), rgba(96, 165, 250, 0.9), transparent);
+}
+[data-theme="dark"] .footer-top {
+    border-bottom-color: rgba(148, 163, 184, 0.22);
+}
+[data-theme="dark"] .footer-socials a {
+    background: #172033;
+    border-color: #2b3a55;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.22);
+}
+[data-theme="dark"] .footer-socials a:hover {
+    box-shadow: 0 14px 26px rgba(255, 90, 104, 0.25);
+}
 
 /* Práce / Materiály – hero je vždy tmavý – bez změny */
 
@@ -1008,6 +1610,93 @@ body {
 [data-theme="dark"] .sports-section,
 [data-theme="dark"] .praxe-content,
 [data-theme="dark"] .praxe-section { background: #0f172a; }
+
+[data-theme="dark"] :is(
+    .materials-list-section,
+    .exam-info-section,
+    .sports-section,
+    .praxe-content,
+    .praxe-section,
+    .practice-hub,
+    .practice-section,
+    .tools-section,
+    .faq-section,
+    .contact-section
+) {
+    background:
+        radial-gradient(1100px 520px at 50% 0%, rgba(255, 255, 255, 0.03), transparent 58%),
+        radial-gradient(1000px 520px at 50% 100%, rgba(0, 0, 0, 0.34), transparent 72%),
+        linear-gradient(180deg, #0b1220 0%, #0f172a 42%, #0b1324 100%);
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    box-shadow:
+        inset 0 30px 88px rgba(0, 0, 0, 0.34),
+        inset 0 -30px 88px rgba(0, 0, 0, 0.36);
+}
+
+[data-theme="dark"] .exam-info-section {
+    background:
+        radial-gradient(1100px 520px at 50% 0%, rgba(255, 255, 255, 0.03), transparent 58%),
+        radial-gradient(1000px 520px at 50% 100%, rgba(0, 0, 0, 0.38), transparent 72%),
+        linear-gradient(180deg, #09111f 0%, #0f172a 45%, #09101d 100%);
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    box-shadow:
+        inset 0 34px 90px rgba(0, 0, 0, 0.42),
+        inset 0 -34px 90px rgba(0, 0, 0, 0.45);
+}
+
+[data-theme="dark"] :is(
+    .practice-hub,
+    .practice-section,
+    .exam-info-section,
+    .download-resources,
+    .praxe-content,
+    .sports-section,
+    .work-in-progress,
+    .tools-section,
+    .faq-section,
+    .contact-section,
+    .materials-list-section
+) {
+    background: transparent !important;
+}
+
+[data-theme="dark"] :is(
+    .practice-hub,
+    .practice-section,
+    .exam-info-section,
+    .download-resources,
+    .praxe-content,
+    .sports-section,
+    .work-in-progress,
+    .tools-section,
+    .faq-section,
+    .contact-section,
+    .materials-list-section
+)::before {
+    background:
+    radial-gradient(900px 480px at -8% -5%, rgba(248, 113, 113, 0.25), transparent 72%),
+    radial-gradient(760px 420px at 108% 8%, rgba(59, 130, 246, 0.28), transparent 72%),
+    radial-gradient(960px 540px at 50% 120%, rgba(248, 113, 113, 0.12), transparent 74%),
+    linear-gradient(180deg, #0f172a 0%, #111a2f 100%);
+}
+
+[data-theme="dark"] :is(
+    .practice-hub,
+    .practice-section,
+    .exam-info-section,
+    .download-resources,
+    .praxe-content,
+    .sports-section,
+    .work-in-progress,
+    .tools-section,
+    .faq-section,
+    .contact-section,
+    .materials-list-section
+)::after {
+    content: none;
+}
 
 /* Karty a bílé panely */
 [data-theme="dark"] .subject-category,
@@ -1036,9 +1725,24 @@ body {
 [data-theme="dark"] .info-card h3 { color: #e2e8f0; }
 [data-theme="dark"] .info-card ul li { color: #94a3b8; }
 [data-theme="dark"] .info-card p { color: #94a3b8; }
+[data-theme="dark"] .section-title h2 { color: #f8fafc; }
+[data-theme="dark"] .section-title .underline {
+    box-shadow: 0 0 22px rgba(230, 57, 70, 0.35);
+}
 
 /* Download sekce */
 [data-theme="dark"] .download-resources { background: #0f172a; }
+[data-theme="dark"] .exam-info-section .download-resources::before {
+    content: none;
+}
+[data-theme="dark"] .exam-info-section .download-resources .resources-grid {
+    border-color: #334155;
+    background-image:
+        linear-gradient(rgba(148, 163, 184, 0.14) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(148, 163, 184, 0.14) 1px, transparent 1px),
+        linear-gradient(180deg, rgba(16, 24, 39, 0.9) 0%, rgba(17, 26, 47, 0.96) 100%);
+    box-shadow: 0 18px 44px rgba(2, 6, 23, 0.45);
+}
 [data-theme="dark"] .section-title h2 { color: #e2e8f0; }
 [data-theme="dark"] .resource-group { background: #1e293b; border-color: #334155; }
 [data-theme="dark"] .group-header { color: #e2e8f0; }
@@ -1069,6 +1773,25 @@ body, .navbar-floating, .about-card, .info-card, .praxe-card,
 .about-section, .bubbles-section, .exam-info-section, .sports-section,
 .materials-list-section {
     transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+
+@media (max-width: 768px) {
+    .back-to-top {
+        right: 14px;
+        bottom: 16px;
+        width: 44px;
+        height: 44px;
+        border-radius: 12px;
+    }
 }
 
 /* ==========================================

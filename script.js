@@ -21,6 +21,63 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // ==========================================
+// GLOBÁLNÍ PROGRESS BAR PŘI SCROLLU
+// ==========================================
+document.addEventListener('DOMContentLoaded', () => {
+    let progressBar = document.querySelector('.scroll-progress');
+
+    if (!progressBar) {
+        progressBar = document.createElement('div');
+        progressBar.className = 'scroll-progress';
+        document.body.appendChild(progressBar);
+    }
+
+    const updateProgress = () => {
+        const doc = document.documentElement;
+        const scrollTop = doc.scrollTop || document.body.scrollTop;
+        const scrollHeight = doc.scrollHeight - doc.clientHeight;
+        const progress = scrollHeight > 0 ? (scrollTop / scrollHeight) * 100 : 0;
+        progressBar.style.width = `${Math.min(100, Math.max(0, progress)).toFixed(2)}%`;
+    };
+
+    updateProgress();
+    window.addEventListener('scroll', updateProgress, { passive: true });
+    window.addEventListener('resize', updateProgress);
+});
+
+// ==========================================
+// GLOBÁLNÍ TLAČÍTKO "ZPĚT NAHORU"
+// ==========================================
+document.addEventListener('DOMContentLoaded', () => {
+    let backToTop = document.querySelector('.back-to-top');
+
+    if (!backToTop) {
+        backToTop = document.createElement('button');
+        backToTop.className = 'back-to-top';
+        backToTop.type = 'button';
+        backToTop.setAttribute('aria-label', 'Zpět nahoru');
+        backToTop.innerHTML = '<i class="fa-solid fa-arrow-up"></i>';
+        document.body.appendChild(backToTop);
+    }
+
+    const updateBackToTop = () => {
+        if (window.scrollY > 420) {
+            backToTop.classList.add('is-visible');
+        } else {
+            backToTop.classList.remove('is-visible');
+        }
+    };
+
+    backToTop.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    updateBackToTop();
+    window.addEventListener('scroll', updateBackToTop, { passive: true });
+    window.addEventListener('resize', updateBackToTop);
+});
+
+// ==========================================
 // DROPDOWN MENU V NAVBARU
 // ==========================================
 
@@ -190,8 +247,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const pendingMaterialMeta = document.getElementById('pendingMaterialMeta');
 
     const openPendingModal = (itemName, metaText) => {
-        pendingMaterialName.textContent = itemName || 'Zkusebni material';
-        pendingMaterialMeta.textContent = metaText || 'PDF bude doplneno';
+        pendingMaterialName.textContent = itemName || 'Zkušební materiál';
+        pendingMaterialMeta.textContent = metaText || 'PDF bude doplněno';
         pendingModal.classList.add('is-open');
         pendingModal.setAttribute('aria-hidden', 'false');
         document.body.style.overflow = 'hidden';
@@ -228,10 +285,10 @@ document.addEventListener('DOMContentLoaded', () => {
             e.preventDefault();
 
             const item = btn.closest('.sub-question-item');
-            const questionText = item?.querySelector('.q-text')?.textContent.trim() || 'Zkusebni material';
+            const questionText = item?.querySelector('.q-text')?.textContent.trim() || 'Zkušební materiál';
             const card = item?.closest('.question-card');
-            const badgeText = card?.querySelector('.question-number-badge')?.textContent.trim() || 'Otazka';
-            const subjectText = item?.closest('.subject-category')?.querySelector('.summary-content h2')?.textContent.trim() || 'Studijni materialy';
+            const badgeText = card?.querySelector('.question-number-badge')?.textContent.trim() || 'Otázka';
+            const subjectText = item?.closest('.subject-category')?.querySelector('.summary-content h2')?.textContent.trim() || 'Studijní materiály';
 
             openPendingModal(questionText, `${subjectText} • ${badgeText}`);
         });

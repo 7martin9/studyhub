@@ -129,6 +129,53 @@
         [data-theme="dark"] .prompt { color: #e2e8f0; }
         [data-theme="dark"] .quiz-option.correct { background: #122c1b; border-color: #16a34a; }
         [data-theme="dark"] .quiz-option.wrong { background: #3a1616; border-color: #dc2626; }
+
+        @media (max-width: 768px) {
+            .practice-section {
+                padding: 30px 0 76px;
+            }
+
+            .practice-card {
+                padding: 18px 14px;
+                border-radius: 18px;
+            }
+
+            .practice-controls {
+                flex-direction: column;
+            }
+
+            .practice-btn,
+            .practice-btn.alt {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .practice-panel {
+                padding: 12px;
+            }
+
+            .quiz-options {
+                gap: 10px;
+            }
+
+            .quiz-option {
+                min-height: 44px;
+                padding: 12px 14px;
+            }
+
+            .quick-stats {
+                flex-direction: column;
+            }
+
+            .quick-stats span {
+                width: 100%;
+            }
+
+            .back-link {
+                margin-bottom: 12px;
+                font-size: 0.92rem;
+            }
+        }
     </style>
 </head>
 <body>
@@ -149,28 +196,28 @@
             </label>
 
             <ul class="nav-links">
-                <li><a href="/">Domu</a></li>
+                <li><a href="/">Domů</a></li>
                 <li class="nav-dropdown">
                     <button aria-haspopup="true">
                         Studium
                         <span class="nav-dropdown-arrow">▼</span>
                     </button>
                     <ul class="nav-dropdown-menu">
-                        <li><a href="/materialy">Studijni materialy</a></li>
-                        <li><a href="/procvicovani">Procvicovani</a></li>
-                        <li><a href="/zkouska">Zaverecna zkouska</a></li>
+                        <li><a href="/materialy">Studijní materiály</a></li>
+                        <li><a href="/procvicovani">Procvičování</a></li>
+                        <li><a href="/zkouska">Závěrečná zkouška</a></li>
                     </ul>
                 </li>
                 <li class="nav-dropdown">
                     <button aria-haspopup="true">
-                        Prakticka priprava
+                        Praktická příprava
                         <span class="nav-dropdown-arrow">▼</span>
                     </button>
                     <ul class="nav-dropdown-menu">
-                        <li><a href="/praxe">Odborna praxe</a></li>
+                        <li><a href="/praxe">Odborná praxe</a></li>
                         <li><a href="/sporty">Sporty</a></li>
-                        <li><a href="/nastroje">Interaktivni nastroje</a></li>
-                        <li><a href="/tahaky">Tahaky do kapsy</a></li>
+                        <li><a href="/nastroje">Interaktivní nástroje</a></li>
+                        <li><a href="/tahaky">Taháky do kapsy</a></li>
                     </ul>
                 </li>
                 <li><a href="/faq">FAQ</a></li>
@@ -180,38 +227,38 @@
 
     <header class="section-hero">
         <div class="container hero-content">
-            <h1 style="margin-top: 40px;">Kviz po <span class="accent-glow">tematech</span></h1>
-            <p style="color: rgba(255,255,255,0.8);">Demonstracni rezim s obecnou zkusebni otazkou a odpovedmi.</p>
+            <h1 style="margin-top: 40px;">Kvíz po <span class="accent-glow">tématech</span></h1>
+            <p style="color: rgba(255,255,255,0.8);">Demonstrační režim s obecnou zkušební otázkou a odpověďmi.</p>
         </div>
     </header>
 
     <main class="practice-section">
         <div class="container">
             <section class="practice-card" aria-labelledby="quiz-title">
-                <a class="back-link" href="/procvicovani"><i class="fa-solid fa-arrow-left"></i>&nbsp;Zpet na rozcestnik</a>
-                <h2 id="quiz-title"><i class="fa-solid fa-list-check"></i> Treninkovy kviz</h2>
-                <p>Tato verze je demonstracni. Zobrazuje obecne texty bez skutecneho vyhodnoceni.</p>
+                <a class="back-link" href="/procvicovani"><i class="fa-solid fa-arrow-left"></i>&nbsp;Zpět na rozcestník</a>
+                <h2 id="quiz-title"><i class="fa-solid fa-list-check"></i> Tréninkový kvíz</h2>
+                <p>Tato verze je demonstrační. Zobrazuje obecné texty bez skutečného vyhodnocení.</p>
 
                 <div class="practice-controls">
                     <select id="quiz-topic" class="practice-btn alt" style="cursor:pointer;">
-                        <option value="all">Zkouska</option>
-                        <option value="a">Zkusebni sada A</option>
-                        <option value="b">Zkusebni sada B</option>
-                        <option value="c">Zkusebni sada C</option>
+                        <option value="all">Zkouška</option>
+                        <option value="a">Zkušební sada A</option>
+                        <option value="b">Zkušební sada B</option>
+                        <option value="c">Zkušební sada C</option>
                     </select>
-                    <button class="practice-btn" id="quiz-next">Zobrazit zkusebni otazku</button>
+                    <button class="practice-btn" id="quiz-next">Zobrazit zkušební otázku</button>
                 </div>
 
                 <div class="practice-panel">
-                    <div class="prompt" id="quiz-question">Kliknete na tlacitko Zobrazit zkusebni otazku.</div>
+                    <div class="prompt" id="quiz-question">Klikněte na tlačítko Zobrazit zkušební otázku.</div>
                     <div class="quiz-options" id="quiz-options"></div>
                     <p id="quiz-feedback" style="margin-top:10px; font-weight:700;"></p>
                 </div>
 
                 <div class="quick-stats">
-                    <span>Rezim: <strong>Demonstracni</strong></span>
-                    <span>Otazka: <strong>Zkusebni</strong></span>
-                    <span>Odpoved: <strong>Zkusebni</strong></span>
+                    <span>Režim: <strong>Demonstrační</strong></span>
+                    <span>Otázka: <strong>Zkušební</strong></span>
+                    <span>Odpověď: <strong>Zkušební</strong></span>
                 </div>
             </section>
         </div>
@@ -222,10 +269,10 @@
             <div class="footer-top">
                 <div class="footer-brand">
                     <div class="footer-logo">STUDY<span>HUB</span></div>
-                    <p class="footer-disclaimer">Neoficialni studentsky projekt. StudyHub neni oficialne spojen s OSSP Kolin ani ji nezastupuje.</p>
+                    <p class="footer-disclaimer">Neoficiální studentský projekt. StudyHub není oficiálně spojen s OSSP Kolín ani ji nezastupuje.</p>
                 </div>
                 <div class="footer-social-block">
-                    <p class="footer-social-label">Oficialni socialni site skoly</p>
+                    <p class="footer-social-label">Oficiální sociální sítě školy</p>
                     <div class="footer-socials">
                         <a href="https://www.instagram.com/ossp.kolin/" target="_blank" rel="noopener noreferrer" aria-label="Instagram OSSP Kolin">
                             <i class="fa-brands fa-instagram"></i>
@@ -239,7 +286,7 @@
             <div class="footer-bottom">
                 <p>&copy; 2026 StudyHub</p>
                 <p><a class="footer-link" href="/kontakt">Kontakt</a></p>
-                <p class="footer-credit">Vytvorili MV a AB</p>
+                <p class="footer-credit">Vytvořili MV a AB</p>
             </div>
         </div>
     </footer>
@@ -249,42 +296,42 @@
             const quizPool = [
                 {
                     topic: 'all',
-                    q: 'Zkusebni otazka',
+                    q: 'Zkušební otázka',
                     options: [
-                        'Zkusebni odpoved A',
-                        'Zkusebni odpoved B',
-                        'Zkusebni odpoved C',
-                        'Zkusebni odpoved D'
+                        'Zkušební odpověď A',
+                        'Zkušební odpověď B',
+                        'Zkušební odpověď C',
+                        'Zkušební odpověď D'
                     ]
                 },
                 {
                     topic: 'a',
-                    q: 'Zkusebni otazka (sada A)',
+                    q: 'Zkušební otázka (sada A)',
                     options: [
-                        'Zkusebni odpoved A1',
-                        'Zkusebni odpoved A2',
-                        'Zkusebni odpoved A3',
-                        'Zkusebni odpoved A4'
+                        'Zkušební odpověď A1',
+                        'Zkušební odpověď A2',
+                        'Zkušební odpověď A3',
+                        'Zkušební odpověď A4'
                     ]
                 },
                 {
                     topic: 'b',
-                    q: 'Zkusebni otazka (sada B)',
+                    q: 'Zkušební otázka (sada B)',
                     options: [
-                        'Zkusebni odpoved B1',
-                        'Zkusebni odpoved B2',
-                        'Zkusebni odpoved B3',
-                        'Zkusebni odpoved B4'
+                        'Zkušební odpověď B1',
+                        'Zkušební odpověď B2',
+                        'Zkušební odpověď B3',
+                        'Zkušební odpověď B4'
                     ]
                 },
                 {
                     topic: 'c',
-                    q: 'Zkusebni otazka (sada C)',
+                    q: 'Zkušební otázka (sada C)',
                     options: [
-                        'Zkusebni odpoved C1',
-                        'Zkusebni odpoved C2',
-                        'Zkusebni odpoved C3',
-                        'Zkusebni odpoved C4'
+                        'Zkušební odpověď C1',
+                        'Zkušební odpověď C2',
+                        'Zkušební odpověď C3',
+                        'Zkušební odpověď C4'
                     ]
                 }
             ];
@@ -302,7 +349,7 @@
                     : quizPool.filter(function (q) { return q.topic === topic; });
 
                 if (!pool.length) {
-                    quizQuestionEl.textContent = 'Pro tuto zkusebni sadu zatim neni pripraveny obsah.';
+                    quizQuestionEl.textContent = 'Pro tuto zkušební sadu zatím není připravený obsah.';
                     quizOptionsEl.innerHTML = '';
                     quizFeedbackEl.textContent = '';
                     currentQuiz = null;
@@ -311,7 +358,7 @@
 
                 currentQuiz = pool[Math.floor(Math.random() * pool.length)];
                 quizQuestionEl.textContent = currentQuiz.q;
-                quizFeedbackEl.textContent = 'Demonstracni rezim: odpovedi se zatim nevyhodnocuji.';
+                quizFeedbackEl.textContent = 'Demonstrační režim: odpovědi se zatím nevyhodnocují.';
                 quizFeedbackEl.style.color = '#475569';
 
                 quizOptionsEl.innerHTML = currentQuiz.options.map(function (opt, idx) {
@@ -329,7 +376,7 @@
                     item.classList.remove('wrong');
                 });
                 btn.classList.add('correct');
-                quizFeedbackEl.textContent = 'Zvolena zkusebni odpoved: vyhodnoceni doplnime po dodani podkladu.';
+                quizFeedbackEl.textContent = 'Zvolená zkušební odpověď: vyhodnocení doplníme po dodání podkladu.';
                 quizFeedbackEl.style.color = '#475569';
             });
 

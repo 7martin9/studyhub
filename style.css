@@ -50,6 +50,12 @@ body::before {
     transition: width 0.08s linear;
 }
 
+@media (max-width: 768px) {
+    .scroll-progress {
+        display: none;
+    }
+}
+
 /* Floating tlacitko zpet nahoru */
 .back-to-top {
     position: fixed;
@@ -370,6 +376,8 @@ button:hover {
 /* FOOTER */
 .pro-footer {
     position: relative;
+    isolation: isolate;
+    z-index: 0;
     overflow: hidden;
     background: linear-gradient(180deg, #111827 0%, #0b1220 100%);
     color: #94a3b8;
@@ -388,6 +396,25 @@ button:hover {
     background: linear-gradient(90deg, transparent, rgba(230, 57, 70, 0.75), rgba(59, 130, 246, 0.7), transparent);
     opacity: 0.9;
     pointer-events: none;
+}
+.pro-footer::after {
+    content: "";
+    position: absolute;
+    left: 56px;
+    right: 56px;
+    top: -42px;
+    height: 58px;
+    border-radius: 0 0 22px 22px;
+    background: linear-gradient(180deg, rgba(11, 18, 32, 0.92) 0%, rgba(11, 18, 32, 0.24) 74%, rgba(11, 18, 32, 0) 100%);
+    z-index: -1;
+    pointer-events: none;
+}
+
+@media (max-width: 768px) {
+    .pro-footer::after {
+        left: 28px;
+        right: 28px;
+    }
 }
 .footer-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 32px; padding-bottom: 30px; border-bottom: 1px solid #1e293b; margin-bottom: 20px; }
 .footer-brand { max-width: 640px; }
@@ -1589,6 +1616,9 @@ button:hover {
 }
 [data-theme="dark"] .pro-footer::before {
     background: linear-gradient(90deg, transparent, rgba(255, 90, 104, 0.95), rgba(96, 165, 250, 0.9), transparent);
+}
+[data-theme="dark"] .pro-footer::after {
+    background: linear-gradient(180deg, rgba(9, 15, 29, 0.95) 0%, rgba(9, 15, 29, 0.3) 74%, rgba(9, 15, 29, 0) 100%);
 }
 [data-theme="dark"] .footer-top {
     border-bottom-color: rgba(148, 163, 184, 0.22);

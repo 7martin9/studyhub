@@ -593,6 +593,36 @@
         </div>
     </section>
 
+    <div class="pending-material-modal" id="pendingMaterialModal" aria-hidden="true" role="dialog" aria-labelledby="pendingMaterialTitle">
+        <div class="pending-material-modal__backdrop" data-close-pending-modal></div>
+        <div class="pending-material-modal__panel" role="document">
+            <button type="button" class="pending-material-modal__close" aria-label="Zavrit okno" data-close-pending-modal>
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <h3 id="pendingMaterialTitle">Material se pripravuje</h3>
+            <p>Pro vybranou polozku zatim neni pripojene PDF. Jakmile bude hotove, objevi se zde tlacitko pro otevreni souboru.</p>
+
+            <div class="pending-material-table-wrap">
+                <table class="pending-material-table">
+                    <thead>
+                        <tr>
+                            <th>Polozka</th>
+                            <th>Stav</th>
+                            <th>Poznamka</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td id="pendingMaterialName">Zkusebni material</td>
+                            <td>Pripravuje se</td>
+                            <td id="pendingMaterialMeta">PDF bude doplneno</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
     <footer class="pro-footer">
         <div class="container footer-content">
             <div class="footer-top">

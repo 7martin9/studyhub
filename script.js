@@ -182,4 +182,58 @@ document.addEventListener('DOMContentLoaded', () => {
             authorSpan.textContent = 'Doplním jméno';
         }
     });
+
+    const pendingModal = document.getElementById('pendingMaterialModal');
+    if (!pendingModal) return;
+
+    const pendingMaterialName = document.getElementById('pendingMaterialName');
+    const pendingMaterialMeta = document.getElementById('pendingMaterialMeta');
+
+    const openPendingModal = (itemName, metaText) => {
+        pendingMaterialName.textContent = itemName || 'Zkusebni material';
+        pendingMaterialMeta.textContent = metaText || 'PDF bude doplneno';
+        pendingModal.classList.add('is-open');
+        pendingModal.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+    };
+
+    const closePendingModal = () => {
+        pendingModal.classList.remove('is-open');
+        pendingModal.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+    };
+
+    pendingModal.querySelectorAll('[data-close-pending-modal]').forEach(closeEl => {
+        closeEl.addEventListener('click', closePendingModal);
+    });
+
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && pendingModal.classList.contains('is-open')) {
+            closePendingModal();
+        }
+    });
+
+    const hasPdfTarget = (href) => {
+        if (!href) return false;
+        const cleanHref = href.trim().toLowerCase();
+        if (!cleanHref || cleanHref === '#' || cleanHref.startsWith('javascript:')) return false;
+        return cleanHref.includes('.pdf');
+    };
+
+    document.querySelectorAll('.btn-download-main').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            const href = btn.getAttribute('href') || '';
+            if (hasPdfTarget(href)) return;
+
+            e.preventDefault();
+
+            const item = btn.closest('.sub-question-item');
+            const questionText = item?.querySelector('.q-text')?.textContent.trim() || 'Zkusebni material';
+            const card = item?.closest('.question-card');
+            const badgeText = card?.querySelector('.question-number-badge')?.textContent.trim() || 'Otazka';
+            const subjectText = item?.closest('.subject-category')?.querySelector('.summary-content h2')?.textContent.trim() || 'Studijni materialy';
+
+            openPendingModal(questionText, `${subjectText} • ${badgeText}`);
+        });
+    });
 });

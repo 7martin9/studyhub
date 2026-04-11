@@ -419,6 +419,123 @@ details[open] .arrow { transform: rotate(180deg); }
         #0b1220;
 }
 
+/* --- MODAL: MATERIAL SE PRIPRAVUJE --- */
+.pending-material-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 1200;
+    display: none;
+}
+
+.pending-material-modal.is-open {
+    display: block;
+}
+
+.pending-material-modal__backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(15, 23, 42, 0.64);
+}
+
+.pending-material-modal__panel {
+    position: relative;
+    width: min(680px, calc(100vw - 30px));
+    margin: 9vh auto 0;
+    background: #ffffff;
+    border-radius: 18px;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 26px 56px rgba(2, 6, 23, 0.32);
+    padding: 18px 18px 16px;
+}
+
+.pending-material-modal__close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    border: 0;
+    background: transparent;
+    color: #64748b;
+    font-size: 1.05rem;
+    cursor: pointer;
+}
+
+.pending-material-modal__panel h3 {
+    margin: 0 0 8px;
+    font-size: 1.2rem;
+    color: #0f172a;
+    font-weight: 900;
+}
+
+.pending-material-modal__panel p {
+    margin: 0 0 12px;
+    color: #475569;
+    font-weight: 600;
+}
+
+.pending-material-table-wrap {
+    overflow-x: auto;
+}
+
+.pending-material-table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.pending-material-table th,
+.pending-material-table td {
+    text-align: left;
+    padding: 10px 12px;
+    border-bottom: 1px solid #e2e8f0;
+    font-size: 0.9rem;
+}
+
+.pending-material-table th {
+    background: #f8fafc;
+    color: #334155;
+    font-weight: 800;
+}
+
+.pending-material-table td {
+    color: #1e293b;
+    font-weight: 600;
+}
+
+.pending-material-table tbody tr:last-child td {
+    border-bottom: 0;
+}
+
+[data-theme="dark"] .pending-material-modal__panel {
+    background: #111827;
+    border-color: #334155;
+}
+
+[data-theme="dark"] .pending-material-modal__panel h3 {
+    color: #e2e8f0;
+}
+
+[data-theme="dark"] .pending-material-modal__panel p,
+[data-theme="dark"] .pending-material-modal__close {
+    color: #94a3b8;
+}
+
+[data-theme="dark"] .pending-material-table,
+[data-theme="dark"] .pending-material-table th,
+[data-theme="dark"] .pending-material-table td {
+    border-color: #334155;
+}
+
+[data-theme="dark"] .pending-material-table th {
+    background: #0f172a;
+    color: #cbd5e1;
+}
+
+[data-theme="dark"] .pending-material-table td {
+    color: #e2e8f0;
+}
+
 [data-theme="dark"] .materials-page .search-box {
     background: #111827;
     border-color: #334155;

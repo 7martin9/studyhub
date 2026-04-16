@@ -1,0 +1,810 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script>(function(){const saved=localStorage.getItem('theme');const prefersDark=window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches;if(saved==='dark'||(!saved&&prefersDark)){document.documentElement.setAttribute('data-theme','dark');}})();</script>
+    <title>Slovník odborných pojmů | StudyHub</title>
+    <link rel="icon" type="image/png" href="/img/ossp_logo.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../style.css">
+    <style>
+        body {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            background: var(--bg-gray);
+        }
+
+        .terms-main {
+            flex: 1;
+            display: block;
+        }
+
+        .terms-section {
+            padding: 64px 0 90px;
+            background: var(--bg-gray);
+        }
+
+        .terms-card {
+            background: white;
+            border-radius: 32px;
+            padding: 36px;
+            box-shadow: 0 12px 32px rgba(0,0,0,0.06);
+            border: 1px solid #e2e8f0;
+        }
+
+        .terms-top {
+            display: grid;
+            gap: 14px;
+            margin-bottom: 20px;
+        }
+
+        .terms-tools {
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .highlight-toggle {
+            border: 1px solid #e2e8f0;
+            background: #f8fafc;
+            color: #0f172a;
+            border-radius: 999px;
+            padding: 10px 14px;
+            font: inherit;
+            font-size: .88rem;
+            font-weight: 800;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .highlight-toggle:hover {
+            background: #fff1f2;
+            border-color: #fca5a5;
+        }
+
+        .highlight-toggle .toggle-dot {
+            width: 9px;
+            height: 9px;
+            border-radius: 50%;
+            background: #16a34a;
+            box-shadow: 0 0 0 4px rgba(22,163,74,.12);
+        }
+
+        .highlight-toggle.is-off .toggle-dot {
+            background: #94a3b8;
+            box-shadow: 0 0 0 4px rgba(148,163,184,.12);
+        }
+
+        .source-note {
+            padding: 12px 14px;
+            border-radius: 12px;
+            background: #f8fafc;
+            border-left: 4px solid var(--primary);
+            color: #475569;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        .search-box {
+            position: relative;
+        }
+
+        .search-box i {
+            position: absolute;
+            top: 50%;
+            left: 14px;
+            transform: translateY(-50%);
+            color: #94a3b8;
+            pointer-events: none;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 14px 14px 14px 42px;
+            border: 1px solid #dbe3ee;
+            border-radius: 14px;
+            background: #fff;
+            font-size: 1rem;
+            font-family: inherit;
+            color: #0f172a;
+            transition: border-color .2s ease, box-shadow .2s ease;
+        }
+
+        .search-box input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(230,57,70,.12);
+        }
+
+        .terms-meta {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            color: #475569;
+            font-size: .9rem;
+            margin-bottom: 14px;
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 999px;
+            padding: 8px 12px;
+            font-weight: 700;
+        }
+
+        .terms-list {
+            display: grid;
+            gap: 12px;
+        }
+
+        .terms-group {
+            display: grid;
+            gap: 12px;
+        }
+
+        .terms-group + .terms-group {
+            margin-top: 8px;
+            padding-top: 10px;
+            border-top: 1px solid #e2e8f0;
+        }
+
+        .terms-group-title {
+            margin: 4px 0 2px;
+            font-size: .8rem;
+            font-weight: 900;
+            letter-spacing: .08em;
+            text-transform: uppercase;
+            color: #64748b;
+        }
+
+        .term-item {
+            border: 1px solid #e2e8f0;
+            border-radius: 14px;
+            background: #fff;
+            overflow: hidden;
+            transition: box-shadow .2s ease, border-color .2s ease;
+        }
+
+        .term-item:hover {
+            border-color: #cdd8e7;
+            box-shadow: 0 8px 20px rgba(15,23,42,.06);
+        }
+
+        .term-btn {
+            width: 100%;
+            border: 0;
+            background: transparent;
+            text-align: left;
+            cursor: pointer;
+            padding: 14px 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+            font: inherit;
+            transition: background-color .2s ease;
+        }
+
+        .term-title mark,
+        .term-definition mark {
+            background: rgba(230, 57, 70, 0.16);
+            color: inherit;
+            padding: 0;
+            border-radius: 4px;
+        }
+
+        .term-btn:hover {
+            background: #f8fafc;
+        }
+
+        .term-title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #0f172a;
+            font-weight: 800;
+            line-height: 1.35;
+        }
+
+        .term-dot {
+            width: 9px;
+            height: 9px;
+            border-radius: 50%;
+            background: var(--primary);
+            flex: 0 0 auto;
+            box-shadow: 0 0 0 4px rgba(230,57,70,.12);
+        }
+
+        .term-arrow {
+            color: #94a3b8;
+            transition: transform .25s ease;
+        }
+
+        .term-item.open .term-arrow {
+            transform: rotate(180deg);
+        }
+
+        .term-panel {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height .28s ease;
+            border-top: 1px solid transparent;
+        }
+
+        .term-item.open .term-panel {
+            border-top-color: #e2e8f0;
+        }
+
+        .term-definition {
+            padding: 14px 16px 16px;
+            color: #475569;
+            line-height: 1.65;
+            font-size: .96rem;
+            white-space: pre-line;
+        }
+
+        .empty-state {
+            display: none;
+            margin-top: 8px;
+            padding: 16px;
+            border-radius: 12px;
+            border: 1px dashed #c7d2e3;
+            color: #64748b;
+            background: #f8fafc;
+        }
+
+        [data-theme="dark"] body { background: #0f172a; }
+        [data-theme="dark"] .terms-section { background: transparent; }
+        [data-theme="dark"] .terms-card {
+            background: #1e293b;
+            border-color: #334155;
+            box-shadow: 0 14px 34px rgba(0,0,0,0.35);
+        }
+
+        [data-theme="dark"] .source-note {
+            background: #263347;
+            border-left-color: #f87171;
+            color: #cbd5e1;
+        }
+
+        [data-theme="dark"] .highlight-toggle {
+            background: #0f172a;
+            border-color: #334155;
+            color: #e2e8f0;
+        }
+
+        [data-theme="dark"] .highlight-toggle:hover {
+            background: #1f2937;
+            border-color: #475569;
+        }
+
+        [data-theme="dark"] .search-box input {
+            background: #0f172a;
+            border-color: #334155;
+            color: #e2e8f0;
+        }
+
+        [data-theme="dark"] .search-box i,
+        [data-theme="dark"] .term-arrow,
+        [data-theme="dark"] .terms-meta {
+            color: #94a3b8;
+        }
+
+        [data-theme="dark"] .terms-meta {
+            background: #263347;
+            border-color: #334155;
+        }
+
+        [data-theme="dark"] .term-item {
+            background: #0f172a;
+            border-color: #334155;
+        }
+
+        [data-theme="dark"] .term-btn:hover { background: #111827; }
+
+        [data-theme="dark"] .terms-group + .terms-group {
+            border-top-color: #334155;
+        }
+
+        [data-theme="dark"] .terms-group-title {
+            color: #94a3b8;
+        }
+
+        [data-theme="dark"] .term-title mark,
+        [data-theme="dark"] .term-definition mark {
+            background: rgba(248, 113, 113, 0.18);
+            color: #f8fafc;
+        }
+
+        [data-theme="dark"] .term-item:hover {
+            border-color: #475569;
+            box-shadow: 0 10px 24px rgba(2,6,23,.45);
+        }
+
+        [data-theme="dark"] .term-title { color: #e2e8f0; }
+        [data-theme="dark"] .term-item.open .term-panel { border-top-color: #334155; }
+        [data-theme="dark"] .term-definition { color: #cbd5e1; }
+
+        [data-theme="dark"] .empty-state {
+            border-color: #475569;
+            background: #111827;
+            color: #94a3b8;
+        }
+
+        @media (max-width: 768px) {
+            .terms-tools {
+                justify-content: stretch;
+            }
+
+            .highlight-toggle {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .terms-card {
+                padding: 18px 14px;
+                border-radius: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="nav-container">
+        <nav class="navbar-floating">
+            <a href="/" class="logo-group">
+                <img src="/img/ossp_logo.png" alt="Logo" class="logo-img">
+                <span class="logo-text">STUDY<span>HUB</span></span>
+            </a>
+            <button id="theme-toggle" class="theme-toggle" aria-label="Přepnout tmavý/světlý režim">
+                <i class="fa-solid fa-moon icon-moon"></i>
+                <i class="fa-solid fa-sun icon-sun"></i>
+            </button>
+            <input type="checkbox" id="nav-check">
+            <label for="nav-check" class="nav-btn">
+                <i class="fas fa-bars"></i>
+            </label>
+            <ul class="nav-links">
+                <li><a href="/">Domů</a></li>
+                <li class="nav-dropdown">
+                    <button aria-haspopup="true">
+                        Studium
+                        <span class="nav-dropdown-arrow">▼</span>
+                    </button>
+                    <ul class="nav-dropdown-menu">
+                        <li><a href="/materialy">Studijní materiály</a></li>
+                        <li><a href="/procvicovani">Procvičování</a></li>
+                        <li><a href="/zkouska">Závěrečná zkouška</a></li>
+                    </ul>
+                </li>
+                <li class="nav-dropdown">
+                    <button aria-haspopup="true">
+                        Praktická příprava
+                        <span class="nav-dropdown-arrow">▼</span>
+                    </button>
+                    <ul class="nav-dropdown-menu">
+                        <li><a href="/praxe">Odborná praxe</a></li>
+                        <li><a href="/sporty">Sporty</a></li>
+                        <li><a href="/nastroje">Interaktivní nástroje</a></li>
+                        <li><a href="/tahaky">Taháky do kapsy</a></li>
+                    </ul>
+                </li>
+                <li><a href="/faq">FAQ</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <header class="section-hero">
+        <div class="container hero-content">
+            <h1 style="margin-top: 40px;">Slovník odborných <span class="accent-glow">pojmů</span></h1>
+            <p style="color: rgba(255,255,255,0.85);">Interaktivní přehled vybraných pojmů z oblasti krizového řízení, ochrany obyvatelstva a IZS.</p>
+        </div>
+    </header>
+
+    <main class="terms-main">
+        <section class="terms-section">
+            <div class="container">
+                <div class="terms-card">
+                    <div class="terms-top">
+                        <div class="source-note">Zdroj dat: Terminologický slovník pojmů z oblasti krizového řízení a plánování obrany státu (MV ČR, 2016). Obsah je citován v původním znění pro studijní účely.</div>
+                        <div class="search-box">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                            <input id="termsSearch" type="search" placeholder="Vyhledej pojem nebo část definice..." autocomplete="off" spellcheck="false">
+                        </div>
+                        <div class="terms-tools">
+                            <button id="highlightToggle" class="highlight-toggle" type="button" aria-pressed="true">
+                                <span class="toggle-dot"></span>
+                                <span id="highlightToggleLabel">Zvýraznění: zapnuto</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="terms-meta"><span id="visibleCount">0</span> z <span id="totalCount">0</span> pojmů</div>
+                    <div id="termsList" class="terms-list"></div>
+                    <div id="emptyState" class="empty-state">Napiš klíčové slovo do vyhledávání a zobrazí se odpovídající pojmy.</div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="pro-footer">
+        <div class="container footer-content">
+            <div class="footer-top">
+                <div class="footer-brand">
+                    <div class="footer-logo">STUDY<span>HUB</span></div>
+                    <p class="footer-disclaimer">Neoficiální studentský projekt. StudyHub není oficiálně spojen s OSŠP Kolín ani ji nezastupuje.</p>
+                </div>
+                <div class="footer-social-block">
+                    <p class="footer-social-label">Oficiální sociální sítě školy</p>
+                    <div class="footer-socials">
+                        <a href="https://www.instagram.com/ossp.kolin/" target="_blank" rel="noopener noreferrer" aria-label="Instagram OSŠP Kolín">
+                            <i class="fa-brands fa-instagram"></i>
+                        </a>
+                        <a href="https://www.facebook.com/OSSPcz/" target="_blank" rel="noopener noreferrer" aria-label="Facebook OSŠP Kolín">
+                            <i class="fa-brands fa-facebook-f"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 StudyHub</p>
+                <p><a class="footer-link" href="/kontakt">Kontakt</a></p>
+                <p class="footer-credit">Vytvořili MV a AB</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../script.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+    <script>
+        const PDF_PATH = '../pdf/others/terminologicky_slovnik_mv_2016.pdf';
+        const slovnikData = [];
+
+        const termsList = document.getElementById('termsList');
+        const searchInput = document.getElementById('termsSearch');
+        const visibleCount = document.getElementById('visibleCount');
+        const totalCount = document.getElementById('totalCount');
+        const emptyState = document.getElementById('emptyState');
+        const highlightToggle = document.getElementById('highlightToggle');
+        const highlightToggleLabel = document.getElementById('highlightToggleLabel');
+        const HIGHLIGHT_STORAGE_KEY = 'studyhub.pojmy.highlight';
+        let highlightEnabled = localStorage.getItem(HIGHLIGHT_STORAGE_KEY);
+        highlightEnabled = highlightEnabled === null ? true : highlightEnabled !== 'off';
+
+        totalCount.textContent = '0';
+
+        function syncHighlightToggle() {
+            if (!highlightToggle || !highlightToggleLabel) return;
+            highlightToggle.classList.toggle('is-off', !highlightEnabled);
+            highlightToggle.setAttribute('aria-pressed', String(highlightEnabled));
+            highlightToggleLabel.textContent = highlightEnabled ? 'Zvýraznění: zapnuto' : 'Zvýraznění: vypnuto';
+        }
+
+        if (window.pdfjsLib) {
+            pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+        }
+
+        function normalize(value) {
+            return value
+                .toLowerCase()
+                .normalize('NFD')
+                .replace(/[\u0300-\u036f]/g, '');
+        }
+
+        function lineToText(items) {
+            return items
+                .sort((a, b) => a.x - b.x)
+                .map((item) => item.str)
+                .join(' ')
+                .replace(/\s+/g, ' ')
+                .trim();
+        }
+
+        async function extractPdfLines(pdf) {
+            const lines = [];
+
+            for (let pageNo = 1; pageNo <= pdf.numPages; pageNo += 1) {
+                const page = await pdf.getPage(pageNo);
+                const textContent = await page.getTextContent();
+                const bins = [];
+
+                textContent.items.forEach((item) => {
+                    const y = item.transform[5];
+                    let bin = bins.find((candidate) => Math.abs(candidate.y - y) <= 2);
+                    if (!bin) {
+                        bin = { y, items: [] };
+                        bins.push(bin);
+                    }
+                    bin.items.push({ x: item.transform[4], str: item.str });
+                });
+
+                bins.sort((a, b) => b.y - a.y);
+                bins.forEach((bin) => {
+                    const line = lineToText(bin.items);
+                    if (line) lines.push(line);
+                });
+
+                lines.push(`__PAGE_BREAK_${pageNo}__`);
+            }
+
+            return lines;
+        }
+
+        function parseIndexTerms(indexLines) {
+            const terms = [];
+            const seen = new Set();
+
+            indexLines.forEach((rawLine) => {
+                const line = rawLine.replace(/\s+/g, ' ').trim();
+                if (!line) return;
+                if (/^__PAGE_BREAK_\d+__$/.test(line)) return;
+                if (/^\d+$/.test(line)) return;
+                if (/^ABECEDN[IÍ]\s+REJST[RŘ][IÍ]K\s+POJM[UŮ]$/i.test(line)) return;
+                if (/^[A-ZÁČĎÉĚÍŇÓŘŠŤÚŮÝŽ](\s*,\s*[A-ZÁČĎÉĚÍŇÓŘŠŤÚŮÝŽ])?$/.test(line)) return;
+
+                const key = normalize(line);
+                if (!seen.has(key)) {
+                    seen.add(key);
+                    terms.push(line);
+                }
+            });
+
+            return terms;
+        }
+
+        function formatDefinition(def) {
+            return def
+                .replace(/\s+([a-z]\))/gi, '\n$1')
+                .replace(/\s+([0-9]+\))/g, '\n$1')
+                .replace(/\s*AJ\s*[–-]\s*/g, '\n\nAJ - ')
+                .replace(/\s*FJ\s*[–-]\s*/g, '\nFJ - ')
+                .replace(/\n{3,}/g, '\n\n')
+                .trim();
+        }
+
+        function buildEntries(allLines) {
+            const indexStart = allLines.findIndex((line) => normalize(line).includes(normalize('ABECEDNÍ REJSTŘÍK POJMŮ')));
+            if (indexStart === -1) return [];
+
+            const bodyLines = allLines.slice(0, indexStart).map((line) => line.replace(/\s+/g, ' ').trim());
+            const indexLines = allLines.slice(indexStart + 1);
+            const terms = parseIndexTerms(indexLines);
+
+            const termByNorm = new Map();
+            terms.forEach((term) => termByNorm.set(normalize(term), term));
+
+            const headings = [];
+            const consumed = new Set();
+
+            bodyLines.forEach((line, idx) => {
+                if (consumed.has(idx)) return;
+                const key = normalize(line);
+                if (termByNorm.has(key)) {
+                    headings.push({ idx, term: termByNorm.get(key) });
+                    return;
+                }
+
+                const nextLine = bodyLines[idx + 1] || '';
+                const merged = normalize(`${line} ${nextLine}`.trim());
+                if (termByNorm.has(merged)) {
+                    headings.push({ idx, term: termByNorm.get(merged) });
+                    consumed.add(idx + 1);
+                }
+            });
+
+            const dedupHeadings = [];
+            const seenHeading = new Set();
+            headings.forEach((h) => {
+                const key = `${normalize(h.term)}|${h.idx}`;
+                if (!seenHeading.has(key)) {
+                    seenHeading.add(key);
+                    dedupHeadings.push(h);
+                }
+            });
+
+            const entries = [];
+            for (let i = 0; i < dedupHeadings.length; i += 1) {
+                const current = dedupHeadings[i];
+                const next = dedupHeadings[i + 1];
+                const from = current.idx + 1;
+                const to = next ? next.idx : bodyLines.length;
+
+                const defLines = bodyLines
+                    .slice(from, to)
+                    .filter((line) => line && !/^\d+$/.test(line) && !/^__PAGE_BREAK_\d+__$/.test(line));
+
+                const defRaw = defLines.join(' ').replace(/\s+/g, ' ').trim();
+                if (!defRaw) continue;
+
+                entries.push({
+                    term: current.term,
+                    def: formatDefinition(defRaw)
+                });
+            }
+
+            const byTerm = new Map();
+            entries.forEach((entry) => {
+                const key = normalize(entry.term);
+                if (!byTerm.has(key)) byTerm.set(key, entry);
+            });
+
+            return Array.from(byTerm.values());
+        }
+
+        async function loadPdfDictionary() {
+            try {
+                const loadingTask = pdfjsLib.getDocument(PDF_PATH);
+                const pdf = await loadingTask.promise;
+                const lines = await extractPdfLines(pdf);
+                const parsed = buildEntries(lines);
+
+                slovnikData.splice(0, slovnikData.length, ...parsed);
+                totalCount.textContent = String(slovnikData.length);
+                visibleCount.textContent = '0';
+                emptyState.textContent = 'Napiš klíčové slovo do vyhledávání a zobrazí se odpovídající pojmy.';
+                emptyState.style.display = 'block';
+            } catch (error) {
+                totalCount.textContent = '0';
+                visibleCount.textContent = '0';
+                emptyState.textContent = 'Nepodařilo se načíst slovník z PDF.';
+                emptyState.style.display = 'block';
+            }
+        }
+
+        function createItem(item, index) {
+            const article = document.createElement('article');
+            article.className = 'term-item';
+
+            const button = document.createElement('button');
+            button.className = 'term-btn';
+            button.type = 'button';
+            button.setAttribute('aria-expanded', 'false');
+            button.setAttribute('aria-controls', `term-panel-${index}`);
+            button.innerHTML = `
+                <span class="term-title"><span class="term-dot"></span>${item.term}</span>
+                <span class="term-arrow"><i class="fa-solid fa-chevron-down"></i></span>
+            `;
+
+            const panel = document.createElement('div');
+            panel.className = 'term-panel';
+            panel.id = `term-panel-${index}`;
+
+            const def = document.createElement('div');
+            def.className = 'term-definition';
+            def.textContent = item.def;
+
+            panel.appendChild(def);
+
+            button.addEventListener('click', () => {
+                const isOpen = article.classList.contains('open');
+                article.classList.toggle('open', !isOpen);
+                button.setAttribute('aria-expanded', String(!isOpen));
+                panel.style.maxHeight = !isOpen ? `${panel.scrollHeight}px` : '0px';
+            });
+
+            article.appendChild(button);
+            article.appendChild(panel);
+            return article;
+        }
+
+        function escapeHtml(value) {
+            return value
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;')
+                .replace(/'/g, '&#39;');
+        }
+
+        function highlightText(value, query) {
+            if (!highlightEnabled) return escapeHtml(value);
+            if (!query) return escapeHtml(value);
+
+            const normalizedValue = normalize(value);
+            const normalizedQuery = normalize(query);
+            const index = normalizedValue.indexOf(normalizedQuery);
+            if (index === -1) return escapeHtml(value);
+
+            const chars = Array.from(value);
+            const positions = [0];
+            let normalizedIndex = 0;
+
+            chars.forEach((char) => {
+                const normalizedChar = normalize(char);
+                normalizedIndex += normalizedChar.length;
+                positions.push(normalizedIndex);
+            });
+
+            const start = positions[index];
+            const end = positions[index + normalizedQuery.length];
+            if (typeof start !== 'number' || typeof end !== 'number') return escapeHtml(value);
+
+            return `${escapeHtml(value.slice(0, start))}<mark>${escapeHtml(value.slice(start, end))}</mark>${escapeHtml(value.slice(end))}`;
+        }
+
+        function renderList(query = '') {
+            const q = normalize(query.trim());
+            termsList.innerHTML = '';
+
+            if (!q) {
+                visibleCount.textContent = '0';
+                emptyState.textContent = 'Napiš klíčové slovo do vyhledávání a zobrazí se odpovídající pojmy.';
+                emptyState.style.display = 'block';
+                return;
+            }
+
+            const termMatches = [];
+            const definitionMatches = [];
+
+            slovnikData.forEach((item) => {
+                const termText = normalize(item.term);
+                const defText = normalize(item.def);
+
+                if (termText.includes(q)) {
+                    termMatches.push(item);
+                    return;
+                }
+
+                if (defText.includes(q)) {
+                    definitionMatches.push(item);
+                }
+            });
+
+            const totalMatches = termMatches.length + definitionMatches.length;
+
+            function appendGroup(title, items, prefix) {
+                if (!items.length) return;
+
+                const group = document.createElement('section');
+                group.className = 'terms-group';
+
+                const heading = document.createElement('h2');
+                heading.className = 'terms-group-title';
+                heading.textContent = title;
+                group.appendChild(heading);
+
+                items.forEach((item, i) => {
+                    const article = createItem(item, `${prefix}-${i}`);
+                    const titleSpan = article.querySelector('.term-title');
+                    const defSpan = article.querySelector('.term-definition');
+                    if (titleSpan) titleSpan.innerHTML = `<span class="term-dot"></span>${highlightText(item.term, query)}`;
+                    if (defSpan) defSpan.innerHTML = highlightText(item.def, query);
+                    group.appendChild(article);
+                });
+
+                termsList.appendChild(group);
+            }
+
+            appendGroup('Shoda v pojmu', termMatches, 'term');
+            appendGroup('Shoda jen ve významu', definitionMatches, 'def');
+
+            visibleCount.textContent = totalMatches;
+            emptyState.textContent = 'Nebyly nalezeny žádné pojmy odpovídající zadanému textu.';
+            emptyState.style.display = totalMatches ? 'none' : 'block';
+        }
+
+        searchInput.addEventListener('input', (e) => {
+            renderList(e.target.value);
+        });
+
+        if (highlightToggle) {
+            highlightToggle.addEventListener('click', () => {
+                highlightEnabled = !highlightEnabled;
+                localStorage.setItem(HIGHLIGHT_STORAGE_KEY, highlightEnabled ? 'on' : 'off');
+                syncHighlightToggle();
+                renderList(searchInput.value);
+            });
+        }
+
+        syncHighlightToggle();
+
+        renderList();
+        loadPdfDictionary();
+    </script>
+</body>
+</html>

@@ -13,7 +13,7 @@
 html { scroll-behavior: smooth; }
 body {
     font-family: 'Montserrat', sans-serif;
-    background: #fff;
+    background: var(--bg-gray);
     color: #333;
     line-height: 1.6;
     overflow-x: hidden;
@@ -210,7 +210,8 @@ button:hover {
     left: 0;
     background: white;
     border-radius: 12px;
-    min-width: 200px;
+    min-width: 230px;
+    width: max-content;
     box-shadow: 0 8px 24px rgba(0,0,0,0.12);
     list-style: none;
     margin-top: 8px;
@@ -244,7 +245,8 @@ button:hover {
 }
 
 .nav-dropdown-menu a {
-    display: block;
+    display: flex;
+    align-items: center;
     padding: 14px 22px !important;
     color: var(--dark) !important;
     text-decoration: none;
@@ -252,6 +254,7 @@ button:hover {
     background: transparent !important;
     transition: 0.2s;
     margin: 0 !important;
+    white-space: nowrap;
 }
 .nav-dropdown-menu a:hover {
     background: #f8fafc !important;
@@ -738,7 +741,7 @@ button:hover {
         position: absolute;
         top: 70px;
         right: 0;
-        width: min(90vw, 320px);
+        width: min(92vw, 360px);
         background: white;
         flex-direction: column;
         gap: 6px;
@@ -822,8 +825,12 @@ button:hover {
         border: 1px solid #e2e8f0;
         border-left: 4px solid #cbd5e1;
         text-align: left;
-        display: block;
+        display: flex;
+        align-items: center;
         font-weight: 700;
+        white-space: normal;
+        overflow-wrap: normal;
+        word-break: normal;
     }
 
     .nav-dropdown-menu a:hover {

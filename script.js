@@ -130,6 +130,20 @@ document.addEventListener('DOMContentLoaded', () => {
             dropdownButtons.forEach(btn => btn.classList.remove('active'));
         });
     });
+
+    const studyMenu = Array.from(document.querySelectorAll('.nav-dropdown-menu')).find(menu =>
+        menu.querySelector('a[href="/zkouska"]') || menu.querySelector('a[href="../zkouska"]')
+    );
+
+    if (studyMenu && !studyMenu.querySelector('a[href="/pojmy"]')) {
+        const item = document.createElement('li');
+        const link = document.createElement('a');
+        link.href = '/pojmy';
+        link.textContent = 'Pojmy';
+        item.appendChild(link);
+
+        studyMenu.appendChild(item);
+    }
 });
 
 // ==========================================

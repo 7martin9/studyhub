@@ -422,6 +422,32 @@
             let currentQuiz = null;
             let usedIndexes = [];
 
+            function shuffleArray(items) {
+                const out = items.slice();
+                for (let i = out.length - 1; i > 0; i -= 1) {
+                    const j = Math.floor(Math.random() * (i + 1));
+                    const temp = out[i];
+                    out[i] = out[j];
+                    out[j] = temp;
+                }
+                return out;
+            }
+
+            function withShuffledOptions(question) {
+                const optionEntries = question.options.map(function (opt, idx) {
+                    return { text: opt, isCorrect: idx === question.correct };
+                });
+                const shuffled = shuffleArray(optionEntries);
+                const correctIndex = shuffled.findIndex(function (entry) { return entry.isCorrect; });
+
+                return {
+                    topic: question.topic,
+                    q: question.q,
+                    options: shuffled.map(function (entry) { return entry.text; }),
+                    correct: correctIndex
+                };
+            }
+
             function pickRandomQuestion() {
                 if (usedIndexes.length >= flatQuestions.length) usedIndexes = [];
 
@@ -436,7 +462,7 @@
             }
 
             function nextQuizQuestion() {
-                currentQuiz = pickRandomQuestion();
+                currentQuiz = withShuffledOptions(pickRandomQuestion());
                 quizTopicLabelEl.textContent = 'Téma: ' + currentQuiz.topic;
                 quizQuestionEl.textContent = currentQuiz.q;
                 quizFeedbackEl.textContent = '';

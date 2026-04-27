@@ -1,4 +1,4 @@
-## 🚀 StudujPO.codes - Hasičský vzdělávací portál
+## 🚀 StudujPO - Hasičský vzdělávací portál
 
 Neoficiální studentský projekt zaměřený na podporu studia požární ochrany na OSŠP Kolín.
 
@@ -6,7 +6,7 @@ Tento portál slouží jako interaktivní rozcestník a úložiště studijních
 
 ## 🔗 Odkazy
 
-Živý web: https://studujpo.codes
+Živý web: https://studujpo.ossp.codes (nebo studyhub.codes)
 
 Status: Ve vývoji
 

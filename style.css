@@ -290,6 +290,74 @@
         justify-content: center;
     }
 }
+
+[data-theme="dark"] .zkratky-page .zkratky-section {
+    background:
+        radial-gradient(900px 380px at 10% 0%, rgba(230, 57, 70, 0.12), transparent 60%),
+        radial-gradient(900px 380px at 90% 0%, rgba(59, 130, 246, 0.10), transparent 60%),
+        #0f172a;
+}
+
+[data-theme="dark"] .zkratky-page .zkratky-card {
+    background: #0f172a;
+    border-color: rgba(148, 163, 184, 0.16);
+    color: #e2e8f0;
+}
+
+[data-theme="dark"] .zkratky-page .terms-copy h2,
+[data-theme="dark"] .zkratky-page .zkratky-section h3,
+[data-theme="dark"] .zkratky-page .terms-highlight strong {
+    color: #f8fafc;
+}
+
+[data-theme="dark"] .zkratky-page .terms-copy p,
+[data-theme="dark"] .zkratky-page .terms-highlight span,
+[data-theme="dark"] .zkratky-page .no-results {
+    color: #94a3b8;
+}
+
+[data-theme="dark"] .zkratky-page .terms-highlight,
+[data-theme="dark"] .zkratky-page .abbr-row {
+    background: #1e293b;
+    border-color: #334155;
+    box-shadow: none;
+}
+
+[data-theme="dark"] .zkratky-page .terms-meta {
+    background: rgba(230, 57, 70, 0.14);
+    color: #fca5a5;
+}
+
+[data-theme="dark"] .zkratky-page .search-box {
+    background: #111827;
+    border-color: #334155;
+    box-shadow: none;
+}
+
+[data-theme="dark"] .zkratky-page .search-box input {
+    color: #e2e8f0;
+}
+
+[data-theme="dark"] .zkratky-page .search-box input::placeholder {
+    color: #64748b;
+}
+
+[data-theme="dark"] .zkratky-page .search-box i,
+[data-theme="dark"] .zkratky-page .terms-highlight i {
+    color: #fca5a5;
+}
+
+[data-theme="dark"] .zkratky-page .download-btn {
+    box-shadow: none;
+}
+
+[data-theme="dark"] .zkratky-page .download-btn:hover {
+    filter: brightness(1.04);
+}
+
+[data-theme="dark"] .zkratky-page .section-hero .hero-content .source-note {
+    color: rgba(226, 232, 240, 0.78);
+}
 :root {
     --primary: #e63946;
     --dark: #0f172a;

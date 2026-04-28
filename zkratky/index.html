@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Seznam zkratek | StudujPO</title>
+    <link rel="icon" type="image/png" href="/img/ossp_logo.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body class="zkratky-page">
+
+<div class="nav-container">
+    <nav class="navbar-floating">
+        <a href="/" class="logo-group">
+            <img src="/img/ossp_logo.png" alt="Logo" class="logo-img">
+            <span class="logo-text">STUDUJ<span>PO</span></span>
+        </a>
+        <button id="theme-toggle" class="theme-toggle" aria-label="Přepnout tmavý/světlý režim">
+            <i class="fa-solid fa-moon icon-moon"></i>
+            <i class="fa-solid fa-sun icon-sun"></i>
+        </button>
+        <input type="checkbox" id="nav-check">
+        <label for="nav-check" class="nav-btn"><i class="fas fa-bars"></i></label>
+        <ul class="nav-links">
+            <li><a href="/">Domů</a></li>
+            <li class="nav-dropdown"><button aria-haspopup="true">Studium <span class="nav-dropdown-arrow">▼</span></button>
+                <ul class="nav-dropdown-menu">
+                    <li><a href="/materialy">Studijní materiály</a></li>
+                    <li><a href="/procvicovani">Procvičování</a></li>
+                    <li><a href="/zkouska">Závěrečná zkouška</a></li>
+                    <li><a href="/pojmy">Slovník pojmů</a></li>
+                    <li><a href="/zkratky">Seznam zkratek</a></li>
+                </ul>
+            </li>
+            <li class="nav-dropdown"><button aria-haspopup="true">Praktická příprava <span class="nav-dropdown-arrow">▼</span></button>
+                <ul class="nav-dropdown-menu">
+                    <li><a href="/praxe">Odborná praxe</a></li>
+                    <li><a href="/sporty">Sporty</a></li>
+                    <li><a href="/nastroje">Interaktivní nástroje</a></li>
+                    <li><a href="/tahaky">Taháky do kapsy</a></li>
+                </ul>
+            </li>
+            <li><a href="/faq">FAQ</a></li>
+        </ul>
+    </nav>
+</div>
+
+<header class="section-hero">
+    <div class="container hero-content">
+        <h1>Seznam <span class="accent">zkratek</span></h1>
+        <p class="source-note">Rychlý přehled zkratek HZS — výsledky zobrazí vyhledávání.</p>
+    </div>
+</header>
+
+<main class="zkratky-section">
+    <div class="container">
+        <div class="zkratky-card">
+            <div class="terms-hero">
+                <div class="terms-copy">
+                    <div class="terms-meta">Seznam zkratek HZS</div>
+                    <h2>Vyhledávání zkratek podle názvu i významu</h2>
+                    <p>Rychlý přehled pro studium i praxi. Stačí napsat část zkratky nebo významu a seznam se hned zúží.</p>
+                </div>
+                <div class="terms-highlights" aria-label="Hlavní vlastnosti">
+                    <div class="terms-highlight">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                        <div>
+                            <strong>Fulltext</strong>
+                            <span>hledá ve zkratce i významu</span>
+                        </div>
+                    </div>
+                    <div class="terms-highlight">
+                        <i class="fa-solid fa-mobile-screen"></i>
+                        <div>
+                            <strong>Mobilní přehled</strong>
+                            <span>čitelné i na menším displeji</span>
+                        </div>
+                    </div>
+                    <div class="terms-highlight">
+                        <i class="fa-solid fa-file-pdf"></i>
+                        <div>
+                            <strong>PDF export</strong>
+                            <span>pro tisk a offline studium</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="terms-top">
+                <div class="terms-tools">
+                    <div class="search-box">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                        <input id="search" placeholder="Vyhledat zkratku nebo část významu…" aria-label="Vyhledat zkratku" />
+                    </div>
+                </div>
+                <a class="download-btn" href="/pdf/others/Zkratky.pdf" target="_blank" rel="noopener"><i class="fa-solid fa-file-pdf"></i> Stáhnout PDF</a>
+            </div>
+
+        <div id="resultsArea">
+            <div class="results-grid">
+                <div>
+                    <h3>Najde se v zkratce</h3>
+                    <div id="abbrList" class="abbr-wrap"></div>
+                </div>
+                <div>
+                    <h3>Najde se ve významu</h3>
+                    <div id="defList" class="abbr-wrap"></div>
+                </div>
+            </div>
+            <div id="noResults" class="no-results" style="display:none">Nic nenalezeno.</div>
+        </div>
+    </div>
+    </div>
+</main>
+
+<footer class="pro-footer">
+    <div class="container footer-content">
+        <div class="footer-top">
+            <div class="footer-brand">
+                <div class="footer-logo">STUDUJ<span>PO</span></div>
+                <p class="footer-disclaimer">Neoficiální studentský projekt. StudujPO není oficiálně spojen s OSŠP Kolín ani ji nezastupuje.</p>
+            </div>
+            <div class="footer-social-block">
+                <p class="footer-social-label">Oficiální sociální sítě školy</p>
+                <div class="footer-socials">
+                    <a href="https://www.instagram.com/ossp.kolin/" target="_blank" rel="noopener noreferrer" aria-label="Instagram OSŠP Kolín"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="https://www.facebook.com/OSSPcz/" target="_blank" rel="noopener noreferrer" aria-label="Facebook OSŠP Kolín"><i class="fa-brands fa-facebook-f"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 StudujPO</p>
+            <p><a class="footer-link" href="/kontakt">Kontakt</a></p>
+            <p class="footer-credit"><span class="footer-credit-desktop">Vytvořil: Martin Vilimovský | Spolupráce na materiálech: Adéla Bělková</span><span class="footer-credit-mobile">Martin Vilimovský | Adéla Bělková</span></p>
+        </div>
+    </div>
+</footer>
+
+<script>
+// master data as array to keep HTML clean — trimmed for readability but contains full list
+const DATA = [
+    ["AAAO","Asociace autorizovaných a akreditovaných organizací"],
+    ["AČR","Armáda České republiky"],
+    ["AMP","Předsunutá zdravotnická jednotka"],
+    ["AMS-IZ","Autorizované metrologické středisko ionizujícího záření"],
+    ["AO","Autorizovaná osoba"],
+    ["AP","Automobilová plošina"],
+    ["ASEM","Asia–Europe Meeting"],
+    ["AZ","Automobilový žebřík"],
+    ["BRS","Bezpečnostní rada státu"],
+    ["BV","Bezpečnostní výzkum"],
+    ["CAS","Cisternová automobilová stříkačka"],
+    ["CAV","Cílený aplikovaný výzkum"],
+    ["CBRN","Chemické, biologické radiologické a nukleární látky"],
+    ["CCS","Cold cut system"],
+    ["CDS","Centrální datový sklad HZS ČR"],
+    ["CECIS","Společný komunikační a informační systém EU při MU"],
+    ["CEPC","Výbor pro civilní nouzové plánování"],
+    ["CIPS","Finanční program Evropské komise: Prevence, připravenost a zvládání následků teroristických útoků a jiných rizik spojených s bezpečností"],
+    ["CIWIN","Výstražná informační síť kritické infrastruktury"],
+    ["CNG","Stlačený zemní plyn"],
+    ["CNP","Civilní nouzová připravenost"],
+    ["CNPaS","Odbor civilní nouzové připravenosti a strategií"],
+    ["CO","Civilní ochrana"],
+    ["COV","Certifikační orgán pro certifikaci výrobků"],
+    ["CPC","Výbor Evropské komise pro civilní ochranu"],
+    ["CPG","Skupina pro civilní ochranu"],
+    ["CSP","Centrální standardizované projekty"],
+    ["CTIF","Mezinárodní technický výbor pro prevenci a hašení požárů"],
+    ["CZERT","Czech Emergency Response Team"],
+    ["ČAHD","Česká asociace hasičských důstojníků"],
+    ["ČČK","Český červený kříž"],
+    ["ČD","České dráhy"],
+    ["ČHMÚ","Český hydrometeorologický ústav"],
+    ["ČIA","Český institut pro certifikaci"],
+    ["ČKAIT","Česká komora autorizovaných inženýrů a techniků činných ve výstavbě"],
+    ["ČKP","Česká kancelář pojistitelů"],
+    ["ČMPS","Českomoravská psychologická společnost"],
+    ["ČR","Česká republika"],
+    ["ČRA","Česká rozvojová agentura"],
+    ["ČSK VT","Český svaz kanoistů, sekce vodní turistiky"],
+    ["ČSN","Česká technická norma"],
+    ["ČSN EN","Česká technická norma harmonizovaná s normou eropskou"],
+    ["ČSS-SZS","Česká speleologická společnost-speleologická záchranná služba"],
+    ["DN","Dopravní nehoda"],
+    ["DZP","Dokumentace zdolávání požárů"],
+    ["EADRCC","Euroatlantické koordinační středisko pro řešení mimořádných událostí"],
+    ["ECO","Expozice civilní ochrany"],
+    ["EDU","Elektrárna Dukovany"],
+    ["ECHO-MIC","Monitorovací a informační středisko Evropské komise"],
+    ["EKI","Evropská kritická infrastruktura"],
+    ["ENFIP","Mezinárodní síť vyšetřovatelů příčin vzniku požárů"],
+    ["EPCIP","Evropský program na ochranu kritické infrastruktury"],
+    ["EPOZ","Expozice PO Zbiroh"],
+    ["ERNCIP","Evropská referenční síť pro ochranu kritické infrastruktury"],
+    ["ESIF","Evropské strukturální a investiční fondy"],
+    ["ESTE","Emergency Source Term Evaluation code"],
+    ["ETE","Elektrárna Temelín"],
+    ["EU","Evropská unie"],
+    ["FBI – VŠB","Fakulta báňského inženýrství, Vysoká škola báňská"],
+    ["F-M","Frýdek-Místek"],
+    ["FN","Fakultní nemocnice"],
+    ["FOK","Flashover kontejner"],
+    ["FRB","Flood rescue using boats"],
+    ["FZŠ","Fond zábrany škod"],
+    ["GIS","Geografické informační systémy"],
+    ["GPS","Global Positioning Systém"],
+    ["HaZZ SR","Hasičský a záchranný zbor Slovenskej republiky"],
+    ["HCP","Vysokokapacitní čerpání vody"],
+    ["HOPKS","Hospodářská opatření pro krizové stavy"],
+    ["HÚO PH","Hasičský útvar ochrany Pražského hradu"],
+    ["HZS ČR","Hasičský záchranný sbor České republiky"],
+    ["HZS kraje","Hasičský záchranný sbor kraje"],
+    ["CHL","Chemická laboratoř"],
+    ["CHS","Chemická služba"],
+    ["IKIS","Integrovaný komunikační a informační systém"],
+    ["IMZ","Instruktážně metodické zaměstnání"],
+    ["INSARAG","Mezinárodní poradní skupina OSN pro vyhledávání a záchranu"],
+    ["IOO LB","Institut ochrany obyvatelstva Lázně Bohdaneč"],
+    ["IOP","Integrovaný operační program"],
+    ["IROP","Integrovaný regionální operační program"],
+    ["IS OŘ","Informační systém operačního řízení"],
+    ["IZS","Integrovaný záchranný systém"],
+    ["JČK","Jihočeský kraj"],
+    ["JMK","Jihomoravský kraj"],
+    ["JPO","Jednotka požární ochrany"],
+    ["JSDH","Jednotka sboru dobrovolných hasičů"],
+    ["JSVV","Jednotný systém vyrozumění a varování"],
+    ["KHK","Královéhradecký kraj"],
+    ["KI","Kritická infrastruktura"],
+    ["KIS","Komunikační a informační systémy"],
+    ["KOPIS","Krajské operační a informační středisko"],
+    ["KŘP","Krajské ředitelství policie"],
+    ["KSP","Krajské standardizované projekty"],
+    ["KVK","Karlovarský kraj"],
+    ["KVY","Kraj Vysočina"],
+    ["LHS","Letecká hasičská služba"],
+    ["LIK","Liberecký kraj"],
+    ["LS PČR","Letecká služba Policie České republiky"],
+    ["LUMYK","Lehké univerzální mapový klient"],
+    ["MAAE","Mezinárodní agentura pro atomovou energii"],
+    ["MD","Ministerstvo dopravy"],
+    ["ME","Mistrovství Evropy"],
+    ["MK","Metodika kontrol"],
+    ["ML","Metodický list"],
+    ["MMR","Ministerstvo pro místní rozvoj"],
+    ["MO","Ministerstvo obrany"],
+    ["MP","Městská policie"],
+    ["MPO","Ministerstvo průmyslu a obchodu"],
+    ["MSK","Moravskoslezský kraj"],
+    ["MSKP","Monitorovací systém koncových prvků"],
+    ["MŠMT","Ministerstvo školství, mládeže a tělovýchovy"],
+    ["MU","Mimořádná událost"],
+    ["MV","Ministerstvo vnitra"],
+    ["MV-GŘ HZS ČR","Ministerstvo vnitra – generální ředitelství Hasičského záchranného sboru České republiky"],
+    ["MZ","Ministerstvo zdravotnictví"],
+    ["MZe","Ministerstvo zemědělství"],
+    ["MZHP","Materiální základna humanitární pomoci"],
+    ["MZO","Mezinárodní záchranné operace"],
+    ["MŽP","Ministerstvo životního prostředí"],
+    ["NAC","Severoatlantická rada"],
+    ["NAP","Národní akční plán adaptace na změnu klimatu"],
+    ["NATO","Severoatlantická aliance (North Atlantic Treaty Organization)"],
+    ["NATO-EADRCC","Euroatlantické koordinační středisko pro katastrofy"],
+    ["NGŘ","Náměstek generálního ředitele"],
+    ["NIDV","Národní institut dalšího vzdělávání"],
+    ["NIS","Národní informační systém"],
+    ["NKÚ","Nejvyšší kontrolní úřad"],
+    ["NKVS CBRN","Národní koordinační a vyhodnocovací středisko pro radiační, chemické, biologické a jaderné látky"],
+    ["NL","Nebezpečné látky"],
+    ["NMV","Náměstek ministra vnitra"],
+    ["NNO","Nestátní neziskové organizace"],
+    ["NOV","Nástupní odborný výcvik"],
+    ["NPÚ","Národní památkový ústav"],
+    ["NSZM","Národní síť zdravých měst"],
+    ["NV","Nařízení vlády"],
+    ["NZHP","Národní základna humanitární pomoci"],
+    ["NZP","Neodkladná zdravotnická pomoc"],
+    ["OBP","Odbor bezpečnostní politiky"],
+    ["OČMU","Ochrana člověka za běžných rizik a mimořádných událostí"],
+    ["OKK","Odborná kynologická komise"],
+    ["OLK","Olomoucký kraj"],
+    ["OMP","Obsluha motorových pil"],
+    ["OOP","Osobní ochranné prostředky"],
+    ["OPCV","Organizace pro zákaz chemických zbraní"],
+    ["OPE","Oddělení provozně ekonomické TÚPO"],
+    ["OPIS","Operační a informační středisko"],
+    ["OPŘ","Operační řízení"],
+    ["OPTE","Oddělení požárně technických expertiz"],
+    ["OPŽP","Operační program životního prostředí"],
+    ["ORP","Obce s rozšířenou působností"],
+    ["OŘ","Operační řízení kurz"],
+    ["OŘ-Z","Operační řízení – základní kurz"],
+    ["OŘ-P","Operační řízení – pro pokročilé kurz"],
+    ["OSH","Odborový svaz hasičů"],
+    ["OSN","Organizace spojených národů"],
+    ["OTPPO","Oddělení technických prostředků požární ochrany TÚPO"],
+    ["OUP","Otevírání uzavřených prostor"],
+    ["OVV","Odděle ní výzkumu a vývoje TÚPO"],
+    ["PAČR","Policejní akademie České republiky"],
+    ["PAK","Pardubický kraj"],
+    ["PBS","Požární bezpečnost staveb"],
+    ["PČR","Policie České republiky"],
+    ["PDV","Práce v divoké vodě"],
+    ["PIT","Psychosociální intervenční tým"],
+    ["PLK","Plzeňský kraj"],
+    ["PO","Požární ochrana"],
+    ["POP","Pravidelná odborná příprava"],
+    ["POT","Potápěči"],
+    ["PPN","Posouzení požárního nebezpečí"],
+    ["PRE","Pražská energetika"],
+    ["PROCIV","Rada Evropské unie pro civilní ochranu"],
+    ["PS","Požární stanice"],
+    ["PT","Požární technik/a"],
+    ["PVČ","Preventivně výchovná činnost"],
+    ["PVVH","Práce ve výškách a nad volnou hloubkou"],
+    ["RAP","Akční plán připravenosti"],
+    ["RAPEX","Rychlý výstražný informační systém EU o nebezpečných výrobcích nepotravinářského charakteru"],
+    ["Revize TZ, ZZ","Revize tlakových, zvedacích zařízení"],
+    ["RPAS","Dálkově řízené letadlové systémy"],
+    ["RVP","Rámcové vzdělávací programy"],
+    ["ŘLP","Řízení letového provozu"],
+    ["ŘSD","Ředitelství silnic a dálnic"],
+    ["S-40","Strojník jednotek SDH obcí"],
+    ["SAR","Vyhledávací a záchranné práce"],
+    ["SČK","Středočeský kraj"],
+    ["SDH","Sbor dobrovolných hasičů"],
+    ["SDO","Stanoviště dekontaminace osob"],
+    ["SEOD","Systém elektronické osobní dozimetrie"],
+    ["SH ČMS","Sdružení hasičů Čech, Moravy a Slezska"],
+    ["SIAŘ","Sbírka interních aktů řízení"],
+    ["SOŠ PO","Střední odborná škola požární ochrany"],
+    ["SOZ HZS ČR","Skladovací a opravárenské zařízení Hasičského záchranného sboru České republiky"],
+    ["SPD","Státní požární dozor"],
+    ["SPŽP","Státní politika životního prostředí"],
+    ["SSHR","Správa státních hmotných rezerv"],
+    ["SSRN","Systém selektivního rádiového návěstění"],
+    ["START","Snadné třídění a rychlá terapie"],
+    ["STČ","Soubor typových činností"],
+    ["SÚJB","Státní úřad pro jadernou bezpečnost"],
+    ["SÚRO","Státní ústav radiační ochrany"],
+    ["SŽDC","Správa železniční a dopravní cesty"],
+    ["ŠVP","Školní vzdělávací program"],
+    ["ŠVZ HZS ČR","Školní a výcvikové zařízení Hasičského záchranného sboru České republiky"],
+    ["TACHP","Mobilní chemické laboratoře"],
+    ["TCTV","Telefonní centrum tísňového volání 112"],
+    ["TČ","Typová činnost"],
+    ["TDG","Technická doporučení GAS (plynárenství)"],
+    ["TFA","Soutěž Toughest Firefighter Alive"],
+    ["THW","Technisches Hilfswerk"],
+    ["T-CHS P","Prodlužovací kurz chemické služby"],
+    ["TNK","Technická normalizační komise"],
+    ["TP","Technické podmínky"],
+    ["TPG","Technická pravidla GAS (plynárenství)"],
+    ["TP-STS","Technické podmínky strojní služby"],
+    ["TŘ","Taktické řízení"],
+    ["TŘ-Z","Taktické řízení – začátečníci"],
+    ["TS","Technická služba"],
+    ["TSŘ","Takticko-strategické řízení"],
+    ["TT","Traumateam ČR"],
+    ["TÚPO","Technický ústav požární ochrany"],
+    ["ÚKŠ","Ústřední krizový štáb"],
+    ["ÚLK","Ústecký kraj"],
+    ["UN-ECE","Ekonomickou komisi Organizace spojených národů pro Evropu"],
+    ["ÚNMZ","Úřad pro technickou normalizaci, metrologii a státní zkušebnictví"],
+    ["UN-OCHA","Úřad Organizace spojených národů pro koordinaci humanitárních záležitostí"],
+    ["ÚPP","Ústřední poplachový plán"],
+    ["USAR","Urban Search and Rescue team"],
+    ["V4","Visegrádská skupina"],
+    ["V-40","Velitelé družstev a velitelé jednotek SDH obcí a SDH podniků"],
+    ["VCNP","Výbor pro civilní nouzové plánování"],
+    ["VHP","Vnější havarijní plán"],
+    ["VJTF","Jednotky sil velmi rychlé a rychlé reakce"],
+    ["VLS","Vojenské lesy a statky"],
+    ["VNN","Vysoce nakažlivá nemoc"],
+    ["VOŠ PO","Vyšší odborná škola požární ochrany"],
+    ["VPPO","Věcné prostředky požární ochrany"],
+    ["VŠ","Vysoká škola"],
+    ["VŠB","Vysoká škola báňská"],
+    ["VŠB-TU","Vysoká škola báňská – Technická univerzita Ostrava"],
+    ["VŠE","Vysoká škola ekonomická"],
+    ["VÚ","Vojenský újezd"],
+    ["VYP","Vyšetřování příčin požárů"],
+    ["VZ","Veřejná zakázka"],
+    ["VZOHV","Vyprošťování zraněných osob z havarovaných vozidel"],
+    ["VZS ČČK","Vodní záchranná služba Českého červeného kříže"],
+    ["WHO","Světová zdravotnická organizace"],
+    ["XVR","Trenažér virtuální reality"],
+    ["ZaL","Záchranné a likvidační práce"],
+    ["ZHP","Zóna havarijního plánování"],
+    ["ZIZ","Zdroje ionizujícího záření"],
+    ["ZLK","Zlínský kraj"],
+    ["ZPP","Zjišťování příčin požárů"],
+    ["ZSC","Zahraniční služební cesta"],
+    ["ZÚ HZS ČR","Záchranný útvar Hasičského záchranného sboru České republiky"],
+    ["ZZS","Zdravotnická záchranná služba"]
+];
+
+const abbrList = document.getElementById('abbrList');
+const defList = document.getElementById('defList');
+const searchInput = document.getElementById('search');
+const noResults = document.getElementById('noResults');
+
+function renderList(container, rows){
+    container.innerHTML = '';
+    rows.forEach(r => {
+        const div = document.createElement('div');
+        div.className = 'abbr-row';
+        div.innerHTML = `<strong>${escapeHtml(r[0])}</strong> ${escapeHtml(r[1])}`;
+        container.appendChild(div);
+    });
+}
+
+function escapeHtml(s){ return s.replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;'); }
+
+function filter(q){
+    const s = q.trim().toLowerCase();
+    if(!s){
+        // hide lists until user types
+        abbrList.innerHTML = '';
+        defList.innerHTML = '';
+        defList.parentElement.style.display='none';
+        noResults.style.display = 'block';
+        noResults.textContent = 'Zadejte písmeno nebo výraz pro vyhledání zkratek.';
+        return;
+    }
+    const abbrMatches = [];
+    const defMatches = [];
+    DATA.forEach(item =>{
+        const ab = item[0].toLowerCase();
+        const de = item[1].toLowerCase();
+        if(ab.includes(s)) abbrMatches.push(item);
+        else if(de.includes(s)) defMatches.push(item);
+    });
+    renderList(abbrList, abbrMatches);
+    if(defMatches.length){ renderList(defList, defMatches); defList.parentElement.style.display='block'; }
+    else { defList.innerHTML=''; defList.parentElement.style.display='none'; }
+    const any = abbrMatches.length + defMatches.length;
+    if(any) {
+        noResults.style.display = 'none';
+    } else {
+        noResults.style.display = 'block';
+        noResults.textContent = 'Nic nenalezeno.';
+    }
+}
+
+searchInput.addEventListener('input', e => filter(e.target.value));
+// support ?q= in url
+const params = new URLSearchParams(location.search);
+if(params.get('q')){ searchInput.value = params.get('q'); filter(searchInput.value); } else { 
+    // initial state: no lists shown until user types
+    abbrList.innerHTML = ''; defList.innerHTML = ''; defList.parentElement.style.display='none'; noResults.style.display='block'; noResults.textContent = 'Zadejte písmeno nebo výraz pro vyhledání zkratek.';
+ }
+</script>
+
+<script src="../script.js"></script>
+</body>
+</html>

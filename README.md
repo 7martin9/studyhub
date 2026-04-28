@@ -6,7 +6,7 @@ Tento portál slouží jako interaktivní rozcestník a úložiště studijních
 
 ## 🔗 Odkazy
 
-Živý web: https://studujpo.ossp.cz (aktuálně může běžet i na studyhub.codes během přechodu)
+Živý web: https://studyhub.codes
 
 Status: Ve vývoji
 

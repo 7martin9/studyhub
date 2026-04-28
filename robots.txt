@@ -1,5 +1,5 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://studujpo.ossp.cz/sitemap.xml
+Sitemap: https://studyhub.codes/sitemap.xml
 

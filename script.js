@@ -300,9 +300,12 @@ document.addEventListener('DOMContentLoaded', () => {
         btn.innerHTML = `<i class="fa-solid fa-file-pdf"></i> ${label}`;
     });
 
-    document.querySelectorAll('.q-author span').forEach(authorSpan => {
+    document.querySelectorAll('.q-author').forEach(author => {
+        const authorSpan = author.querySelector('span');
+        if (!authorSpan) return;
+
         if (authorSpan.textContent.trim() === 'Doplnit') {
-            authorSpan.textContent = 'Doplním jméno';
+            authorSpan.textContent = 'AI - ověřte si správnost';
         }
     });
 

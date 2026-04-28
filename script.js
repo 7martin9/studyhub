@@ -144,6 +144,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
         studyMenu.appendChild(item);
     }
+
+    if (studyMenu && !studyMenu.querySelector('a[href="/zkratky"]')) {
+        const item = document.createElement('li');
+        const link = document.createElement('a');
+        link.href = '/zkratky';
+        link.textContent = 'Seznam zkratek';
+        item.appendChild(link);
+
+        studyMenu.appendChild(item);
+    }
 });
 
 // ==========================================
